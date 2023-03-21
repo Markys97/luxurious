@@ -1,0 +1,46 @@
+.lang__container {
+  position: relative;
+  padding-left: 5px;
+}
+.lang__item {
+  display: flex;
+  align-items: center;
+  gap: 0 5px;
+  cursor: pointer;
+}
+.lang__head {
+  cursor: pointer;
+  min-width: 80px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.lang__flag {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.lang__flag img {
+  max-height: 100%;
+}
+.lang__text {
+  font-size: 12px;
+  line-height: 15px;
+}
+.lang__body {
+  position: absolute;
+  z-index: 5;
+  top: 30px;
+  left: 0;
+  display: block;
+  padding: 5px 10px 5px 5px;
+  box-shadow: 0 0 5px var(--main-color);
+  border-radius: 10px;
+}
+
+.lang-body-open {
+  box-shadow: 0 0 5px var(--main-color) !important;
+}/*# sourceMappingURL=selectLang.css.map */

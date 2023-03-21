@@ -1,0 +1,77 @@
+.footer {
+  padding: 20px 0;
+}
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+}
+.footer__title {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+}
+.footer__link {
+  display: block;
+  font-size: 14px;
+  line-height: 15px;
+  color: var(--main-color);
+  transition: all 300ms;
+}
+.footer__link:hover {
+  color: var(--second-color);
+}
+.footer__service {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer__copyright {
+  font-size: 14px;
+  color: var(--main-color);
+}
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+}
+.social-media {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.social-media__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+.social-media__icon img {
+  max-height: 100%;
+}
+
+.phone, .email {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.phone__item, .email__item {
+  display: flex;
+  gap: 0 5px;
+}
+.phone__item:hover span, .email__item:hover span {
+  color: var(--second-color);
+}
+.phone__item span, .email__item span {
+  font-size: 14px;
+  color: var(--main-color);
+  transition: all 300ms;
+}
+.phone__title, .email__title {
+  font-weight: 600;
+}
+
+.email {
+  display: flex;
+}/*# sourceMappingURL=footer.css.map */
