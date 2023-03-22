@@ -10,6 +10,7 @@ const initialState = {
         },
         value:'en'
     },
+    isDarkMode:false
 
 }
 
@@ -17,9 +18,10 @@ const settingSlide = createSlice( {
     name:'setting',
     initialState,
     reducers:{
-        setActiveLang: (state,action) => state= action.payload
+        setActiveLang: (state,action) => state= {...state,lang:{...action.payload}},
+        setIsDarkMode: (state,action) => state = {...state,isDarkMode:action.payload}
     }
 } )
 
-export const {setActiveLang} = settingSlide.actions
+export const {setActiveLang,setIsDarkMode} = settingSlide.actions
 export default settingSlide.reducer

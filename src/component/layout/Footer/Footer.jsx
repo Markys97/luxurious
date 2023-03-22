@@ -47,7 +47,7 @@ function Footer() {
             href:'/',
             lang:{
                 fr:'Signaler un probleme',
-                en:'Refund',
+                en:'To report a problem',
                 ru:'Чтобы сообщить о проблеме'
             }
         },

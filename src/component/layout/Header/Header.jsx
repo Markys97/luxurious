@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './header.css'
@@ -97,6 +97,19 @@ function Header() {
         },
     ]
     const [menuLinks,setMenuLinks] = useState(links);
+
+    useEffect(()=>{
+        let menuItems=[...document.querySelectorAll('.menu__item')];
+        menuItems.forEach((item,index)=>{
+            let top= parseFloat(getComputedStyle(item).height)
+           
+           let submenu= item.querySelector('.menu__submenu')
+          
+            if(submenu){
+                submenu.style.top = `${top-1}px`
+            }
+        })
+    },[])
     return (
         <header className="header">
             <div className="header__container wrapper">
@@ -185,16 +198,16 @@ function Header() {
                                                         ):null}
                                                     </div>
                                                     {item?.subMenu !==undefined?  (
-                                                        <div className="menu__submenu">
+                                                    <div className="menu__submenu">
                                                         <ul className='menu__submenu-list'>
                                                             {
                                                                 item.subMenu.map( (elt,id) => {
                                                                     return (
-                                                                    <li className="menu__submenu-item">
-                                                                        <Link href={elt.href}>
-                                                                            {elt.lang[currentLang]}
-                                                                        </Link>
-                                                                    </li>
+                                                                        <li className="menu__submenu-item">
+                                                                            <Link href={elt.href}>
+                                                                                {elt.lang[currentLang]}
+                                                                            </Link>
+                                                                        </li>
                                                                     )
                                                                 })
                                                             }

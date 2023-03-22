@@ -9,7 +9,7 @@ function LangItem({icon,lang,setIsLangOpen,value}) {
   const selectLang = ()=>{
    
     if(itemLangNode.current.closest('.lang__body')){
-     dispatch(setActiveLang({lang:{icon,lang,value}}))
+     dispatch(setActiveLang({icon,lang,value}))
      setIsLangOpen(false)
     }
   }

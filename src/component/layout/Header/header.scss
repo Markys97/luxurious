@@ -134,6 +134,8 @@
     &__link{
         color: var(--main-color) ;
         position: relative;
+        display: block;
+
         &-head{
             display: flex;
             align-items: center;
@@ -157,15 +159,19 @@
             width: 100%;
             position: absolute;
             top: 28px;
+            padding: 10px 0;
+            &-list{
+                display: inline-flex;
+                flex-direction: column;
+                gap: 5px 0;
+            }
             &-item{
-                &:not(:last-child){
-                    margin-bottom: 5px;
-                }
+          
               padding: 0 5px;
               position: relative;
               &::before{
                 content: '';
-                display: block;
+                display: inline-block;
                 position: absolute;
                 bottom: 0;
                 left: 0;
@@ -198,10 +204,14 @@
             color:inherit;
             transition: all 300ms;
         }
+        &:hover{
+            .menu__submenu{
+                display: inline-block;
+            }
+        }
     }
     &__item{
         position: relative;
-
         &::before{
             content: '';
             display: block;
@@ -231,9 +241,7 @@
                 stroke: var(--second-color);
                }
             }
-            .menu__submenu{
-                display: block;
-            }
+           
         }
     }
 

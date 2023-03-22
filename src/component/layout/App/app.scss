@@ -17,9 +17,7 @@ body{
    
 }
 
-.dark{
-    --main-color: red;
-}
+
 
 
 
@@ -104,4 +102,17 @@ a{
     margin: 0 auto;
     // border: 1px solid red;
 
+}
+
+.app{
+    transition: all 300ms;
+    &--dark{
+        background: var(--main-color);
+        a{
+            color: white;
+            span{
+                color: white;
+            }
+        }
+    }
 }

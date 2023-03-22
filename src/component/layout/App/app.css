@@ -15,10 +15,6 @@ body {
   font-style: normal;
 }
 
-.dark {
-  --main-color: red;
-}
-
 input {
   border: none;
   outline: none;
@@ -88,4 +84,17 @@ a {
   max-width: 1150px;
   padding: 0 10px;
   margin: 0 auto;
+}
+
+.app {
+  transition: all 300ms;
+}
+.app--dark {
+  background: var(--main-color);
+}
+.app--dark a {
+  color: white;
+}
+.app--dark a span {
+  color: white;
 }/*# sourceMappingURL=app.css.map */
