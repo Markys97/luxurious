@@ -9,7 +9,6 @@ function Index() {
     <div className='site-wrapper'>
         <Header/>
           <main className='site-body'>
-            
           </main>
         <Footer/>
     </div>
