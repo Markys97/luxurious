@@ -1,0 +1,60 @@
+.item-banier--show {
+  position: relative;
+}
+.item-banier--show:hover::before {
+  opacity: 1;
+  z-index: 5;
+}
+.item-banier--show:hover .item-banier__button-wrapper {
+  opacity: 1;
+}
+.item-banier--show::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: all 300ms;
+}
+.item-banier__img {
+  display: flex;
+  justify-content: center;
+  height: 550px;
+  overflow: hidden;
+}
+.item-banier__img img {
+  width: 100%;
+  height: auto;
+}
+.item-banier__button-wrapper {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  transition: all 300ms;
+}
+
+.button {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 18px;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: var(--light-color);
+  cursor: pointer;
+  transition: all 300ms;
+}
+.button:hover {
+  color: var(--second-color);
+}/*# sourceMappingURL=banierItem.css.map */

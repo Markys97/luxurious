@@ -1,0 +1,16 @@
+.list-categorie-sneaker{
+
+    &__title{
+        margin-bottom: 20px;
+        font-size: 24px;
+
+        color: var(--main-color);
+    }
+    &__grid{
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(3,1fr);
+    }
+    
+}
+

@@ -106,10 +106,18 @@ function Header() {
            let submenu= item.querySelector('.menu__submenu')
           
             if(submenu){
-                submenu.style.top = `${top-1}px`
+                submenu.style.top = `${top-.5}px`
             }
         })
     },[])
+
+    const placeholderSearchInput = {
+        lang:{
+            en:'search',
+            fr:"recherche",
+            ru:'поиск'
+        }
+    }
     return (
         <header className="header">
             <div className="header__container wrapper">
@@ -124,7 +132,9 @@ function Header() {
                         
                         <div className="header__product">
                             <form className="header__form form">
-                                <Input/>
+                                <Input 
+                                    placeholder={placeholderSearchInput}
+                                />
                             </form>  
                             <div className="header__product-icons">
                                 <div className="header__like">

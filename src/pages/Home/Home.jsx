@@ -1,12 +1,54 @@
 import './home.css'
 import Header from '../../component/layout/Header/Header'
 import Footer from '../../component/layout/Footer/Footer'
+import Slider from '../../component/layout/Slider/Slider'
+import ListCategorie from '../../component/layout/ListeCategorie/ListCategorie'
 
 function Home() {
+  const pubs = [
+    {
+        img:`05.jpg`,
+        canIBuy:true,
+        description:'lorem ipsum'
+    },
+    {
+        img:`06.jpg`,
+        canIBuy:false,
+        description:'lorem ipsum'
+    },
+    {
+        img:`07.jpg`,
+        canIBuy:false,
+        description:'lorem ipsum'
+    },
+    {
+        img:`08.jpg`,
+        canIBuy:false,
+        description:'lorem ipsum'
+    },
+    {
+        img:`09.jpg`,
+        canIBuy:true,
+        description:'lorem ipsum'
+    },
+]
   return (
-    <div className='site-wrapper'>
+    <div className='home-wrapper'>
         <Header/>
-          <main className='site-body test'>
+          <main className='home-body wrapper'>
+
+            <div className="home__banier">
+                <Slider
+                  slides={pubs}
+                  showNavigation={false}
+                  classHtml="home__slider"
+                 />
+            </div>
+
+           <div className="home__categorie">
+              <ListCategorie/>
+           </div>
+           
           </main>
         <Footer/>
     </div>

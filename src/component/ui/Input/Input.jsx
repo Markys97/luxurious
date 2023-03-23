@@ -1,9 +1,11 @@
 import {useState} from 'react'
+import { useSelector } from 'react-redux'
 
-function Input() {
+function Input({placeholder}) {
+  const currentLang = useSelector(state => state.setting.lang.value)
   return (
 <div className="form__input form__input--icon">
-    <input type="text" placeholder='search...'/>
+    <input type="text" placeholder={placeholder.lang[currentLang]+'...'}/>
     <div className="form__icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_8_17)">

@@ -1,0 +1,63 @@
+.slider__wrapper {
+  position: relative;
+}
+.slider__btn {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 5px var(--main-color);
+  transition: all 300ms;
+  cursor: pointer;
+}
+.slider__btn:hover {
+  background: #c5c3c3;
+}
+.slider__btn-icon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.slider__btn-icon img {
+  height: 100%;
+  width: auto;
+}
+.slider__btn--next {
+  right: -45px;
+}
+.slider__btn--next .slider__btn-icon {
+  transform: rotate(180deg);
+}
+.slider__btn--prev {
+  left: -45px;
+}
+.slider__btn--disable {
+  transition: all 300ms;
+  visibility: hidden;
+}
+.slider__pagination {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+.slider .swiper-pagination-bullet {
+  background: var(--main-color);
+  margin: 0 5px !important;
+  width: 10px;
+  height: 10px;
+}
+.slider .swiper-pagination-bullet-active {
+  background: var(--second-color);
+}/*# sourceMappingURL=Slider.css.map */

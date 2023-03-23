@@ -1,0 +1,10 @@
+.list-categorie-sneaker__title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--main-color);
+}
+.list-categorie-sneaker__grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}/*# sourceMappingURL=listCategorie.css.map */
