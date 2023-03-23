@@ -8,9 +8,7 @@ function Index() {
   return (
     <div className='site-wrapper'>
         <Header/>
-          <main className='site-main test'>
-
-
+          <main className='site-body test'>
           </main>
         <Footer/>
     </div>
