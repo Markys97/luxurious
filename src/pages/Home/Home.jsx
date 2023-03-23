@@ -1,10 +1,14 @@
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import './home.css'
 import Header from '../../component/layout/Header/Header'
 import Footer from '../../component/layout/Footer/Footer'
 import Slider from '../../component/layout/Slider/Slider'
 import ListCategorie from '../../component/layout/ListeCategorie/ListCategorie'
 
+
 function Home() {
+  const currentLang = useSelector(state => state.setting.lang.value)
   const pubs = [
     {
         img:`05.jpg`,
@@ -32,6 +36,19 @@ function Home() {
         description:'lorem ipsum'
     },
 ]
+let titleWindow = {
+  lang:{
+    fr:'Accueil',
+    en:'Home',
+    ru:'Главная'
+  }
+}
+document.title=`Luxurious | ${titleWindow.lang[currentLang]}`
+
+useEffect(()=>{
+  document.title=`Luxurious | ${titleWindow.lang[currentLang]}`
+},[])
+
   return (
     <div className='home-wrapper'>
         <Header/>
@@ -48,7 +65,7 @@ function Home() {
            <div className="home__categorie">
               <ListCategorie/>
            </div>
-           
+
           </main>
         <Footer/>
     </div>
