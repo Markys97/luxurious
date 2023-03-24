@@ -307,9 +307,15 @@
 
 @media screen and (max-width:1200px) {
     .header{
+        // background: red;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--light-color);
         padding:  10px 0;
         border-bottom: 1px solid rgba($color: #000, $alpha: .2);
         margin-bottom: 20px;
+
         &__top{
             gap: 0 20px;
             margin-bottom: 0;
@@ -322,9 +328,11 @@
         &__center{
             display: none;
         }
+
         &__user-out{
             display: none;
         }
+        
         &__burger{
             display: flex;
         }
