@@ -7,7 +7,7 @@ function BanierItem({pub:{img,description,canIBuy },buttonData:{lang,onclick}}) 
   return (
     <div className={`item-banier ${canIBuy?'item-banier--show':null}`}>
         <div className="item-banier__img">
-            <img src={`/images/pub/${img}`} alt={description} />
+            <img src={`/images/pub/${img}`} alt={description} loading="lazy"/>
         </div>
         {
             canIBuy && (
