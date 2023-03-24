@@ -57,4 +57,10 @@
 }
 .button:hover {
   color: var(--second-color);
+}
+
+@media screen and (max-width: 1200px) {
+  .item-banier__img {
+    height: 350px;
+  }
 }/*# sourceMappingURL=banierItem.css.map */

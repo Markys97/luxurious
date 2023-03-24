@@ -53,4 +53,11 @@
   font-weight: 400;
   opacity: 0;
   transition: all 300ms;
+}
+
+@media screen and (max-width: 1200px) {
+  .item-categorie {
+    flex-shrink: 0;
+    width: 300px;
+  }
 }/*# sourceMappingURL=itemCategorie.css.map */

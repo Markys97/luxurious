@@ -47,6 +47,11 @@ document.title=`Luxurious | ${titleWindow.lang[currentLang]}`
 
 useEffect(()=>{
   document.title=`Luxurious | ${titleWindow.lang[currentLang]}`
+  let imgs = [...document.querySelectorAll('img')]
+
+  imgs.forEach(img=> img.loading = 'lazy')
+
+
 },[])
 
   return (

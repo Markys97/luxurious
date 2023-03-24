@@ -8,9 +8,39 @@
     }
     &__grid{
         display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+        grid-template-columns: repeat(4,1fr);
     }
     
+}
+
+
+@media screen and (max-width:1200px) {
+    .list-categorie-sneaker{
+
+        &__title{
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: var(--main-color);
+            padding: 0 10px;
+        }
+        &__content{
+            margin: 0 -10px;
+        }
+
+        &__grid{
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0 10px;
+            &::-webkit-scrollbar{
+                background: transparent;
+            }
+            
+        }
+        
+    }
 }
 

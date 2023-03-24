@@ -9,18 +9,23 @@ function ListCategorie() {
     const listCategorie = [
         {
             id:1,
-            name:'nike',
+            name:'Nike',
             img:'nike.jpg'
         },
         {
             id:2,
-            name:'puma',
+            name:'Puma',
             img:'puma.jpg'
         },
         {
             id:3,
             name:'addidas',
             img:'addidas.jpg'
+        },
+        {
+            id:4,
+            name:'New Balance',
+            img:'new_balance.jpg'
         },
     ]
 

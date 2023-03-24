@@ -74,4 +74,31 @@
 
 .email {
   display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .footer__top {
+    flex-direction: column;
+    justify-content: unset;
+    gap: 30px;
+  }
+  .footer__service {
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    min-width: 300px;
+    order: 3;
+  }
+  .footer__help, .footer__contact {
+    min-width: 300px;
+  }
+  .footer__list {
+    flex-direction: row;
+    gap: 10px 20px;
+    flex-wrap: wrap;
+  }
 }/*# sourceMappingURL=footer.css.map */

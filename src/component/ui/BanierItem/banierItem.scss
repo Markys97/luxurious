@@ -68,3 +68,12 @@
 
 
 }
+
+@media screen and (max-width:1200px) {
+    .item-banier{
+        &__img{
+            height: 350px;
+        }
+        
+    }
+}

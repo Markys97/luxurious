@@ -106,7 +106,7 @@ function Header() {
            let submenu= item.querySelector('.menu__submenu')
           
             if(submenu){
-                submenu.style.top = `${top-.5}px`
+                submenu.style.top = `${top}px`
             }
         })
     },[])
@@ -168,6 +168,7 @@ function Header() {
                             </div>
                         </div>
                     </div>
+
                     <div id='test' className="header__right">
                         <div className="header__user-out">
                             <div className="header__connection">
@@ -186,8 +187,13 @@ function Header() {
                                 <SelectLang/>
                             </div>
                         </div>
+                        <div className="header__burger">
+                            <div className="header__burger-line"></div>
+                        </div>
                     </div>
                 </div>
+
+                {/* menu in header */}
                 <div className="header__bottom">
                     <div className="header__menu">
                         <nav className="menu">
@@ -195,8 +201,9 @@ function Header() {
                                 {
                                     menuLinks.map( (item,id) => {
                                         return (
-                                        <li key={id} className="menu__item">
+                                        <li key={id} className={`menu__item ${(item?.subMenu !==undefined)? 'menu__item--no-bar':null}`}>
                                                 <Link to={item.hrefValue} className='menu__link'>
+
                                                     <div className="menu__link-head">
                                                         <div className="menu__link-text link">{item.lang[currentLang]}</div>
                                                         {item?.subMenu !==undefined?  (
@@ -207,6 +214,7 @@ function Header() {
                                                             </div>
                                                         ):null}
                                                     </div>
+
                                                     {item?.subMenu !==undefined?  (
                                                     <div className="menu__submenu">
                                                         <ul className='menu__submenu-list'>

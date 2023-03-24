@@ -84,3 +84,37 @@
 .email{
     display: flex;
 }
+
+
+@media screen and (max-width:768px) {
+    .footer{
+        padding: 10px 0;
+        border-top: 1px solid rgba($color: #000, $alpha: .2);
+        &__top{
+            flex-direction: column;
+            justify-content: unset;
+            gap: 30px;
+        }
+
+        &__service{
+          align-items: center;
+            flex-direction: row;
+            gap: 10px;
+            min-width: 300px;
+            order: 3;
+        }
+
+        &__help,&__contact{
+            min-width: 300px;
+        }
+
+        &__list{
+            flex-direction: row;
+            gap: 10px 20px;
+            flex-wrap: wrap;
+        }
+        
+
+       
+    }
+}

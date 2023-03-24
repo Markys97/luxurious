@@ -118,6 +118,48 @@
             }
         }
     }
+
+    &__burger{
+        display: none;
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--main-color);
+        border-radius: 5px;
+
+        align-items: center;
+        justify-content: center;
+        padding: 3px;
+        cursor: pointer;
+        transition: all 300ms;
+        &:hover{
+            border: 1px solid white;
+            background: var(--second-color);
+            .header__burger-line{
+                background: white;
+            }
+        }
+        &-line{
+            width: 100%;
+            height: 2px;
+            background: var(--main-color);
+            position: relative;
+            &::before,&::after{
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                background: inherit;
+            }
+            &::before{
+                top: -7px;
+            }
+            &::after{
+                bottom: -7px;
+            }
+        }
+    }
    
 
 
@@ -135,7 +177,8 @@
         color: var(--main-color) ;
         position: relative;
         display: block;
-
+        // border: 1px solid red;
+        padding: 2px 0;
         &-head{
             display: flex;
             align-items: center;
@@ -160,7 +203,7 @@
             position: absolute;
             z-index: 10;
             top: 28px;
-            padding: 10px 0;
+            padding: 10px ;
             background: var(--light-color);
             border-radius: 10px;
             box-shadow: 0 0 5px  var(--main-color);
@@ -213,9 +256,18 @@
                 display: inline-block;
             }
         }
+
+        
     }
     &__item{
         position: relative;
+       &--no-bar{
+        &:hover{
+            &::before{
+                display: none!important;
+            }
+        }
+       }
         &::before{
             content: '';
             display: block;
@@ -245,9 +297,37 @@
                 stroke: var(--second-color);
                }
             }
+            
            
         }
     }
 
 }
 
+
+@media screen and (max-width:1200px) {
+    .header{
+        padding:  10px 0;
+        border-bottom: 1px solid rgba($color: #000, $alpha: .2);
+        margin-bottom: 20px;
+        &__top{
+            gap: 0 20px;
+            margin-bottom: 0;
+        }
+
+        &__bottom{
+            display: none;            
+        }
+        
+        &__center{
+            display: none;
+        }
+        &__user-out{
+            display: none;
+        }
+        &__burger{
+            display: flex;
+        }
+    
+    }
+}

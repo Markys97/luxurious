@@ -14,4 +14,13 @@
 }
 .home__categorie {
   margin-bottom: 80px;
+}
+
+@media screen and (max-width: 1200px) {
+  .home__slider {
+    margin-bottom: 40px;
+  }
+  .home__categorie {
+    margin-bottom: 40px;
+  }
 }/*# sourceMappingURL=home.css.map */
