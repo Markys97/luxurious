@@ -85,12 +85,17 @@
     display: flex;
 }
 
+@media screen and (max-width:1200px){
+    .footer{
+        // border-top: 1px solid rgba($color: #000, $alpha: .2);
+        margin-bottom: 110px;
+        padding:20px 0 10px ;
+    }
+}
+
 
 @media screen and (max-width:768px) {
     .footer{
-        margin-bottom: 110px;
-        padding: 10px 0;
-        border-top: 1px solid rgba($color: #000, $alpha: .2);
         &__top{
             flex-direction: column;
             justify-content: unset;

@@ -1,11 +1,42 @@
+import { useEffect, useRef } from 'react'
 import './mobileControl.css'
 import SelectLang from '../../ui/SelectLang/SelectLang'
 import { Link } from 'react-router-dom'
 import ThemeHandler from '../../ui/ThemeHandler/ThemeHandler'
 
+
 function MobileControl() {
+
+    const mobileControlRef = useRef();
+    const toggleVisibilityMobileControl = (elt) => {
+        let lastScrollTop = 0;
+
+        console.log(lastScrollTop,'init')
+
+        window.addEventListener("scroll", function(){
+           var st = this.scrollY
+           let eltHeight = parseFloat(getComputedStyle(elt).height)
+           
+           if (st > lastScrollTop) {
+              elt.style.bottom = 0
+           } else if(st ===0) {
+                elt.style.bottom = 0
+           }
+           else{
+            elt.style.bottom =  `-${eltHeight+50}px`
+           } 
+
+           lastScrollTop = st <= 0 ? 0 : st; 
+         
+        }, false);
+    }
+
+    useEffect(()=>{
+        toggleVisibilityMobileControl(mobileControlRef.current);
+
+    },[])
   return (
-    <div className='mobileControl'>
+    <div ref={mobileControlRef} className='mobileControl'>
         <div className="mobileControl__container wrapper">
             <div className="mobileControl__content">
                 <div className="mobileControl__top">

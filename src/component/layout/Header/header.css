@@ -254,7 +254,6 @@
     z-index: 100;
     background: var(--light-color);
     padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
   }
   .header__top {

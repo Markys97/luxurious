@@ -76,12 +76,13 @@
   display: flex;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .footer {
     margin-bottom: 110px;
-    padding: 10px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px 0 10px;
   }
+}
+@media screen and (max-width: 768px) {
   .footer__top {
     flex-direction: column;
     justify-content: unset;
