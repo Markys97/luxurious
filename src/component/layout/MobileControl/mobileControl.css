@@ -1,0 +1,24 @@
+.mobileControl {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .mobileControl {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: var(--light-color);
+  }
+  .mobileControl__content {
+    padding: 20px 0;
+  }
+  .mobileControl__top-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0 10px;
+  }
+}/*# sourceMappingURL=mobileControl.css.map */

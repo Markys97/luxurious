@@ -1,0 +1,26 @@
+.mobileControl{
+display: none;
+}
+
+@media screen and (max-width:1200px) {
+    .mobileControl{
+        display: block;
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: var(--light-color);
+        &__content{
+            padding: 20px 0;
+        }
+        &__top{
+            &-row{
+                display: flex;
+                justify-content: space-between;
+                gap: 0 10px;
+            }
+        }
+    }
+}

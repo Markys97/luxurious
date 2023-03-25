@@ -38,19 +38,25 @@ function Header() {
     ]
     const [menuLinks,setMenuLinks] = useState(links);
 
-    const openMenuMobile = ()=> dispatch(setIsOpenMenuMobile(true))
+    const openMenuMobile = ()=> {
+        dispatch(setIsOpenMenuMobile(true))
+        document.body.classList.add('pause')
+    }
 
     useEffect(()=>{
         let menuItems=[...document.querySelectorAll('.menu__item')];
         menuItems.forEach((item,index)=>{
             let top= parseFloat(getComputedStyle(item).height)
+            console.log(top)
            
            let submenu= item.querySelector('.menu__submenu')
           
             if(submenu){
-                submenu.style.top = `${top}px`
+                submenu.style.top = `${top-1}px`
             }
         })
+
+      
     },[])
 
     const placeholderSearchInput = {
@@ -159,7 +165,10 @@ function Header() {
                                                             ):null}
                                                         </div>
 
-                                                        {item?.subMenu !==undefined?  (
+                                                       
+
+                                                    </Link>
+                                                    {item?.subMenu !==undefined?  (
                                                         <div className="menu__submenu">
                                                             <ul className='menu__submenu-list'>
                                                                 {
@@ -178,10 +187,8 @@ function Header() {
                                                                 
                                                             </ul>
                                                         </div>
-                                                            ):null
-                                                        }
-
-                                                    </Link>
+                                                        ):null
+                                                    }
                                             </li>
                                             )
                                         } )

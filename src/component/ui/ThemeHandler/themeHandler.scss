@@ -1,6 +1,10 @@
 .theme{
     // background: #000;
     // border: 1px solid ;
+    &--mobile{
+        flex-direction: column;
+        gap: 10px;
+    }
     display: flex;
     align-items: center;
     gap: 0 10px;

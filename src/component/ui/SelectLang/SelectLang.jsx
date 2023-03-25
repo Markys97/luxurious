@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import './selectLang.css'
 import LangItem from '../LangItem/LangItem'
-function SelectLang() {
+function SelectLang({htmlClass}) {
     let langActive = useSelector(state=> state.setting.lang)
     
     const langs = [
@@ -46,7 +46,7 @@ function SelectLang() {
     const listLangInBody= langList.filter( itemLang => itemLang.value!=langActive.value)
 
   return (
-    <div className="lang">
+    <div className={`lang ${htmlClass?htmlClass:''}`}>
         <div className="lang__container">
             <div onClick={toggleSelectOpenBody} className={`lang__head ${!isLangOpen && 'lang-body-open'}`}>
                 <LangItem 

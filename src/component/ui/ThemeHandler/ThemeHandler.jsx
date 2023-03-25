@@ -5,7 +5,7 @@ import { setIsDarkMode } from '../../../redux/slide/setting/settingSlide';
 
 
 
-function ThemeHandler() {
+function ThemeHandler({htmlClass}) {
   const isDarkMode = useSelector(state => state.setting.isDarkMode);
   const currentLang = useSelector(state=> state.setting.lang.value)
   const dispatch = useDispatch()
@@ -35,7 +35,7 @@ function ThemeHandler() {
   ]
   const [textMode,setTextMode] = useState(texts[0])
   return (
-    <div className={`theme ${isDarkMode===true? 'theme--dark':null}`}>
+    <div className={`theme${isDarkMode===true? ' theme--dark':''} ${htmlClass?htmlClass+' ':''}`}>
     <div className="theme__toggle">
         <div onClick={()=> toggleTheme()} className="theme__radio"></div>
     </div>

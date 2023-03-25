@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import './footer.css';
 import LogoLight from '../../ui/LogoLight/LogoLight'
 
+import MobileControl from '../MobileControl/MobileControl';
+
 function Footer() {
     const currentLang = useSelector(state=> state.setting.lang.value)
     const blockTitles = [
@@ -73,6 +75,7 @@ function Footer() {
         }
     ]
   return (
+    <>
         <footer className="footer">
             <div className="footer__container wrapper">
                 <div className="footer__content">
@@ -110,7 +113,7 @@ function Footer() {
                         <div className="footer__title">{blockTitles[1][currentLang]}</div>
                             <ul className="footer__list">
                                 <li className="footer__item">
-                                      <div className="phone">
+                                        <div className="phone">
                                             
                                             {
                                                 phoneText.map((tel,id)=> (
@@ -121,10 +124,10 @@ function Footer() {
                                                 ))
                                             }
                                             
-                                       </div>
+                                        </div>
                                 </li>
                                 <li className="footer__item">
-                                   <div className="email">                    
+                                    <div className="email">                    
                                         {
                                             emailText.map((item,id)=> (
                                                 <Link key={id}  to={`tel:${''}`} className="email__item">
@@ -133,7 +136,7 @@ function Footer() {
                                                 </Link>
                                             ))
                                         }
-                                   </div>
+                                    </div>
                                 </li>
                                 <li className="footer__item">
                                     <div className="social-media">
@@ -142,7 +145,7 @@ function Footer() {
                                                 <img src="/images/icons/whatsapp.png" alt="logo whatsapp" />
                                             </div>
                                         </a>
-                                      
+                                        
                                         <a href="javascript:void()" className="social-media__item">
                                             <div className="social-media__icon">
                                                 <img src="/images/icons/instagram.png" alt="logo instagram" />
@@ -155,13 +158,16 @@ function Footer() {
                                         </a>
                                     </div>
                                 </li>
-                               
+                                
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
+        <MobileControl/>
+        
+    </>
   )
 }
 

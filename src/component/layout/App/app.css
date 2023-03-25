@@ -97,4 +97,28 @@ a {
 }
 .app--dark a span {
   color: white;
+}
+.app--dark .mobileControl {
+  background: var(--main-color);
+}
+.app--dark .mobileControl {
+  background: var(--main-color);
+}
+.app--dark .menuMobile__content {
+  background: var(--main-color);
+}
+
+.pause {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    max-width: 800px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 100%;
+  }
 }/*# sourceMappingURL=app.css.map */

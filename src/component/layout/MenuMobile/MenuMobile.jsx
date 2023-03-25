@@ -9,13 +9,12 @@ function MenuMobile() {
     const isMenuMobileOpen = useSelector(state=> state.setting.isMenuMobileOpen)
     const dispatch = useDispatch();
     const linkSubMenuRef = useRef()
-    const closeMenuMobile = ()=> dispatch(setIsOpenMenuMobile(false))
-    const toggleOpenSubMenu = e =>{
-        e.currentTarget
-        .closest('.menuMobile__item')
-        .classList.toggle('open')
-        console.log( e.currentTarget.closest('.menuMobile__item'))
+    const closeMenuMobile = ()=> {
+        dispatch(setIsOpenMenuMobile(false))
+        document.body.classList.remove('pause')
     }
+    const currentLang = useSelector(state=> state.setting.lang.value)
+
    
   return (
     <nav className='menuMobile'>
@@ -29,10 +28,10 @@ function MenuMobile() {
 
                     {
                         links.map((link,id)=>(
-                            <li key={id} className="menuMobile__item">
-                                <Link ref={linkSubMenuRef} onClick={e=> toggleOpenSubMenu(e)} to={link.href} className="menuMobile__link">
+                            <li key={id} className={`menuMobile__item ${(link?.subMenu !== undefined)?'open':null}`}>
+                                <Link  to={link.href} className="menuMobile__link">
                                     <div className="menuMobile__link-text">
-                                        {link.lang['en']}
+                                        {link.lang[currentLang]}
                                     </div>
                                     {link?.subMenu !==undefined?  (
                                         <div className="menuMobile__link-icon">
@@ -49,7 +48,7 @@ function MenuMobile() {
                                                 <li className="menuMobile__submenu-item">
                                                     <Link to={submenu_link.href} className="menuMobile__submenu-link">
                                                         {
-                                                            submenu_link.lang['en']
+                                                            submenu_link.lang[currentLang]
                                                         }
                                                     </Link>
                                                 </li>

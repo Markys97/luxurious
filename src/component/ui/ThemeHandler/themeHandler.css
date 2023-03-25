@@ -3,6 +3,10 @@
   align-items: center;
   gap: 0 10px;
 }
+.theme--mobile {
+  flex-direction: column;
+  gap: 10px;
+}
 .theme--dark .theme__toggle {
   background: var(--light-color);
 }
