@@ -4,6 +4,7 @@ display: none;
 
 @media screen and (max-width:1200px) {
     .mobileControl{
+        box-shadow: 0 0 5px black;
         display: block;
         position: fixed;
         z-index: 100;
