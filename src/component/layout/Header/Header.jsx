@@ -8,34 +8,17 @@ import Input from '../../ui/Input/Input'
 import LogoLight from '../../ui/LogoLight/LogoLight'
 import MenuMobile from '../MenuMobile/MenuMobile'
 import { setIsOpenMenuMobile } from '../../../redux/slide/setting/settingSlide'
+import SearchInput from '../../ui/SearchInput/SearchInput'
 
 function Header() {
     const currentLang = useSelector(state => state.setting.lang.value)
     const links = useSelector(state=> state.setting.menuLinks)
     const isOpenMenuMobile = useSelector(state=>state.setting.isOpenMenuMobile)
     const dispatch = useDispatch();
+    const connectionLinks = useSelector(state=> state.setting.sessionUserLink)
    
 
-    const connectionLinks = [
-        {
-            href:'/',
-            lang:{
-                en:'Sign in',
-                ru:'Войти',
-                fr:"S'identifier"
-
-            }
-        },
-        {
-            href:'/',
-            lang:{
-                en:'Sign up',
-                ru:'Зарегистрироваться',
-                fr:"S'inscrire"
-
-            }
-        },
-    ]
+   
     const [menuLinks,setMenuLinks] = useState(links);
 
     const openMenuMobile = ()=> {
@@ -47,8 +30,6 @@ function Header() {
         let menuItems=[...document.querySelectorAll('.menu__item')];
         menuItems.forEach((item,index)=>{
             let top= parseFloat(getComputedStyle(item).height)
-            console.log(top)
-           
            let submenu= item.querySelector('.menu__submenu')
           
             if(submenu){
@@ -82,7 +63,7 @@ function Header() {
                             
                             <div className="header__product">
                                 <form className="header__form form">
-                                    <Input 
+                                    <SearchInput 
                                         placeholder={placeholderSearchInput}
                                     />
                                 </form>  
@@ -124,7 +105,7 @@ function Header() {
                                 <div className="header__connection">
                                     {
                                         connectionLinks.map((item,id)=> (
-                                            <Link to={item.href}>{item.lang[currentLang]}</Link>
+                                            <Link key={id} to={item.href}>{item.lang[currentLang]}</Link>
                                         ))
                                     }
                                 </div>

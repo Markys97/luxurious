@@ -12,15 +12,37 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100px;
     background: var(--light-color);
   }
   .mobileControl__content {
     padding: 20px 0;
   }
+  .mobileControl__top {
+    margin-bottom: 10px;
+  }
   .mobileControl__top-row {
     display: flex;
     justify-content: space-between;
     gap: 0 10px;
+  }
+  .mobileControl__product {
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+    margin-bottom: 10px;
+  }
+  .mobileControl__bottom {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 768px) {
+  .mobileControl__bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mobileControl__bottom .header__connection {
+    justify-content: unset;
   }
 }/*# sourceMappingURL=mobileControl.css.map */

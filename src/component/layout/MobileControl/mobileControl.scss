@@ -1,5 +1,5 @@
 .mobileControl{
-display: none;
+display: none;  
 
 }
 
@@ -13,16 +13,45 @@ display: none;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 100px;
         background: var(--light-color);
         &__content{
             padding: 20px 0;
         }
+
         &__top{
+            margin-bottom: 10px;
             &-row{
                 display: flex;
                 justify-content: space-between;
                 gap: 0 10px;
+                
+            }
+            
+        }
+
+        &__product{
+            display: flex;
+            align-items: center;
+            gap: 0 20px;
+            margin-bottom: 10px;
+        }
+
+        &__bottom{
+            display: flex;
+            justify-content: center;
+            justify-content: space-between;
+        }
+
+    }
+}
+
+@media screen and (max-width:768px) {
+    .mobileControl{
+        &__bottom{
+            flex-direction: column;
+            gap: 10px;
+            .header__connection{
+                justify-content: unset;
             }
         }
     }

@@ -3,11 +3,23 @@ import './mobileControl.css'
 import SelectLang from '../../ui/SelectLang/SelectLang'
 import { Link } from 'react-router-dom'
 import ThemeHandler from '../../ui/ThemeHandler/ThemeHandler'
+import SearchInput from '../../ui/Input/Input'
+import { useSelector } from 'react-redux'
 
 
 function MobileControl() {
-
+    const currentLang = useSelector(state => state.setting.lang.value)
+    const connectionLinks = useSelector(state=> state.setting.sessionUserLink)
+    console.log(connectionLinks,'mama')
     const mobileControlRef = useRef();
+    const placeholderSearchInput = {
+        lang:{
+            en:'search',
+            fr:"recherche",
+            ru:'поиск'
+        }
+    }
+   
     const toggleVisibilityMobileControl = (elt) => {
         let lastScrollTop = 0;
 
@@ -18,12 +30,12 @@ function MobileControl() {
            let eltHeight = parseFloat(getComputedStyle(elt).height)
            
            if (st > lastScrollTop) {
-              elt.style.bottom = 0
+              elt.style.bottom =  `-${eltHeight+50}px`
            } else if(st ===0) {
                 elt.style.bottom = 0
            }
            else{
-            elt.style.bottom =  `-${eltHeight+50}px`
+            elt.style.bottom = 0
            } 
 
            lastScrollTop = st <= 0 ? 0 : st; 
@@ -32,9 +44,16 @@ function MobileControl() {
     }
 
     useEffect(()=>{
-        toggleVisibilityMobileControl(mobileControlRef.current);
+        let mobileControlElt = mobileControlRef.current;
+        document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height)+ 20}px`
+        console.log(getComputedStyle(mobileControlElt).height)
+        window.addEventListener('resize',function(e){
+            document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height )+20}px`
+        })
 
     },[])
+
+
   return (
     <div ref={mobileControlRef} className='mobileControl'>
         <div className="mobileControl__container wrapper">
@@ -80,6 +99,21 @@ function MobileControl() {
                         <div className="mobileControl__lang">
                             <SelectLang htmlClass="lang--mobile"/>
                         </div>
+                    </div>
+                </div>
+                <div className="mobileControl__bottom">
+                    <form className="header__form form">
+                        <SearchInput 
+                            placeholder={placeholderSearchInput}
+                            htmlClass='form__input--search'
+                        />
+                    </form>
+                    <div className="header__connection">
+                        {
+                            connectionLinks.map((item,id)=> (
+                                <Link key={id} to={item.href}>{item.lang[currentLang]}</Link>
+                            ))
+                        }
                     </div>
                 </div>
             </div>

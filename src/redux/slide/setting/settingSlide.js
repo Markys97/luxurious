@@ -80,6 +80,26 @@ const initialState = {
         
         },
     ],
+    sessionUserLink: [
+        {
+            href:'/',
+            lang:{
+                en:'Sign in',
+                ru:'Войти',
+                fr:"S'identifier"
+
+            }
+        },
+        {
+            href:'/',
+            lang:{
+                en:'Sign up',
+                ru:'Зарегистрироваться',
+                fr:"S'inscrire"
+
+            }
+        },
+    ],
     isOpenMenuMobile:false
 
 }

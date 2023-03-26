@@ -33,53 +33,6 @@ a {
   text-decoration: none;
 }
 
-.form__input {
-  height: 30px;
-  max-width: 300px;
-}
-.form__input--icon {
-  position: relative;
-}
-.form__input--icon input {
-  padding-right: 40px !important;
-}
-.form__input--icon .form__icon {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.form__input--icon .form__icon:hover svg path {
-  stroke: #B67C3F;
-}
-.form__input--icon .form__icon svg path {
-  transition: all 300ms;
-  stroke: var(--main-color);
-}
-.form__input--icon .form__icon svg {
-  height: 100%;
-}
-.form__input input {
-  height: 100%;
-  max-width: 100%;
-  width: 100%;
-  border: 1px solid var(--main-color);
-  border-radius: 10px;
-  padding: 0 16px;
-  transition: all 300ms;
-  font-size: 13px;
-  color: var(--main-color);
-}
-.form__input input:focus {
-  border: 1px solid var(--second-color);
-}
-
 .wrapper {
   max-width: 1150px;
   padding: 0 10px;
