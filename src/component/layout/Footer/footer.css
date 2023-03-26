@@ -1,4 +1,5 @@
 .footer {
+  margin-bottom: 0;
   padding: 20px 0;
 }
 .footer__top {
@@ -78,7 +79,6 @@
 
 @media screen and (max-width: 1200px) {
   .footer {
-    margin-bottom: 110px;
     padding: 20px 0 10px;
   }
 }
