@@ -3,10 +3,6 @@
   align-items: center;
   gap: 0 10px;
 }
-.theme--mobile {
-  flex-direction: column;
-  gap: 10px;
-}
 .theme--dark .theme__toggle {
   background: var(--light-color);
 }
@@ -36,4 +32,11 @@
   cursor: pointer;
   transition: all 300ms;
   left: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .theme--mobile {
+    flex-direction: column;
+    gap: 10px;
+  }
 }/*# sourceMappingURL=themeHandler.css.map */
