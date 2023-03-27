@@ -11,8 +11,8 @@ function MobileControl() {
     const currentLang = useSelector(state => state.setting.lang.value)
     const connectionLinks = useSelector(state=> state.setting.sessionUserLink)
 
-    console.log(connectionLinks,'mama')
     const mobileControlRef = useRef();
+
     const placeholderSearchInput = {
         lang:{
             en:'search',
@@ -23,8 +23,6 @@ function MobileControl() {
    
     const toggleVisibilityMobileControl = (elt) => {
         let lastScrollTop = 0;
-
-        console.log(lastScrollTop,'init')
 
         window.addEventListener("scroll", function(){
            var st = this.scrollY
@@ -48,7 +46,7 @@ function MobileControl() {
         let mobileControlElt = mobileControlRef.current;
 
         // toggleVisibilityMobileControl(mobileControlElt)
-    
+
         document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height)+ 20}px`
         console.log(getComputedStyle(mobileControlElt).height)
         window.addEventListener('resize',function(e){

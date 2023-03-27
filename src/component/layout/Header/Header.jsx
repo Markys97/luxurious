@@ -9,8 +9,8 @@ import LogoLight from '../../ui/LogoLight/LogoLight'
 import MenuMobile from '../MenuMobile/MenuMobile'
 import { setIsOpenMenuMobile } from '../../../redux/slide/setting/settingSlide'
 import SearchInput from '../../ui/SearchInput/SearchInput'
+function Header({activeLink}) {
 
-function Header() {
     const currentLang = useSelector(state => state.setting.lang.value)
     const links = useSelector(state=> state.setting.menuLinks)
     const isOpenMenuMobile = useSelector(state=>state.setting.isOpenMenuMobile)
@@ -24,6 +24,12 @@ function Header() {
     const openMenuMobile = ()=> {
         dispatch(setIsOpenMenuMobile(true))
         document.body.classList.add('pause')
+    }
+
+    const setActiveMenuLink = (enTextLink,activeLink) =>{
+        if(enTextLink.toLowerCase() === activeLink.toLowerCase()){
+            return 'active'
+        }
     }
 
     useEffect(()=>{
@@ -132,7 +138,7 @@ function Header() {
                                     {
                                         menuLinks.map( (item,id) => {
                                             return (
-                                            <li key={id} className={`menu__item ${(item?.subMenu !==undefined)? 'menu__item--no-bar':null}`}>
+                                            <li key={id} className={`menu__item ${setActiveMenuLink(item.lang['en'],activeLink)} ${(item?.subMenu !==undefined)? 'menu__item--no-bar':null}`}>
                                                     <Link to={item.hrefValue} className='menu__link'>
 
                                                         <div className="menu__link-head">
@@ -149,7 +155,7 @@ function Header() {
                                                        
 
                                                     </Link>
-                                                    {item?.subMenu !==undefined?  (
+                                                    {item?.subMenu !==undefined?  (  
                                                         <div className="menu__submenu">
                                                             <ul className='menu__submenu-list'>
                                                                 {

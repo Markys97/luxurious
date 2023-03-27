@@ -59,7 +59,7 @@ const initialState = {
         },
 
         {
-            hrefValue:'/',
+            hrefValue:'catalog',
             lang:{
                 en:'Catalog',
                 fr:'Catalogue',
@@ -100,8 +100,14 @@ const initialState = {
             }
         },
     ],
-    isOpenMenuMobile:false
-
+    isOpenMenuMobile:false,
+    trieTextLang:{
+        title:{
+            en:'Sort by',
+            ru:'Сортировка по',
+            fr:'Trier par'
+        }
+    }
 }
 
 const settingSlide = createSlice( {
@@ -112,7 +118,7 @@ const settingSlide = createSlice( {
         setIsDarkMode: (state,action) => state = {...state,isDarkMode:action.payload},
         setIsOpenMenuMobile: (state,action) => state = {...state,isOpenMenuMobile:action.payload}
     }
-} )
+})
 
 export const {setActiveLang,setIsDarkMode,setIsOpenMenuMobile} = settingSlide.actions
 export default settingSlide.reducer

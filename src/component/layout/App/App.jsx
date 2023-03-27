@@ -1,9 +1,6 @@
- import { 
-    createBrowserRouter,
-    RouterProvider,
-
-  } from 'react-router-dom';
-  import { useSelector } from 'react-redux';
+import { createBrowserRouter,RouterProvider} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Catalog from '../../../pages/Catalog/Catalog';
 
 import './app.css'
 import Home from '../../../pages/Home/Home';
@@ -12,7 +9,11 @@ function App() {
   let router = createBrowserRouter([
     {
       path:'/',
-      element : <Home/>
+      element : <Home/>,  
+    },
+    {
+      path:'/catalog',
+      element : <Catalog/>,  
     },
   ])
   return (

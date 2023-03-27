@@ -1,0 +1,15 @@
+.catalog-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.catalog-main {
+  flex-grow: 1;
+  margin-top: 20px;
+}
+.catalog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 40px;
+}/*# sourceMappingURL=catalog.css.map */

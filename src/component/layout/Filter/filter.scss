@@ -1,0 +1,32 @@
+.filter{
+    &__row{
+        display: flex;
+        gap: 10px 15px;
+    }
+}
+
+
+.item-filter{
+    display: inline-flex;
+    padding: 8px 15px;
+    background-color: var(--light-color);
+    color: var(--main-color);
+    border-radius: 15px;
+    border: 1px solid currentColor;
+    font-size: 13px;
+    transition: all 300ms;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--main-color);
+        color:white;
+        border: 1px solid transparent;
+    }
+    &.active{
+        background-color: var(--main-color);
+        color:white;
+        transition: all 300ms;
+        &:hover{
+            color: var(--second-color);
+        }
+    }
+}

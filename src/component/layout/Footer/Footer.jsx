@@ -165,6 +165,7 @@ function Footer() {
                 </div>
             </div>
         </footer>
+        
         <MobileControl/>
         
     </>
