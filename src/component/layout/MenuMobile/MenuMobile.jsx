@@ -15,6 +15,8 @@ function MenuMobile() {
     }
     const currentLang = useSelector(state=> state.setting.lang.value)
 
+    console.log(links)
+
    
   return (
     <nav className='menuMobile'>
@@ -29,7 +31,7 @@ function MenuMobile() {
                     {
                         links.map((link,id)=>(
                             <li key={id} className={`menuMobile__item ${(link?.subMenu !== undefined)?'open':null}`}>
-                                <Link  to={link.href} className="menuMobile__link">
+                                <Link onClick={()=> closeMenuMobile()} to={link.hrefValue} className="menuMobile__link">
                                     <div className="menuMobile__link-text">
                                         {link.lang[currentLang]}
                                     </div>

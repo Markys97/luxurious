@@ -1,6 +1,7 @@
 .filter__row {
   display: flex;
   gap: 10px 15px;
+  flex-wrap: wrap;
 }
 
 .item-filter {
@@ -15,7 +16,7 @@
   cursor: pointer;
 }
 .item-filter:hover {
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   color: white;
   border: 1px solid transparent;
 }
@@ -24,6 +25,25 @@
   color: white;
   transition: all 300ms;
 }
-.item-filter.active:hover {
-  color: var(--second-color);
+
+@media screen and (max-width: 768px) {
+  .filter {
+    margin: 0 -10px;
+  }
+  .filter__content {
+    overflow-x: auto;
+    display: flex;
+    padding: 0 10px;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .filter__content::-webkit-scrollbar {
+    display: none !important;
+  }
+  .filter__row {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    overflow: auto;
+    gap: 8px;
+  }
 }/*# sourceMappingURL=filter.css.map */

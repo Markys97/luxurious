@@ -1,5 +1,5 @@
 .catalog{
-
+   
     &-page{
         min-height: 100vh;
         display: flex;
@@ -14,13 +14,22 @@
     }
     &-head{
         display: flex;
-        align-items: center;
+        // align-items: center;
         justify-content: space-between;
         gap:0 40px
     }
 
     
 
+}
+
+@media screen and (max-width:768px) {
+    .catalog{
+        &-head{
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
 }
 
 

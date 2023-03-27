@@ -1,6 +1,10 @@
 .header{
     padding:  20px 0;
     // border-bottom: 1px solid red;
+    position: sticky;
+    background: var(--light-color);
+    z-index: 10;
+    top: 0;
     &__top{
         display: flex;
         align-items: center;
@@ -14,9 +18,7 @@
         justify-content: center;
         // border: 1px solid red;
     }
-    &__left{
-        // flex-grow: 1;
-    }
+
     &__center{
       
         // border: 1px solid red;
@@ -324,6 +326,7 @@
         // background: red;
         // position: sticky;
         // top: 0;
+        position: static;
         z-index: 100;
         background: var(--light-color);
         padding:  10px 0;

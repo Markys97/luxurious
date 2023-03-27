@@ -1,3 +1,9 @@
+.trie {
+  flex-shrink: 0;
+  display: inline-block;
+  height: -moz-fit-content;
+  height: fit-content;
+}
 .trie__head {
   display: flex;
   gap: 0 8px;
@@ -37,6 +43,7 @@
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
   padding: 13px 0 9px;
+  z-index: 5;
 }
 .trie__item {
   padding: 11px 22px 11px 14px;
@@ -57,4 +64,11 @@
 
 .trie-body-open {
   transform: rotate(180deg) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .trie {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
 }/*# sourceMappingURL=trie.css.map */

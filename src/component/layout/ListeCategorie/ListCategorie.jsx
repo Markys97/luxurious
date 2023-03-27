@@ -6,28 +6,10 @@ import { useSelector } from 'react-redux'
 
 function ListCategorie() {
     const currentLang = useSelector(state => state.setting.lang.value)
-    const listCategorie = [
-        {
-            id:1,
-            name:'Nike',
-            img:'nike.jpg'
-        },
-        {
-            id:2,
-            name:'Puma',
-            img:'puma.jpg'
-        },
-        {
-            id:3,
-            name:'addidas',
-            img:'addidas.jpg'
-        },
-        {
-            id:4,
-            name:'New Balance',
-            img:'new_balance.jpg'
-        },
-    ]
+    const categotiList = useSelector(state=> state.product.category)
+   
+    const listCategorie = categotiList.filter(item=> item.isBrand !== false)
+
 
     const textTitle = {
         lang:{
