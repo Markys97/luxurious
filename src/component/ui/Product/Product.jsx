@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import './product.css'
 
 function Product({dataProduct}) {
@@ -22,9 +23,11 @@ function Product({dataProduct}) {
     console.log(getSoldeWithSolde(solde.percent,price),'tatata')
   return (
     <div className="product">
-        <div className="product__img">
-            <img ref={imgProductRef} src= {`${basePathImgProduct}${img}`} alt="product" />
-        </div>
+        <Link to="/">
+            <div className="product__img">
+                <img ref={imgProductRef} src= {`${basePathImgProduct}${img}`} alt="product" />
+            </div>
+        </Link>
  
         <div className="product__body">
             <div className="product__preview"> 
@@ -41,12 +44,14 @@ function Product({dataProduct}) {
                   {`${solde.lang[currentLang]} ${solde.percent}%`}
                 </div>
             )}
-           
-            <div className="product__name">
-                {
-                    name
-                } 
-            </div>
+
+            <Link to="/">
+                <div className="product__name">
+                    {
+                        name
+                    } 
+                </div>
+            </Link>
             <div className="product__genre">
                {
                 genre[currentLang]

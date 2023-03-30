@@ -917,12 +917,10 @@ function ListProduct() {
     <div className="list-product">
         {
             products.map((product,id)=>(
-                <Link to="/">
-                    <Product
-                        key={id}
-                        dataProduct={product}
-                    />
-                </Link>
+                <Product
+                    key={id}
+                    dataProduct={product}
+                />
             ))
         }
     </div>
