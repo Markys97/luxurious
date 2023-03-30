@@ -71,4 +71,12 @@
     width: -moz-fit-content;
     width: fit-content;
   }
+  .trie__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .trie__body {
+    position: unset;
+  }
 }/*# sourceMappingURL=trie.css.map */

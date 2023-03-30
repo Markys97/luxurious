@@ -107,6 +107,11 @@ const initialState = {
             ru:'Сортировка по',
             fr:'Trier par'
         }
+    },
+    colorText:{
+        fr:['couleur','couleurs'],
+        en:['color','colors'],
+        ru:['цвет','цветы']
     }
 }
 

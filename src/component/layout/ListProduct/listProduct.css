@@ -1,0 +1,31 @@
+.list-product {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product .btn {
+  display: inline-block;
+  outline: none;
+  padding: 10px 15px;
+  border: none;
+  background: var(--main-color);
+  color: white;
+  border-radius: 20px;
+  transition: all 300ms;
+  cursor: pointer;
+}
+.product .btn:hover {
+  background: var(--second-color);
+}
+
+@media screen and (max-width: 1200px) {
+  .list-product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 768px) {
+  .list-product {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}/*# sourceMappingURL=listProduct.css.map */

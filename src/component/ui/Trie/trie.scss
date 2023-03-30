@@ -73,6 +73,14 @@
 @media screen and (max-width:768px){
     .trie{
         width: fit-content;
+        &__content{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        &__body{
+            position: unset;
+        }
     }
 
 }
