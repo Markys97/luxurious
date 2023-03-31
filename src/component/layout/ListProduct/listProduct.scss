@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap:20px;
+    justify-content: center;
 }
 
 
@@ -32,8 +33,8 @@
 }
 @media screen and (max-width:768px) {
     .list-product{
-
-        grid-template-columns: repeat(1,1fr);
-
+       display: flex;
+       flex-direction: column; 
+       align-items: center;
     }
 }

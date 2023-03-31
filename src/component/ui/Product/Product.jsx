@@ -30,6 +30,7 @@ function Product({dataProduct}) {
         </Link>
  
         <div className="product__body">
+            
             <div className="product__preview"> 
                 {
                     allShoePictures.map((itemPreview,index)=> (
@@ -39,6 +40,7 @@ function Product({dataProduct}) {
                     ))
                 }
             </div>
+
             {solde.active && (
                 <div className="product__state">
                   {`${solde.lang[currentLang]} ${solde.percent}%`}
@@ -52,11 +54,13 @@ function Product({dataProduct}) {
                     } 
                 </div>
             </Link>
+
             <div className="product__genre">
                {
                 genre[currentLang]
                }
             </div>
+
             {
                 (color.length !==0 && (
                     <div className="product__number-color">

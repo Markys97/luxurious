@@ -6,7 +6,8 @@ function Filter() {
     const listCategory = useSelector(state=> state.product.category);
     const currentLang =useSelector(state=> state.setting.lang.value)
     const dispatch = useDispatch();
-    const toggleActiveCategory = (idCategory)=> {     
+
+    const toggleActiveCategory = (idCategory)=> { 
         dispatch(setCategoty(idCategory))
     }
 
