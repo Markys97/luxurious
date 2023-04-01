@@ -7,10 +7,9 @@ function Product({dataProduct}) {
     const imgProductRef = useRef()
     const currentLang = useSelector(state=> state.setting.lang.value)
     const colorLang= useSelector(state=> state.setting.colorText)
-
     const {name,img,genre,color,price,solde,model,device,} = dataProduct
-
     const basePathImgProduct= '/images/product/'
+
     const changeImgProduct= (event,nodeTarget) => {
         nodeTarget.src=event.target.src
     }
@@ -20,7 +19,9 @@ function Product({dataProduct}) {
         return price - ((price * percent)/100)
     }
 
-    console.log(getSoldeWithSolde(solde.percent,price),'tatata')
+    const getProductToDispay = (trie,filtre)=> {
+
+    }
   return (
     <div className="product">
         <Link to="/">

@@ -347,8 +347,7 @@ import { createSlice } from "@reduxjs/toolkit";
     initialState,
     reducers:{
         setCategoty: (state,action)=> {
-            let newListCategory =[...state.category]
-
+            
             if(action.payload === 0){
              
                 state.category.forEach((item,index,arr) => {
@@ -378,6 +377,18 @@ import { createSlice } from "@reduxjs/toolkit";
                     }
                 })
             }
+
+            let activeItem = state.category.filter(item=> item.isActive === true).length;
+            if(activeItem ===0){
+                state.category.forEach(item => {
+                    if(item.id === 0){
+                        item.isActive = true
+                    }
+                })
+            }
+
+
+           
 
             return state
         }
