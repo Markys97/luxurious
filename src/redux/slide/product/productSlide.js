@@ -1,4 +1,302 @@
 import { createSlice } from "@reduxjs/toolkit";
+const listProduct=[
+    {
+        id:1,
+        name:'Product a',
+        price:1100,
+        img:'A1-main.jpg',
+        genre:{
+            en:"men's shoe",
+            fr:'chaussure homme',
+            ru:'мужская обувь'
+        },
+        preview:['A2.jpg','A3.jpg'],
+        solde:{
+            active:false,
+            percent:10,
+            lang:{
+                fr:`reduction de`,
+                ru:'скидка на',
+                en:'discount'
+            }
+        },
+        new:{
+            active:false,
+            text:'',
+            dateExpiration:''
+        },
+        size:[
+            {
+                quantity:10,
+                value:45
+            },
+            {
+                quantity:10,
+                value:35
+            },
+            {
+                quantity:10,
+                value:40
+            },
+            {
+                quantity:10,
+                value:41
+            },
+            {
+                quantity:10,
+                value:42
+            },
+        ],
+        color:[],
+        model:{
+            preview:['A-model-main.jpg','A-model.jpg'],
+        },
+        device:{
+            en:'$',
+            fr:'Є',
+            ru:'₽'
+        },
+        categorie:'nike'
+        
+
+    },
+
+    {
+        id:2,
+        name:'Product b',
+        price:1200,
+        img:'A1-main.jpg',
+        genre:{
+            en:"men's shoe",
+            fr:'chaussure homme',
+            ru:'мужская обувь'
+        },
+        preview:['A2.jpg','A3.jpg'],
+        solde:{
+            active:true,
+            percent:30,
+            lang:{
+                fr:`reduction de`,
+                ru:'скидка на',
+                en:'discount'
+            }
+        },
+        new:{
+            active:false,
+            text:'',
+            dateExpiration:''
+        },
+        size:[
+            {
+                quantity:10,
+                value:45
+            },
+            {
+                quantity:10,
+                value:35
+            },
+            {
+                quantity:10,
+                value:40
+            },
+            {
+                quantity:10,
+                value:41
+            },
+            {
+                quantity:10,
+                value:42
+            },
+        ],
+        color:[],
+        model:{
+            preview:['A-model-main.jpg','A-model.jpg'],
+        },
+        device:{
+            en:'$',
+            fr:'Є',
+            ru:'₽'
+        },
+        categorie:'puma'
+        
+
+    },
+
+    {
+        id:3,
+        name:'Product c',
+        price:1950,
+        img:'A1-main.jpg',
+        genre:{
+            en:"men's shoe",
+            fr:'chaussure homme',
+            ru:'мужская обувь'
+        },
+        preview:['A2.jpg','A3.jpg'],
+        solde:{
+            active:false,
+            percent:30
+        },
+        new:{
+            active:false,
+            text:'',
+            dateExpiration:''
+        },
+        size:[
+            {
+                quantity:10,
+                value:45
+            },
+            {
+                quantity:10,
+                value:35
+            },
+            {
+                quantity:10,
+                value:40
+            },
+            {
+                quantity:10,
+                value:41
+            },
+            {
+                quantity:10,
+                value:42
+            },
+        ],
+        color:[],
+        model:{
+            preview:['A-model-main.jpg','A-model.jpg'],
+        },
+        device:{
+            en:'$',
+            fr:'Є',
+            ru:'₽'
+        },
+        categorie:'addidas'
+        
+    },
+
+    {
+        id:4,
+        name:'Product d',
+        price:350,
+        img:'A1-main.jpg',
+        genre:{
+            en:"men's shoe",
+            fr:'chaussure homme',
+            ru:'мужская обувь'
+        },
+        preview:['A2.jpg','A3.jpg'],
+        solde:{
+            active:false,
+            percent:30,
+            lang:{
+                fr:`reduction de`,
+                ru:'скидка на',
+                en:'discount'
+            }
+        },
+        new:{
+            active:false,
+            text:'',
+            dateExpiration:''
+        },
+        size:[
+            {
+                quantity:10,
+                value:45
+            },
+            {
+                quantity:10,
+                value:35
+            },
+            {
+                quantity:10,
+                value:40
+            },
+            {
+                quantity:10,
+                value:41
+            },
+            {
+                quantity:10,
+                value:42
+            },
+        ],
+        color:[],
+        model:{
+            preview:['A-model-main.jpg','A-model.jpg'],
+        },
+        device:{
+            en:'$',
+            fr:'Є',
+            ru:'₽'
+        },
+        categorie:'new balance'
+        
+    },
+
+    {
+        id:5,
+        name:'Product e',
+        price:950,
+        img:'A1-main.jpg',
+        genre:{
+            en:"men's shoe",
+            fr:'chaussure homme',
+            ru:'мужская обувь'
+        },
+        preview:['A2.jpg','A3.jpg'],
+        solde:{
+            active:true,
+            percent:30,
+            lang:{
+                fr:`reduction de`,
+                ru:'скидка на',
+                en:'discount'
+            }
+        },
+        new:{
+            active:false,
+            text:'',
+            dateExpiration:''
+        },
+        size:[
+            {
+                quantity:10,
+                value:45
+            },
+            {
+                quantity:10,
+                value:35
+            },
+            {
+                quantity:10,
+                value:40
+            },
+            {
+                quantity:10,
+                value:41
+            },
+            {
+                quantity:10,
+                value:42
+            },
+        ],
+        color:[],
+        model:{
+            preview:['A-model-main.jpg','A-model.jpg'],
+        },
+        device:{
+            en:'$',
+            fr:'Є',
+            ru:'₽'
+        },
+        categorie:'nike'
+        
+    },
+]
 
  const initialState = {
     category:[
@@ -42,304 +340,31 @@ import { createSlice } from "@reduxjs/toolkit";
             isBrand:true,
         },
     ],
-    listProduct:[
-        {
-            id:1,
-            name:'Product a',
-            price:1100,
-            img:'A1-main.jpg',
-            genre:{
-                en:"men's shoe",
-                fr:'chaussure homme',
-                ru:'мужская обувь'
+    listProduct,
+    trieHandler:{
+        itemTrieListLang: [
+            {
+                id:1,
+                en:'price',
+                ru:'цене',
+                fr:'prix'
             },
-            preview:['A2.jpg','A3.jpg'],
-            solde:{
-                active:false,
-                percent:10,
-                lang:{
-                    fr:`reduction de`,
-                    ru:'скидка на',
-                    en:'discount'
-                }
+            {
+                id:2,
+                en:'popularity',
+                ru:'популярности',
+                fr:'popularité'
             },
-            new:{
-                active:false,
-                text:'',
-                dateExpiration:''
+            {
+                id:3,
+                en:'alphabetically',
+                ru:'алфавиту',
+                fr:'alphabétiquement'
             },
-            size:[
-                {
-                    quantity:10,
-                    value:45
-                },
-                {
-                    quantity:10,
-                    value:35
-                },
-                {
-                    quantity:10,
-                    value:40
-                },
-                {
-                    quantity:10,
-                    value:41
-                },
-                {
-                    quantity:10,
-                    value:42
-                },
-            ],
-            color:[],
-            model:{
-                preview:['A-model-main.jpg','A-model.jpg'],
-            },
-            device:{
-                en:'$',
-                fr:'Є',
-                ru:'₽'
-            },
-            categorie:'nike'
-            
-
-        },
-
-        {
-            id:2,
-            name:'Product b',
-            price:1200,
-            img:'A1-main.jpg',
-            genre:{
-                en:"men's shoe",
-                fr:'chaussure homme',
-                ru:'мужская обувь'
-            },
-            preview:['A2.jpg','A3.jpg'],
-            solde:{
-                active:true,
-                percent:30,
-                lang:{
-                    fr:`reduction de`,
-                    ru:'скидка на',
-                    en:'discount'
-                }
-            },
-            new:{
-                active:false,
-                text:'',
-                dateExpiration:''
-            },
-            size:[
-                {
-                    quantity:10,
-                    value:45
-                },
-                {
-                    quantity:10,
-                    value:35
-                },
-                {
-                    quantity:10,
-                    value:40
-                },
-                {
-                    quantity:10,
-                    value:41
-                },
-                {
-                    quantity:10,
-                    value:42
-                },
-            ],
-            color:[],
-            model:{
-                preview:['A-model-main.jpg','A-model.jpg'],
-            },
-            device:{
-                en:'$',
-                fr:'Є',
-                ru:'₽'
-            },
-            categorie:'puma'
-            
-
-        },
-
-        {
-            id:3,
-            name:'Product c',
-            price:1950,
-            img:'A1-main.jpg',
-            genre:{
-                en:"men's shoe",
-                fr:'chaussure homme',
-                ru:'мужская обувь'
-            },
-            preview:['A2.jpg','A3.jpg'],
-            solde:{
-                active:false,
-                percent:30
-            },
-            new:{
-                active:false,
-                text:'',
-                dateExpiration:''
-            },
-            size:[
-                {
-                    quantity:10,
-                    value:45
-                },
-                {
-                    quantity:10,
-                    value:35
-                },
-                {
-                    quantity:10,
-                    value:40
-                },
-                {
-                    quantity:10,
-                    value:41
-                },
-                {
-                    quantity:10,
-                    value:42
-                },
-            ],
-            color:[],
-            model:{
-                preview:['A-model-main.jpg','A-model.jpg'],
-            },
-            device:{
-                en:'$',
-                fr:'Є',
-                ru:'₽'
-            },
-            categorie:'addidas'
-            
-        },
-
-        {
-            id:4,
-            name:'Product d',
-            price:350,
-            img:'A1-main.jpg',
-            genre:{
-                en:"men's shoe",
-                fr:'chaussure homme',
-                ru:'мужская обувь'
-            },
-            preview:['A2.jpg','A3.jpg'],
-            solde:{
-                active:false,
-                percent:30,
-                lang:{
-                    fr:`reduction de`,
-                    ru:'скидка на',
-                    en:'discount'
-                }
-            },
-            new:{
-                active:false,
-                text:'',
-                dateExpiration:''
-            },
-            size:[
-                {
-                    quantity:10,
-                    value:45
-                },
-                {
-                    quantity:10,
-                    value:35
-                },
-                {
-                    quantity:10,
-                    value:40
-                },
-                {
-                    quantity:10,
-                    value:41
-                },
-                {
-                    quantity:10,
-                    value:42
-                },
-            ],
-            color:[],
-            model:{
-                preview:['A-model-main.jpg','A-model.jpg'],
-            },
-            device:{
-                en:'$',
-                fr:'Є',
-                ru:'₽'
-            },
-            categorie:'new balance'
-            
-        },
-
-        {
-            id:5,
-            name:'Product e',
-            price:950,
-            img:'A1-main.jpg',
-            genre:{
-                en:"men's shoe",
-                fr:'chaussure homme',
-                ru:'мужская обувь'
-            },
-            preview:['A2.jpg','A3.jpg'],
-            solde:{
-                active:true,
-                percent:30,
-                lang:{
-                    fr:`reduction de`,
-                    ru:'скидка на',
-                    en:'discount'
-                }
-            },
-            new:{
-                active:false,
-                text:'',
-                dateExpiration:''
-            },
-            size:[
-                {
-                    quantity:10,
-                    value:45
-                },
-                {
-                    quantity:10,
-                    value:35
-                },
-                {
-                    quantity:10,
-                    value:40
-                },
-                {
-                    quantity:10,
-                    value:41
-                },
-                {
-                    quantity:10,
-                    value:42
-                },
-            ],
-            color:[],
-            model:{
-                preview:['A-model-main.jpg','A-model.jpg'],
-            },
-            device:{
-                en:'$',
-                fr:'Є',
-                ru:'₽'
-            },
-            categorie:'nike'
-            
-        },
-    ]
+        ],
+        activeItemTrie:1
+    },
+    listProductToShow :[...listProduct]
 }
 
  const productSlide = createSlice({
@@ -391,11 +416,19 @@ import { createSlice } from "@reduxjs/toolkit";
            
 
             return state
+        },
+        setActiveItemTrie:(state,action)=>{
+            state.trieHandler.activeItemTrie =action.payload
+            return state
+        },
+        setProductToShow:(state,action)=>  {
+            state.listProductToShow = action.payload
+            return state
         }
     }
 });
 
-export const {setCategoty} = productSlide.actions
+export const {setCategoty,setActiveItemTrie,setProductToShow} = productSlide.actions
 
  
 

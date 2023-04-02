@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function ListProduct() {
-    const products = useSelector(state=> state.product.listProduct)
+    const products = useSelector(state=> state.product.listProductToShow)
+    const {activeItemTrie,itemTrieListLang }= useSelector(state=>state.product.trieHandler)
   return (
     <div className="list-product">
         {

@@ -1,51 +1,76 @@
 import { useState } from 'react'
 import './trie.css'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch} from 'react-redux'
 import Filter from '../../layout/Filter/Filter'
+import { setActiveItemTrie,setProductToShow } from '../../../redux/slide/product/productSlide'
 function Trie() {
-    const [currentTrieItem, seTcurrentTrieItem] = useState(1)
+    const dispatch= useDispatch()
+    const {activeItemTrie,itemTrieListLang }= useSelector(state=>state.product.trieHandler)
+    const products = useSelector(state=>state.product.listProduct)
+    // const [currentTrieItem, seTcurrentTrieItem] = useState(activeItemTrie)
     const [isOpenBodyTrie, setIsOpenBodyTrie] = useState(false)
-
-    const textTrieLang = useSelector(state=> state.setting.trieTextLang) 
-
+    const textTrieLang = useSelector(state=> state.setting.trieTextLang)
+    const category = useSelector(state=>state.product.category)
     const currentLang = useSelector(state=> state.setting.lang.value)
+    
 
-    const itemTrieLang = [
-        {
-            id:1,
-            en:'price',
-            ru:'цене',
-            fr:'prix'
-        },
-        {
-            id:2,
-            en:'popularity',
-            ru:'популярности',
-            fr:'popularité'
-        },
-        {
-            id:3,
-            en:'alphabetically',
-            ru:'алфавиту',
-            fr:'alphabétiquement'
-        },
-    ]
+    const getListProductToShow = (products,activeItemTrieId,listTrie,category)=>{
+        let activeItemCategory = category
+        .filter(item => {
+            if(item.isActive === true){
+                return item
+            }
+        })
+        .map( item => {
+            if(item.name){
+                return item.name.toLowerCase()
+            }else{
+                return item
+            }
+        })
 
-    const getCurrentItemTrieValue = (currentTrieItem,itemTrieLang) =>(
-        itemTrieLang.find(item => item.id === currentTrieItem
+        let activeItemTrieElt = listTrie.find(item => item.id ===activeItemTrieId)
+
+        let newListproduct = products.filter((product,index,arr) => {
+            if(product.id !==0){
+                if(activeItemCategory.includes(product.categorie.toLowerCase())){
+                    return product
+                }
+            }
+        })
+
+        
+
+        if(newListproduct.length!==0){
+            dispatch(setProductToShow(newListproduct))
+        }else{
+            dispatch(setProductToShow(products))
+        }
+       
+
+
+    }
+
+ 
+
+    getListProductToShow(products,activeItemTrie,itemTrieListLang,category)
+
+    const getCurrentItemTrieValue = (activeItemTrie,itemTrieListLang) =>(
+        itemTrieListLang.find(item => item.id === activeItemTrie
     ))
 
-    const getNoActiveItemTrieLang = (itemTrieLang)=> {
-       return itemTrieLang.filter((item,index)=> item.id !== currentTrieItem)
+    const getNoActiveItemTrieLang = (itemTrieListLang)=> {
+       return itemTrieListLang.filter((item,index)=> item.id !== activeItemTrie)
     }
 
     const changecurrentTrie = (id) => {
-        seTcurrentTrieItem(id);
+        // seTcurrentTrieItem(id);
+        dispatch(setActiveItemTrie(id))
         setIsOpenBodyTrie(false);
     }
 
-    let bodyListTrieItemLang = getNoActiveItemTrieLang(itemTrieLang)
-     const currentItemTrieValue = getCurrentItemTrieValue(currentTrieItem,itemTrieLang)
+    let bodyListTrieItemLang = getNoActiveItemTrieLang(itemTrieListLang)
+     const currentItemTrieValue = getCurrentItemTrieValue(activeItemTrie,itemTrieListLang)
      
 
 
