@@ -49,7 +49,7 @@ function MenuMobile() {
                                     ):null}
                                 </Link>
                                 {link?.subMenu !== undefined && (
-                                    <ul className="menuMobile__submenu">
+                                    <ul className="menuMobile__submenu ">
                                         {
                                             link.subMenu.map((submenu_link,id)=>(
                                                 <li className="menuMobile__submenu-item">
