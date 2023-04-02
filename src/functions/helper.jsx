@@ -1,4 +1,4 @@
-
+import {  redirect } from 'react-router-dom'
 export const loadImg = (imgParent,srcImgPath) =>{
     let wrapperImg = imgParent;
     wrapperImg.classList.add('loading')
@@ -17,3 +17,10 @@ export const loadImg = (imgParent,srcImgPath) =>{
 }
 
 export const imgLoadingSrc = `/images/icons/loader.gif`;
+
+export const getHref = (e,to) => {
+  if(window.location.href.endsWith(to)){
+      e.preventDefault()
+      redirect(to)
+  }
+}

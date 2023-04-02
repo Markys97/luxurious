@@ -3,6 +3,7 @@ import './menuMobile.css'
 import { useSelector,useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setIsOpenMenuMobile } from '../../../redux/slide/setting/settingSlide'
+import { getHref } from '../../../functions/helper'
 
 function MenuMobile() {
     const links = useSelector(state=> state.setting.menuLinks)
@@ -13,9 +14,13 @@ function MenuMobile() {
         dispatch(setIsOpenMenuMobile(false))
         document.body.classList.remove('pause')
     }
+
+    const handlerMenuMobile =(e,to)=>{
+        closeMenuMobile()
+        getHref(e,to)
+    }
     const currentLang = useSelector(state=> state.setting.lang.value)
 
-    console.log(links)
 
    
   return (
@@ -31,7 +36,7 @@ function MenuMobile() {
                     {
                         links.map((link,id)=>(
                             <li key={id} className={`menuMobile__item ${(link?.subMenu !== undefined)?'open':null}`}>
-                                <Link onClick={()=> closeMenuMobile()} to={link.hrefValue} className="menuMobile__link">
+                                <Link onClick={(e)=> handlerMenuMobile(e,link.hrefValue)} to={link.hrefValue} className="menuMobile__link">
                                     <div className="menuMobile__link-text">
                                         {link.lang[currentLang]}
                                     </div>

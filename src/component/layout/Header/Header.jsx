@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector,useDispatch} from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link,} from 'react-router-dom'
 import './header.css'
 import SelectLang from '../../ui/SelectLang/SelectLang'
 import ThemeHandler from '../../ui/ThemeHandler/ThemeHandler'
@@ -9,6 +9,9 @@ import LogoLight from '../../ui/LogoLight/LogoLight'
 import MenuMobile from '../MenuMobile/MenuMobile'
 import { setIsOpenMenuMobile } from '../../../redux/slide/setting/settingSlide'
 import SearchInput from '../../ui/SearchInput/SearchInput'
+
+import { getHref } from '../../../functions/helper'
+
 function Header({activeLink}) {
 
     const currentLang = useSelector(state => state.setting.lang.value)
@@ -31,6 +34,8 @@ function Header({activeLink}) {
             return 'active'
         }
     }
+
+   
 
     useEffect(()=>{
         let menuItems=[...document.querySelectorAll('.menu__item')];
@@ -139,7 +144,7 @@ function Header({activeLink}) {
                                         menuLinks.map( (item,id) => {
                                             return (
                                             <li key={id} className={`menu__item ${setActiveMenuLink(item.lang['en'],activeLink)} ${(item?.subMenu !==undefined)? 'menu__item--no-bar':null}`}>
-                                                    <Link to={item.hrefValue} className='menu__link'>
+                                                    <Link onClick={(e)=>getHref(e,item.hrefValue)} to={item.hrefValue} className='menu__link'>
 
                                                         <div className="menu__link-head">
                                                             <div className="menu__link-text link">{item.lang[currentLang]}</div>
