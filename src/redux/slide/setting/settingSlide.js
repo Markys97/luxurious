@@ -23,7 +23,7 @@ const initialState = {
         },
         
         {
-            hrefValue:'/',
+            hrefValue:'/brands',
             lang:{
                 en:'Category',
                 fr:'Categorie',
@@ -70,7 +70,7 @@ const initialState = {
         },
 
         {
-            hrefValue:'/',
+            hrefValue:'/contact',
             lang:{
                 en:'Contact',
                 fr:'Contact',

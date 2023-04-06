@@ -8,7 +8,7 @@ import ListProduct from '../../component/layout/ListProduct/ListProduct'
 function Catalog() {
   return (
     <div className="catalog-page wrapper">
-        <Header activeLink="catalog" />
+
             <main className="catalog-main">
                 <div className="catalog-head">
                     <Filter/>
@@ -21,7 +21,7 @@ function Catalog() {
                   </div>
                 </section>
             </main>
-        <Footer/>
+
     </div>
   )
 }

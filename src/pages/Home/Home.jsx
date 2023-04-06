@@ -56,7 +56,6 @@ useEffect(()=>{
 
   return (
     <div className='home-wrapper'>
-        <Header activeLink="Home"/>
           <main className='home-body wrapper'>
 
             <div className="home__banier">
@@ -72,7 +71,6 @@ useEffect(()=>{
            </div>
 
           </main>
-        <Footer/>
     </div>
   )
 }

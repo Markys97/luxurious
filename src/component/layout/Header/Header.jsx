@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector,useDispatch} from 'react-redux'
-import { Link,} from 'react-router-dom'
+import { Link,NavLink} from 'react-router-dom'
 import './header.css'
 import SelectLang from '../../ui/SelectLang/SelectLang'
 import ThemeHandler from '../../ui/ThemeHandler/ThemeHandler'
@@ -12,37 +12,29 @@ import SearchInput from '../../ui/SearchInput/SearchInput'
 
 import { getHref } from '../../../functions/helper'
 
-function Header({activeLink}) {
+function Header(){
 
     const currentLang = useSelector(state => state.setting.lang.value)
     const links = useSelector(state=> state.setting.menuLinks)
     const isOpenMenuMobile = useSelector(state=>state.setting.isOpenMenuMobile)
     const dispatch = useDispatch();
     const connectionLinks = useSelector(state=> state.setting.sessionUserLink)
-   
-
-   
     const [menuLinks,setMenuLinks] = useState(links);
-
     const openMenuMobile = ()=> {
         dispatch(setIsOpenMenuMobile(true))
         document.body.classList.add('pause')
     }
 
-    const setActiveMenuLink = (enTextLink,activeLink) =>{
-        if(enTextLink.toLowerCase() === activeLink.toLowerCase()){
-            return 'active'
-        }
-    }
-
-   
 
     useEffect(()=>{
         let menuItems=[...document.querySelectorAll('.menu__item')];
+        
         menuItems.forEach((item,index)=>{
-            let top= parseFloat(getComputedStyle(item).height)
+
+           let top= parseFloat(getComputedStyle(item).height)
+
            let submenu= item.querySelector('.menu__submenu')
-          
+
             if(submenu){
                 submenu.style.top = `${top-1}px`
             }
@@ -143,8 +135,8 @@ function Header({activeLink}) {
                                     {
                                         menuLinks.map( (item,id) => {
                                             return (
-                                            <li key={id} className={`menu__item ${setActiveMenuLink(item.lang['en'],activeLink)} ${(item?.subMenu !==undefined)? 'menu__item--no-bar':null}`}>
-                                                    <Link onClick={(e)=>getHref(e,item.hrefValue)} to={item.hrefValue} className='menu__link'>
+                                            <li key={id} className={`menu__item  ${(item?.subMenu !==undefined)? 'menu__item--no-bar':null}`}>
+                                                    <NavLink to={item.hrefValue} className='menu__link'>
 
                                                         <div className="menu__link-head">
                                                             <div className="menu__link-text link">{item.lang[currentLang]}</div>
@@ -159,7 +151,7 @@ function Header({activeLink}) {
 
                                                        
 
-                                                    </Link>
+                                                    </NavLink>
                                                     {item?.subMenu !==undefined?  (  
                                                         <div className="menu__submenu">
                                                             <ul className='menu__submenu-list'>
