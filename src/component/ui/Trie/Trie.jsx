@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useRef} from 'react'
 import './trie.css'
 import { useSelector,useDispatch} from 'react-redux'
 import Filter from '../../layout/Filter/Filter'
@@ -12,61 +12,6 @@ function Trie() {
     const textTrieLang = useSelector(state=> state.setting.trieTextLang)
     const category = useSelector(state=>state.product.category)
     const currentLang = useSelector(state=> state.setting.lang.value)
-    
-    const getListProductToShow = (products,activeItemTrieId,listTrie,category)=>{
-        let activeItemCategory = category
-        .filter(item => {
-            if(item.isActive === true){
-                return item
-            }
-        })
-        .map( item => {
-            if(item.name){
-                return item.name.toLowerCase()
-            }else{
-                return item
-            }
-        })
-
-        let activeItemTrieElt = listTrie.find(item => item.id ===activeItemTrieId)
-
-        let newListproduct = products.filter((product,index,arr) => {
-            if(product.id !==0){
-                if(activeItemCategory.includes(product.categorie.toLowerCase())){
-                    return product
-                }
-            }
-        })
-
-        
-
-        if(newListproduct.length!==0){
-           
-            dispatch(setProductToShow( sortproduct(newListproduct,activeItemTrie)))
-        }else{
-            dispatch(setProductToShow( sortproduct([...products],activeItemTrie)))
-        }
-       
-
-
-    }
-
-    const sortproduct = (products,indexActiveTrie) =>{
-        let productList=[...products]
-        switch(indexActiveTrie){
-            case 1:
-                return productList.sort((a,b) => a.price - b.price );
-            case 2:
-                return productList.sort((a,b) => b.price - a.price );
-            case 3:
-                return  productList.sort((a,b) => a.name - b.name );
-            default :
-            return 'default'
-        }
-    }
- 
-    getListProductToShow(products,activeItemTrie,itemTrieListLang,category)
-
     
 
     const getCurrentItemTrieValue = (activeItemTrie,itemTrieListLang) =>(
@@ -84,9 +29,6 @@ function Trie() {
 
     let bodyListTrieItemLang = getNoActiveItemTrieLang(itemTrieListLang)
     const currentItemTrieValue = getCurrentItemTrieValue(activeItemTrie,itemTrieListLang)
-     
-
-
   return (
         <div className="trie">
             <div className="trie__content">

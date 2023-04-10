@@ -6,17 +6,19 @@ import { useSelector } from 'react-redux'
 
 function ListProduct() {
     const products = useSelector(state=> state.product.listProductToShow)
-    const {activeItemTrie,itemTrieListLang }= useSelector(state=>state.product.trieHandler)
+
+    // const {activeItemTrie,itemTrieListLang }= useSelector(state=>state.product.trieHandler)
   return (
     <div className="list-product">
-        {
-            products.map((product,id)=>(
-                <Product
-                    key={id}
-                    dataProduct={product}
-                />
-            ))
-        }
+      {
+        products.map((product,index)=>  (
+          <Product
+           key={index}
+           dataProduct={product}
+           />
+        ))
+      }
+     
     </div>
   )
 }

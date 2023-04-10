@@ -4,87 +4,134 @@ import { Link } from 'react-router-dom'
 import './product.css'
 
 function Product({dataProduct}) {
+    const currentLang = useSelector(state => state.setting.lang.value)
+    const colorText = useSelector(state => state.setting.colorText)
+    const soldeText = useSelector(state => state.setting.soldeText)
     const imgProductRef = useRef()
-    const currentLang = useSelector(state=> state.setting.lang.value)
-    const colorLang= useSelector(state=> state.setting.colorText)
-    const {name,img,genre,color,price,solde,model,device,} = dataProduct
-    const basePathImgProduct= '/images/product/';
-    const category = useSelector(state=>state.product.category)
+    const {
+        imgs:{preview},
+        description,
+        name,
+        state:{news,solde},
+        colors,
+        price,
+    } = dataProduct
 
-    const changeImgProduct= (event,nodeTarget) => {
-        nodeTarget.src=event.target.src
+    let baseUrlSrcImg = '/images/product/'
+
+    const getTotalColor = colorsArr => colorsArr.length
+
+    const getReductionPrice = percent => price - ((price*percent)/100);
+
+    const getImgPreviewToShow = colors => {
+        let listImg = []
+         colors.forEach(colorItem => {
+           colorItem.imgs.forEach(img=> {
+            listImg.push(img)
+           })
+         })
+
+         if(listImg.length > 4){
+            return listImg.filter((img,index) => index < 4)
+         }else{
+           return listImg
+         }
     }
-    const allShoePictures = [img,...model.preview];
+    const getImgPreview= colors => {
+        let listImg = []
+         colors.forEach(colorItem => {
+           colorItem.imgs.forEach(img=> {
+            listImg.push(img)
+           })
+         })
 
-    const getSoldeWithSolde = (percent,price)=> {
-        return price - ((price * percent)/100)
+         return listImg
     }
 
-    const getProductToDispay = (category,trie)=> {
-
+    const changeMainImgProduct = (e,imgEltWrapper) =>{
+      imgEltWrapper.querySelector('img').src = e.currentTarget.src
     }
+
+    const previewImgsToShow = getImgPreviewToShow(colors)
+    const previewImgs = getImgPreview(colors)
+    const getRestNumberPreviewImgs = (allPreviewImgs, previewImgToShow) => allPreviewImgs.length - previewImgToShow.length
+    const restImgPreview =getRestNumberPreviewImgs(previewImgs,previewImgsToShow)
+
   return (
-    <div className="product">
-        <Link to="/">
-            <div className="product__img">
-                <img ref={imgProductRef} src= {`${basePathImgProduct}${img}`} alt="product" />
+    <Link to="javascript:void(0)">
+        <div className="product">
+            <div ref={imgProductRef} className="product__img">
+                <img src={`${baseUrlSrcImg+preview}`} alt="product"/>
             </div>
-        </Link>
- 
-        <div className="product__body">
-            
-            <div className="product__preview"> 
+            <div className="product__body">
+                <div className="product__news">
+                   {news}
+                </div>
                 {
-                    allShoePictures.map((itemPreview,index)=> (
-                        <div onMouseEnter={(e)=> changeImgProduct(e,imgProductRef.current)} key={index} className="product__preview-img">
-                            <img src= {`${basePathImgProduct}${itemPreview}`} alt={name} />
+                    (getTotalColor(colors) !== 0 && getTotalColor(colors)>=1) && (
+                        <div className="product__preview">
+                          
+                            {
+                                previewImgsToShow.map((previewImg,index)=> (
+                                    <div key={index} className="product__preview-img">
+                                        <img
+                                            onMouseMove={(e)=> changeMainImgProduct(e,imgProductRef.current)}
+                                            src={`${baseUrlSrcImg+previewImg}`}
+                                            alt="product"
+                                          />
+                                    </div>
+                                ))
+                               
+                            }
+                            {
+                                (restImgPreview !== 0 && (
+                                    <div className="product__preview-rest">
+                                        +{restImgPreview}
+                                    </div> 
+                                ))
+                            }
+                            
                         </div>
-                    ))
+                    )
                 }
-            </div>
-
-            {solde.active && (
-                <div className="product__state">
-                  {`${solde.lang[currentLang]} ${solde.percent}%`}
-                </div>
-            )}
-
-            <Link to="/">
+               
                 <div className="product__name">
-                    {
-                        name
-                    } 
+                    {name}
                 </div>
-            </Link>
-
-            <div className="product__genre">
-               {
-                genre[currentLang]
-               }
-            </div>
-
-            {
-                (color.length !==0 && (
-                    <div className="product__number-color">
-                        {
-                            `${color.length} ${ (color.length>1)?colorLang[currentLang][1]:colorLang[currentLang][0]}`
-                        } 
+                <div className="product__description">
+                  {description}
+                </div>
+                <div className="product__colors">
+                    {`${getTotalColor(colors) } ${(getTotalColor(colors)===1)?colorText[currentLang][0]:colorText[currentLang][1]}`} 
+                </div>
+                <div className="product__news product__news--hover">
+                    {news}
+                </div>
+                <div className="product__price">
+                    <div className="product__price-active">
+                        {solde.active ?getReductionPrice(solde.percent):price}<span>₽</span>
                     </div>
-                ))
-            }
-           
-            <div className="product__price">
-               <span className='product__price-current'>{(!solde.active)?price: getSoldeWithSolde(solde.percent,price)} {device[currentLang]}</span>
-                {solde.active && <span className='product__price-old'>{price} {device[currentLang]}</span> }
-                
+                    {
+                        solde.active && (
+                            <div className="product__price-solde">
+                                {price}<span>₽</span>
+                            </div>
+                        )
+                    }
+                    
+                </div>
+                    {
+                        solde.active && (
+                            <div className="product__solde-info">
+                                {`${solde.percent}% ${soldeText[currentLang]}`}
+                            </div>
+                        )
+                    }
+               
             </div>
-          
         </div>
-
-        <div className="product__wrapper-btn">
-            <button className='product__button btn'> ajouter au panier</button>
-        </div>
-    </div>
+    </Link>
+    
   )
 
 }

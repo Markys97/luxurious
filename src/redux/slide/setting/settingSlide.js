@@ -10,7 +10,9 @@ const initialState = {
         },
         value:'en'
     },
+
     isDarkMode:false,
+
      menuLinks :[
         {
             hrefValue:'/',
@@ -66,6 +68,32 @@ const initialState = {
                 ru:'Каталог',
 
             },
+            subMenu:[
+                {
+                    hrefValue:'/',
+                    lang:{
+                        en:'Men',
+                        fr:'Homme',
+                        ru:'Муской',
+                    },
+                },
+                {
+                    hrefValue:'/',
+                    lang:{
+                        en:'Women',
+                        fr:'Femme',
+                        ru:'Женский',
+                    },
+                },
+                {
+                    hrefValue:'/',
+                    lang:{
+                        en:'Kids',
+                        fr:'Enfant',
+                        ru:'Детский',
+                    },
+                },
+            ]
         
         },
 
@@ -80,6 +108,7 @@ const initialState = {
         
         },
     ],
+
     sessionUserLink: [
         {
             href:'/',
@@ -100,7 +129,9 @@ const initialState = {
             }
         },
     ],
+
     isOpenMenuMobile:false,
+    
     trieTextLang:{
         title:{
             en:'Sort by',
@@ -108,10 +139,21 @@ const initialState = {
             fr:'Trier par'
         }
     },
+
     colorText:{
         fr:['couleur','couleurs'],
         en:['color','colors'],
         ru:['цвет','цветы']
+    },
+    moneyDevice:{
+        ru:'₽',
+        fr:'€',
+        en:'$'
+    },
+    soldeText:{
+        fr:'de reduction',
+        en:'solde',
+        ru:'скидка'
     }
 }
 

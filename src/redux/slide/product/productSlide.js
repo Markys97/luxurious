@@ -1,301 +1,153 @@
 import { createSlice } from "@reduxjs/toolkit";
 const listProduct=[
-    {
-        id:1,
-        name:'Product a',
-        price:1100,
-        img:'A1-main.jpg',
-        genre:{
-            en:"men's shoe",
-            fr:'chaussure homme',
-            ru:'мужская обувь'
+   {
+    id:1,
+    name:'brexe',
+    categorry:'nike',
+    state:{
+        new:false,
+        solde:{
+            active:true,
+            percent:10,
+            dateLimit:'25/12/2023'
         },
-        preview:['A2.jpg','A3.jpg'],
+        news:'nouveaute'
+    },
+    colors:[
+        {
+            value:'black',
+            imgs:['01.jpg','02.jpg','03.jpg'],
+            quantity:10
+        },
+        {
+            value:'red',
+            imgs:['04.jpg','05.jpg','06.jpg'],
+            quantity:2
+        },
+    ],
+    price:1500,
+    description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, a!',
+    genre:'m',
+    imgs:{
+        preview:'04.jpg',
+        all:['04.jpg','05.jpg','06.jpg']
+    },
+    date_enter_product:'10/20/2010'
+   },
+   {
+    id:2,
+    name:'marcus',
+    categorry:'puma',
+    state:{
+        new:false,
         solde:{
             active:false,
             percent:10,
-            lang:{
-                fr:`reduction de`,
-                ru:'скидка на',
-                en:'discount'
-            }
+            dateLimit:'25/12/2023'
         },
-        new:{
-            active:false,
-            text:'',
-            dateExpiration:''
-        },
-        size:[
-            {
-                quantity:10,
-                value:45
-            },
-            {
-                quantity:10,
-                value:35
-            },
-            {
-                quantity:10,
-                value:40
-            },
-            {
-                quantity:10,
-                value:41
-            },
-            {
-                quantity:10,
-                value:42
-            },
-        ],
-        color:[],
-        model:{
-            preview:['A-model-main.jpg','A-model.jpg'],
-        },
-        device:{
-            en:'$',
-            fr:'Є',
-            ru:'₽'
-        },
-        categorie:'nike'
-        
-
+        news:'lorem ipsum'
     },
-
-    {
-        id:2,
-        name:'Product b',
-        price:1200,
-        img:'A1-main.jpg',
-        genre:{
-            en:"men's shoe",
-            fr:'chaussure homme',
-            ru:'мужская обувь'
+    colors:[
+        // {
+        //     value:'black',
+        //     imgs:['11.jpg','12.jpg','02.jpg','13.jpg'],
+        //     quantity:10
+        // },
+        {
+            value:'black',
+            imgs:['11.jpg','12.jpg','02.jpg','13.jpg'],
+            quantity:10
         },
-        preview:['A2.jpg','A3.jpg'],
-        solde:{
-            active:true,
-            percent:30,
-            lang:{
-                fr:`reduction de`,
-                ru:'скидка на',
-                en:'discount'
-            }
-        },
-        new:{
-            active:false,
-            text:'',
-            dateExpiration:''
-        },
-        size:[
-            {
-                quantity:10,
-                value:45
-            },
-            {
-                quantity:10,
-                value:35
-            },
-            {
-                quantity:10,
-                value:40
-            },
-            {
-                quantity:10,
-                value:41
-            },
-            {
-                quantity:10,
-                value:42
-            },
-        ],
-        color:[],
-        model:{
-            preview:['A-model-main.jpg','A-model.jpg'],
-        },
-        device:{
-            en:'$',
-            fr:'Є',
-            ru:'₽'
-        },
-        categorie:'puma'
-        
-
+       
+       
+    ],
+    price:2000,
+    description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, a!',
+    genre:'f',
+    imgs:{
+        preview:'10.jpg',
+        all:['08.jpg','05.jpg','02.jpg','04.jpg']
     },
-
-    {
-        id:3,
-        name:'Product c',
-        price:1950,
-        img:'A1-main.jpg',
-        genre:{
-            en:"men's shoe",
-            fr:'chaussure homme',
-            ru:'мужская обувь'
-        },
-        preview:['A2.jpg','A3.jpg'],
+    date_enter_product:'10/20/2010'
+   },
+   {
+    id:3,
+    name:'le primus',
+    categorry:'new balance',
+    state:{
+        new:false,
         solde:{
             active:false,
-            percent:30
+            percent:10,
+            dateLimit:'25/12/2023'
         },
-        new:{
-            active:false,
-            text:'',
-            dateExpiration:''
-        },
-        size:[
-            {
-                quantity:10,
-                value:45
-            },
-            {
-                quantity:10,
-                value:35
-            },
-            {
-                quantity:10,
-                value:40
-            },
-            {
-                quantity:10,
-                value:41
-            },
-            {
-                quantity:10,
-                value:42
-            },
-        ],
-        color:[],
-        model:{
-            preview:['A-model-main.jpg','A-model.jpg'],
-        },
-        device:{
-            en:'$',
-            fr:'Є',
-            ru:'₽'
-        },
-        categorie:'addidas'
-        
+        news:'lorem ipsum'
     },
-
-    {
-        id:4,
-        name:'Product d',
-        price:350,
-        img:'A1-main.jpg',
-        genre:{
-            en:"men's shoe",
-            fr:'chaussure homme',
-            ru:'мужская обувь'
+    colors:[
+        {
+            value:'black',
+            imgs:['08.jpg','05.jpg','02.jpg','02.jpg'],
+            quantity:10
         },
-        preview:['A2.jpg','A3.jpg'],
+        {
+            value:'red',
+            imgs:['04.jpg','05.jpg','06.jpg'],
+            quantity:2
+        },
+        {
+            value:'red',
+            imgs:['04.jpg','05.jpg','06.jpg'],
+            quantity:2
+        },
+    ],
+    price:2000,
+    description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, a!',
+    genre:'f',
+    imgs:{
+        preview:'15.jpg',
+        all:['08.jpg','05.jpg','02.jpg','02.jpg']
+    },
+    date_enter_product:'10/20/2010'
+   },
+   {
+    id:4,
+    name:'le kinda',
+    categorry:'new balance',
+    state:{
+        new:false,
         solde:{
             active:false,
-            percent:30,
-            lang:{
-                fr:`reduction de`,
-                ru:'скидка на',
-                en:'discount'
-            }
+            percent:10,
+            dateLimit:'25/12/2023'
         },
-        new:{
-            active:false,
-            text:'',
-            dateExpiration:''
-        },
-        size:[
-            {
-                quantity:10,
-                value:45
-            },
-            {
-                quantity:10,
-                value:35
-            },
-            {
-                quantity:10,
-                value:40
-            },
-            {
-                quantity:10,
-                value:41
-            },
-            {
-                quantity:10,
-                value:42
-            },
-        ],
-        color:[],
-        model:{
-            preview:['A-model-main.jpg','A-model.jpg'],
-        },
-        device:{
-            en:'$',
-            fr:'Є',
-            ru:'₽'
-        },
-        categorie:'new balance'
-        
+        news:'lorem ipsum'
     },
-
-    {
-        id:5,
-        name:'Product e',
-        price:950,
-        img:'A1-main.jpg',
-        genre:{
-            en:"men's shoe",
-            fr:'chaussure homme',
-            ru:'мужская обувь'
+    colors:[
+        {
+            value:'black',
+            imgs:['08.jpg','05.jpg','02.jpg','02.jpg'],
+            quantity:10
         },
-        preview:['A2.jpg','A3.jpg'],
-        solde:{
-            active:true,
-            percent:30,
-            lang:{
-                fr:`reduction de`,
-                ru:'скидка на',
-                en:'discount'
-            }
+        {
+            value:'red',
+            imgs:['04.jpg','05.jpg','06.jpg'],
+            quantity:2
         },
-        new:{
-            active:false,
-            text:'',
-            dateExpiration:''
+        {
+            value:'red',
+            imgs:['04.jpg','05.jpg','06.jpg'],
+            quantity:2
         },
-        size:[
-            {
-                quantity:10,
-                value:45
-            },
-            {
-                quantity:10,
-                value:35
-            },
-            {
-                quantity:10,
-                value:40
-            },
-            {
-                quantity:10,
-                value:41
-            },
-            {
-                quantity:10,
-                value:42
-            },
-        ],
-        color:[],
-        model:{
-            preview:['A-model-main.jpg','A-model.jpg'],
-        },
-        device:{
-            en:'$',
-            fr:'Є',
-            ru:'₽'
-        },
-        categorie:'nike'
-        
+    ],
+    price:2000,
+    description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, a!',
+    genre:'k',
+    imgs:{
+        preview:'13.jpg',
+        all:['08.jpg','05.jpg','02.jpg','02.jpg']
     },
+    date_enter_product:'10/20/2010'
+   },
 ]
 
  const initialState = {
@@ -340,7 +192,9 @@ const listProduct=[
             isBrand:true,
         },
     ],
+
     listProduct,
+
     trieHandler:{
         itemTrieListLang: [
             {
@@ -351,19 +205,26 @@ const listProduct=[
             },
             {
                 id:2,
-                en:'popularity',
-                ru:'популярности',
-                fr:'popularité'
+                en:'Men',
+                fr:'Homme',
+                ru:'Муской',
             },
             {
                 id:3,
-                en:'alphabetically',
-                ru:'алфавиту',
-                fr:'alphabétiquement'
+                en:'Women',
+                fr:'Femme',
+                ru:'Женский',
+            },
+            {
+                id:4,
+                en:'Kids',
+                fr:'Enfant',
+                ru:'Детский',
             },
         ],
         activeItemTrie:1
     },
+
     listProductToShow :[...listProduct]
 }
 

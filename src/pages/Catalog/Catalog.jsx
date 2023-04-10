@@ -11,12 +11,11 @@ function Catalog() {
 
             <main className="catalog-main">
                 <div className="catalog-head">
-                    <Filter/>
+                    <h2 className="catalog-product__title">Title</h2>
                     <Trie/>
                 </div>
                 <section className='catalog-product'>
                   <div className="catalog-product__content">
-                    <h2 className="catalog-product__title">Title</h2>
                       <ListProduct/>
                   </div>
                 </section>

@@ -139,7 +139,6 @@
 
 .menu__list {
   display: flex;
-  align-items: center;
   gap: 0 40px;
 }
 .menu__link {
@@ -172,13 +171,18 @@
 .menu__link:hover .menu__submenu {
   display: inline-block;
 }
-.menu__item, .menu__item a {
+.menu__item {
   position: relative;
+  height: -moz-fit-content;
+  height: fit-content;
 }
-.menu__item--no-bar:hover::before, .menu__item a--no-bar:hover::before {
+.menu__item--no-bar {
+  padding-bottom: 5px;
+}
+.menu__item--no-bar:hover::before {
   display: none !important;
 }
-.menu__item::before, .menu__item a::before {
+.menu__item::before {
   content: "";
   display: block;
   position: absolute;
@@ -189,41 +193,44 @@
   background-color: var(--main-color);
   transition: all 300ms;
 }
-.menu__item.active::before, .menu__item a.active::before {
+.menu__item.active::before {
   width: 50%;
   background-color: var(--second-color);
 }
-.menu__item:hover::before, .menu__item a:hover::before {
+.menu__item:hover .menu__submenu {
+  display: block;
+}
+.menu__item:hover::before {
   width: 100%;
   background-color: var(--second-color);
 }
-.menu__item:hover .menu__link-text, .menu__item a:hover .menu__link-text {
+.menu__item:hover .menu__link-text {
   color: var(--second-color);
 }
-.menu__item:hover .menu__link-icon svg path, .menu__item a:hover .menu__link-icon svg path {
+.menu__item:hover .menu__link-icon svg path {
   stroke: var(--second-color);
 }
-.menu__item .menu__submenu, .menu__item a .menu__submenu {
+.menu__item .menu__submenu {
   display: none;
   width: 100%;
   position: absolute;
   z-index: 10;
   top: 28px;
+  margin-top: 10px;
   padding: 10px;
   background: var(--light-color);
   border-radius: 10px;
   box-shadow: 0 0 5px var(--main-color);
 }
-.menu__item .menu__submenu-list, .menu__item a .menu__submenu-list {
+.menu__item .menu__submenu-list {
   display: inline-flex;
   flex-direction: column;
   gap: 5px 0;
 }
-.menu__item .menu__submenu-item, .menu__item a .menu__submenu-item {
-  padding: 0 5px;
+.menu__item .menu__submenu-item {
   position: relative;
 }
-.menu__item .menu__submenu-item::before, .menu__item a .menu__submenu-item::before {
+.menu__item .menu__submenu-item::before {
   content: "";
   display: inline-block;
   position: absolute;
@@ -234,18 +241,18 @@
   background: var(--second-color);
   transition: all 300ms;
 }
-.menu__item .menu__submenu-item:hover::before, .menu__item a .menu__submenu-item:hover::before {
+.menu__item .menu__submenu-item:hover::before {
   width: 100%;
 }
-.menu__item .menu__submenu-item:hover a, .menu__item a .menu__submenu-item:hover a {
+.menu__item .menu__submenu-item:hover a {
   color: var(--second-color);
 }
-.menu__item .menu__submenu-item a, .menu__item a .menu__submenu-item a {
+.menu__item .menu__submenu-item a {
   font-size: 14px;
   color: var(--main-color);
   transition: all 300ms;
 }
-.menu__item:hover .menu__submenu, .menu__item a:hover .menu__submenu {
+.menu__item:hover .menu__submenu {
   display: block;
 }
 

@@ -36,7 +36,7 @@ function Header(){
            let submenu= item.querySelector('.menu__submenu')
 
             if(submenu){
-                submenu.style.top = `${top-1}px`
+                submenu.style.top = `${top-13}px`
             }
         })
 

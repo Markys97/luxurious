@@ -164,10 +164,9 @@
 .menu{
     &__list{
         display: flex;
-        align-items: center;
+        // align-items: center;
         // flex-wrap: wrap;
         gap: 0 40px;
-        
     }
     &__link{
         color: var(--main-color) ;
@@ -209,10 +208,13 @@
 
         
     }
-    &__item,&__item a{
+    &__item{
         position: relative;
-        
+        // border: 1px solid red;
+        height: fit-content;
+
         &--no-bar{
+            padding-bottom: 5px;
             &:hover{
                 &::before{
                     display: none!important;
@@ -240,6 +242,9 @@
         }
 
         &:hover{
+            .menu__submenu{
+                display: block;
+            }
             &::before{
                 width: 100%;
                 background-color: var(--second-color);
@@ -262,6 +267,7 @@
             position: absolute;
             z-index: 10;
             top: 28px;
+            margin-top: 10px;
             padding: 10px ;
             background: var(--light-color);
             border-radius: 10px;
@@ -272,8 +278,6 @@
                 gap: 5px 0;
             }
             &-item{
-          
-              padding: 0 5px;
               position: relative;
               &::before{
                 content: '';
@@ -286,7 +290,6 @@
                 background: var(--second-color);
                 transition: all 300ms;
               }
-
               &:hover{
                 &::before{
                     width: 100%;
@@ -295,14 +298,11 @@
                     color: var(--second-color);
                 }
               }
-
               a{
                 font-size: 14px;
                 color: var(--main-color);
                 transition: all 300ms;
               }
-
-            
             }
         }
 

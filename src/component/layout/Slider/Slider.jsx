@@ -61,7 +61,7 @@ function Slider({slides,showNavigation,classHtml}) {
                                 <swiper-slide key={id}>
                                     <BanierItem
                                         pub={pub}
-                                        buttonData= {buttonData}
+
                                      />
                                 </swiper-slide>
                             ))
