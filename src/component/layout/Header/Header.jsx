@@ -20,6 +20,8 @@ function Header(){
     const dispatch = useDispatch();
     const connectionLinks = useSelector(state=> state.setting.sessionUserLink)
     const [menuLinks,setMenuLinks] = useState(links);
+
+    
     const openMenuMobile = ()=> {
         dispatch(setIsOpenMenuMobile(true))
         document.body.classList.add('pause')
@@ -137,7 +139,6 @@ function Header(){
                                             return (
                                             <li key={id} className={`menu__item  ${(item?.subMenu !==undefined)? 'menu__item--no-bar':null}`}>
                                                     <NavLink to={item.hrefValue} className='menu__link'>
-
                                                         <div className="menu__link-head">
                                                             <div className="menu__link-text link">{item.lang[currentLang]}</div>
                                                             {item?.subMenu !==undefined?  (
@@ -149,8 +150,6 @@ function Header(){
                                                             ):null}
                                                         </div>
 
-                                                       
-
                                                     </NavLink>
                                                     {item?.subMenu !==undefined?  (  
                                                         <div className="menu__submenu">
@@ -159,8 +158,9 @@ function Header(){
                                                                     item.subMenu.map( (elt,id) => {
                                                                         return (
                                                                             <li className="menu__submenu-item">
-                                                                                <Link href={elt.href}>
+                                                                                <Link to={`${elt.hrefValue}`}>
                                                                                     {elt.lang[currentLang]}
+
                                                                                 </Link>
                                                                             </li>
                                                                         )

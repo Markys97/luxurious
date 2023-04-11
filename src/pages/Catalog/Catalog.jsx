@@ -4,8 +4,13 @@ import Footer from "../../component/layout/Footer/Footer"
 import Filter from '../../component/layout/Filter/Filter'
 import Trie from '../../component/ui/Trie/Trie'
 import ListProduct from '../../component/layout/ListProduct/ListProduct'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Catalog() {
+  const listProduct = useSelector(state=> state.product.listProductToShow)
+  const params = useParams();
+  console.log(params)
   return (
     <div className="catalog-page wrapper">
 
@@ -16,7 +21,7 @@ function Catalog() {
                 </div>
                 <section className='catalog-product'>
                   <div className="catalog-product__content">
-                      <ListProduct/>
+                      <ListProduct products={listProduct}/>
                   </div>
                 </section>
             </main>

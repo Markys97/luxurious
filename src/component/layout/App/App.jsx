@@ -16,8 +16,13 @@ function App() {
  createRoutesFromElements(
   <Route path='/' element={<LaoutPage/>}>
       <Route index element={<Home/>} />
-      <Route path='catalog' element={<Catalog/>}/>
-      <Route path='brands' element={<Catalog/>}/>
+
+      <Route  path='catalog' element={<Catalog/>}>
+          <Route path=':filtre' element={<Catalog/>} />
+      </Route>
+      <Route path='brands' element={<Catalog/>}>
+        <Route path=':brand' element={<Catalog/>} />
+      </Route>
   </Route>
  )
   )
@@ -30,20 +35,4 @@ function App() {
 
 export default App;
 
-// [
-//   {
-//     path:'/',
-//     children:[
-//       {
-//         index:true,
-//         path:'home',
-//         element : <Home/>,
-//       },
-//       {
-//         path:'catalog',
-//         element : <Catalog/>, 
-//       }
-//     ]
-//   },
 
-// ]

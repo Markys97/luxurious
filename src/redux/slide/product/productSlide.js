@@ -9,14 +9,14 @@ const listProduct=[
         solde:{
             active:true,
             percent:10,
-            dateLimit:'25/12/2023'
+            dateLimit:'25/12/2143'
         },
         news:'nouveaute'
     },
     colors:[
         {
             value:'black',
-            imgs:['01.jpg','02.jpg','03.jpg'],
+            imgs:['01.jpg','14.jpg','03.jpg'],
             quantity:10
         },
         {
@@ -43,19 +43,19 @@ const listProduct=[
         solde:{
             active:false,
             percent:10,
-            dateLimit:'25/12/2023'
+            dateLimit:'25/12/2143'
         },
         news:'lorem ipsum'
     },
     colors:[
         // {
         //     value:'black',
-        //     imgs:['11.jpg','12.jpg','02.jpg','13.jpg'],
+        //     imgs:['11.jpg','12.jpg','14.jpg','13.jpg'],
         //     quantity:10
         // },
         {
             value:'black',
-            imgs:['11.jpg','12.jpg','02.jpg','13.jpg'],
+            imgs:['11.jpg','12.jpg','14.jpg','13.jpg'],
             quantity:10
         },
        
@@ -66,7 +66,7 @@ const listProduct=[
     genre:'f',
     imgs:{
         preview:'10.jpg',
-        all:['08.jpg','05.jpg','02.jpg','04.jpg']
+        all:['08.jpg','05.jpg','14.jpg','04.jpg']
     },
     date_enter_product:'10/20/2010'
    },
@@ -79,14 +79,14 @@ const listProduct=[
         solde:{
             active:false,
             percent:10,
-            dateLimit:'25/12/2023'
+            dateLimit:'25/12/2143'
         },
         news:'lorem ipsum'
     },
     colors:[
         {
             value:'black',
-            imgs:['08.jpg','05.jpg','02.jpg','02.jpg'],
+            imgs:['08.jpg','05.jpg','14.jpg','14.jpg'],
             quantity:10
         },
         {
@@ -105,7 +105,7 @@ const listProduct=[
     genre:'f',
     imgs:{
         preview:'15.jpg',
-        all:['08.jpg','05.jpg','02.jpg','02.jpg']
+        all:['08.jpg','05.jpg','14.jpg','14.jpg']
     },
     date_enter_product:'10/20/2010'
    },
@@ -118,14 +118,14 @@ const listProduct=[
         solde:{
             active:false,
             percent:10,
-            dateLimit:'25/12/2023'
+            dateLimit:'25/12/2143'
         },
         news:'lorem ipsum'
     },
     colors:[
         {
             value:'black',
-            imgs:['08.jpg','05.jpg','02.jpg','02.jpg'],
+            imgs:['08.jpg','05.jpg','14.jpg','14.jpg'],
             quantity:10
         },
         {
@@ -144,7 +144,7 @@ const listProduct=[
     genre:'k',
     imgs:{
         preview:'13.jpg',
-        all:['08.jpg','05.jpg','02.jpg','02.jpg']
+        all:['08.jpg','05.jpg','14.jpg','14.jpg']
     },
     date_enter_product:'10/20/2010'
    },
@@ -168,7 +168,6 @@ const listProduct=[
             img:'nike.jpg',
             isActive:false,
             isBrand:true,
-
         }, 
         {
             id:2,
