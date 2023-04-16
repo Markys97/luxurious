@@ -29,7 +29,7 @@ function ListCategorie() {
             <div className="list-categorie-sneaker__grid">
                 {
                     listCategorie.map((itemCategorie,index) => (
-                        <Link to={''}>
+                        <Link key={index} to={`brands/${itemCategorie.name.toLowerCase()}`}>
                             <ItemCategorie
                                 key={index}
                                 categorie={itemCategorie}

@@ -34,7 +34,7 @@ const initialState = {
             },
             subMenu:[
                 {
-                    hrefValue:'/',
+                    hrefValue:'brands/nike',
                     lang:{
                         en:'Nike',
                         fr:'Nike',
@@ -42,7 +42,7 @@ const initialState = {
                     },
                 },
                 {
-                    hrefValue:'/',
+                    hrefValue:'brands/puma',
                     lang:{
                         en:'Puma',
                         fr:'Puma',
@@ -50,11 +50,19 @@ const initialState = {
                     },
                 },
                 {
-                    hrefValue:'/',
+                    hrefValue:'brands/addidas',
                     lang:{
                         en:'Addidas',
                         fr:'Addidas',
                         ru:'Addidas',
+                    },
+                },
+                {
+                    hrefValue:'catalog/new balance',
+                    lang:{
+                        en:'New Balance',
+                        fr:'New Balance',
+                        ru:'New Balance',
                     },
                 },
             ]
@@ -70,7 +78,7 @@ const initialState = {
             },
             subMenu:[
                 {
-                    hrefValue:'/',
+                    hrefValue:'catalog/men',
                     lang:{
                         en:'Men',
                         fr:'Homme',
@@ -78,7 +86,7 @@ const initialState = {
                     },
                 },
                 {
-                    hrefValue:'/',
+                    hrefValue:'catalog/women',
                     lang:{
                         en:'Women',
                         fr:'Femme',
@@ -86,7 +94,7 @@ const initialState = {
                     },
                 },
                 {
-                    hrefValue:'/',
+                    hrefValue:'catalog/kids',
                     lang:{
                         en:'Kids',
                         fr:'Enfant',
@@ -145,11 +153,13 @@ const initialState = {
         en:['color','colors'],
         ru:['цвет','цветы']
     },
+    
     moneyDevice:{
         ru:'₽',
         fr:'€',
         en:'$'
     },
+
     soldeText:{
         fr:'de reduction',
         en:'solde',
