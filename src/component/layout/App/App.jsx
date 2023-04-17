@@ -1,16 +1,20 @@
+import { useEffect } from 'react';
 import { createBrowserRouter,
   RouterProvider,
   createRoutesFromElements,
   Route,
-  Routes
 } from 'react-router-dom';
 import LaoutPage from '../LaoutPage/LaoutPage';
 import { useSelector } from 'react-redux';
 import Catalog from '../../../pages/Catalog/Catalog';
-
 import './app.css'
 import Home from '../../../pages/Home/Home';
 function App() {
+  useEffect(function(){
+    fetch('https://luxurious-server.onrender.com/listProduct')
+    .then(res => res.json())
+    .then(res=> console.log(res))
+  },[])
   const isDarkMode = useSelector(state=> state.setting.isDarkMode)
   let router = createBrowserRouter(
  createRoutesFromElements(
