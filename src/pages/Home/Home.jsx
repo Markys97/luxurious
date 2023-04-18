@@ -1,41 +1,16 @@
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import { useSelector } from 'react-redux'
 import './home.css'
 import Header from '../../component/layout/Header/Header'
 import Footer from '../../component/layout/Footer/Footer'
 import Slider from '../../component/layout/Slider/Slider'
 import ListCategorie from '../../component/layout/ListeCategorie/ListCategorie'
+import axios from 'axios'
 
 
 function Home() {
   const currentLang = useSelector(state => state.setting.lang.value)
-  const pubs = [
-    {
-        img:`05.jpg`,
-        canIBuy:true,
-        description:'lorem ipsum'
-    },
-    {
-        img:`06.jpg`,
-        canIBuy:false,
-        description:'lorem ipsum'
-    },
-    {
-        img:`07.jpg`,
-        canIBuy:false,
-        description:'lorem ipsum'
-    },
-    {
-        img:`08.jpg`,
-        canIBuy:false,
-        description:'lorem ipsum'
-    },
-    {
-        img:`09.jpg`,
-        canIBuy:true,
-        description:'lorem ipsum'
-    },
-]
+  const [pubs, setPub] = useState([]);
 let titleWindow = {
   lang:{
     fr:'Accueil',
@@ -50,6 +25,12 @@ useEffect(()=>{
   let imgs = [...document.querySelectorAll('img')]
   imgs.forEach(img=> img.loading = 'lazy')
 
+  axios.get('http://localhost:3500/recentProduct')
+  .then(res => {
+    if(res.status === 200){
+      setPub(res.data)
+    }
+  })
 
 },[])
 

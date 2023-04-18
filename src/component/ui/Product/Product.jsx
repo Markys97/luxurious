@@ -9,15 +9,18 @@ function Product({dataProduct}) {
     const soldeText = useSelector(state => state.setting.soldeText)
     const imgProductRef = useRef()
     const {
-        imgs:{preview},
+        id,
         description,
         name,
-        state:{news,solde},
-        colors,
         price,
     } = dataProduct
 
-    let baseUrlSrcImg = '/images/product/'
+    
+    let {solde,news}= JSON.parse(dataProduct.state)
+    let colors= JSON.parse(dataProduct.colors)
+    let {preview}= JSON.parse(dataProduct.imgs)
+
+    let baseUrlSrcImg =`http://localhost:3500/product/`;
 
     const getTotalColor = colorsArr => colorsArr.length
 
@@ -58,7 +61,7 @@ function Product({dataProduct}) {
     const restImgPreview =getRestNumberPreviewImgs(previewImgs,previewImgsToShow)
 
   return (
-    <Link to="javascript:void(0)">
+    <Link to={`sneaker/${id}`}>
         <div className="product">
             <div ref={imgProductRef} className="product__img">
                 <img src={`${baseUrlSrcImg+preview}`} alt="product"/>
@@ -131,6 +134,8 @@ function Product({dataProduct}) {
             </div>
         </div>
     </Link>
+
+
     
   )
 

@@ -7,16 +7,6 @@ register();
 function Slider({slides,showNavigation,classHtml}) {
     const swiperElRef = useRef(null);
 
-    const buttonData = {
-        lang:{
-            fr:'ajouter au panier',
-            en:'add in basket',
-            ru:"добавить в корзину"
-        },
-        onclick: function(){
-            console.log('maman')
-        }
-    }
 
     return (
         <div className={"slider"+ " "+ classHtml}>

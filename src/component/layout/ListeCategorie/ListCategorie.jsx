@@ -2,15 +2,14 @@ import './listCategorie.css'
 import ItemCategorie from '../../ui/ItemCategorie/ItemCategorie'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useState,useEffect } from 'react'
+import axios from 'axios'
 
 
 function ListCategorie() {
     const currentLang = useSelector(state => state.setting.lang.value)
-    const categotiList = useSelector(state=> state.product.category)
+    const [categotiList, setCategotiList] = useState([])
    
-    const listCategorie = categotiList.filter(item=> item.isBrand !== false)
-
-
     const textTitle = {
         lang:{
             fr:'toutes les Marques',
@@ -18,6 +17,17 @@ function ListCategorie() {
             ru:'все Бренди'
         }
     }
+
+    useEffect(()=>{
+
+        axios.get('http://localhost:3500/listCategory')
+        .then(res => {
+          if(res.status === 200){
+            setCategotiList(res.data)
+          }
+        })
+      },[])
+
   return (
     <section className='list-categorie-sneaker'>
         <div className="list-categorie-sneaker__content">
@@ -28,7 +38,7 @@ function ListCategorie() {
             </h2>
             <div className="list-categorie-sneaker__grid">
                 {
-                    listCategorie.map((itemCategorie,index) => (
+                    categotiList.map((itemCategorie,index) => (
                         <Link key={index} to={`brands/${itemCategorie.name.toLowerCase()}`}>
                             <ItemCategorie
                                 key={index}

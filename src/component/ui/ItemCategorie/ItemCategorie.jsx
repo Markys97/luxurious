@@ -3,9 +3,9 @@ import './itemCategorie.css'
 import { loadImg,imgLoadingSrc } from '../../../functions/helper';
 
 
-function ItemCategorie({categorie:{img,name}}) {
+function ItemCategorie({categorie:{name,img_preview,id}}) {
   const imgWrapperRef = useRef()
-  let srcImgPath = `/images/categorie/${img}`;
+  let srcImgPath = `http://localhost:3500/categorie/${img_preview}`;
 
   useEffect(()=>{
     loadImg(imgWrapperRef.current,srcImgPath)

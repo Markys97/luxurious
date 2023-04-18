@@ -6,11 +6,22 @@ import Trie from '../../component/ui/Trie/Trie'
 import ListProduct from '../../component/layout/ListProduct/ListProduct'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useState,useEffect } from 'react'
+import axios from 'axios'
 
 function Catalog() {
-  const listProduct = useSelector(state=> state.product.listProductToShow)
+  const [listProduct,setListProduct] =  useState([]) //useSelector(state=> state.product.listProductToShow)
   const params = useParams();
-  console.log(params)
+  useEffect(()=>{
+    axios('http://localhost:3500/listProduct')
+    .then(res => {
+      if(res.status===200){
+        setListProduct(res.data)
+      }
+    })
+  },[])
+
+
   return (
     <div className="catalog-page wrapper">
 
