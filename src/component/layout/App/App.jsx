@@ -25,7 +25,7 @@ function App() {
           <Route path=':filtre' element={<Catalog/>} />
       </Route>
       <Route path='brands' element={<Catalog/>}>
-        <Route path=':brand' element={<Catalog/>} />
+        <Route path=':category' element={<Catalog/>} />
       </Route>
   </Route>
  )

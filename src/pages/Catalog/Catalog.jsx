@@ -4,7 +4,7 @@ import Footer from "../../component/layout/Footer/Footer"
 import Filter from '../../component/layout/Filter/Filter'
 import Trie from '../../component/ui/Trie/Trie'
 import ListProduct from '../../component/layout/ListProduct/ListProduct'
-import { useParams } from 'react-router-dom'
+import { useParams,useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
@@ -12,6 +12,8 @@ import axios from 'axios'
 function Catalog() {
   const [listProduct,setListProduct] =  useState([]) //useSelector(state=> state.product.listProductToShow)
   const params = useParams();
+  const {pathname} = useLocation()
+  const listCategori=[];
   useEffect(()=>{
     axios('http://localhost:3500/listProduct')
     .then(res => {
@@ -19,7 +21,15 @@ function Catalog() {
         setListProduct(res.data)
       }
     })
+
   },[])
+
+  const categoryParams= params?.category
+  const filtreParams= params?.filtre
+  let secureValue = /^[a-zA-Z \s]+$/
+
+  
+
 
 
   return (

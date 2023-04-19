@@ -68,7 +68,7 @@ function Product({dataProduct}) {
             </div>
             <div className="product__body">
                 <div className="product__news">
-                   {news}
+                   {news[currentLang]}
                 </div>
                 {
                     (getTotalColor(colors) !== 0 && getTotalColor(colors)>=1) && (
@@ -102,13 +102,13 @@ function Product({dataProduct}) {
                     {name}
                 </div>
                 <div className="product__description">
-                  {description}
+                  {description[currentLang]}
                 </div>
                 <div className="product__colors">
                     {`${getTotalColor(colors) } ${(getTotalColor(colors)===1)?colorText[currentLang][0]:colorText[currentLang][1]}`} 
                 </div>
                 <div className="product__news product__news--hover">
-                    {news}
+                    {news[currentLang]}
                 </div>
                 <div className="product__price">
                     <div className="product__price-active">

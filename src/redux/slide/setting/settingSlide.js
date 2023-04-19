@@ -68,42 +68,42 @@ const initialState = {
             ]
         },
 
-        {
-            hrefValue:'catalog',
-            lang:{
-                en:'Catalog',
-                fr:'Catalogue',
-                ru:'Каталог',
+        // {
+        //     hrefValue:'catalog',
+        //     lang:{
+        //         en:'Catalog',
+        //         fr:'Catalogue',
+        //         ru:'Каталог',
 
-            },
-            subMenu:[
-                {
-                    hrefValue:'catalog/men',
-                    lang:{
-                        en:'Men',
-                        fr:'Homme',
-                        ru:'Муской',
-                    },
-                },
-                {
-                    hrefValue:'catalog/women',
-                    lang:{
-                        en:'Women',
-                        fr:'Femme',
-                        ru:'Женский',
-                    },
-                },
-                {
-                    hrefValue:'catalog/kids',
-                    lang:{
-                        en:'Kids',
-                        fr:'Enfant',
-                        ru:'Детский',
-                    },
-                },
-            ]
+        //     },
+        //     subMenu:[
+        //         {
+        //             hrefValue:'catalog/men',
+        //             lang:{
+        //                 en:'Men',
+        //                 fr:'Homme',
+        //                 ru:'Муской',
+        //             },
+        //         },
+        //         {
+        //             hrefValue:'catalog/women',
+        //             lang:{
+        //                 en:'Women',
+        //                 fr:'Femme',
+        //                 ru:'Женский',
+        //             },
+        //         },
+        //         {
+        //             hrefValue:'catalog/kids',
+        //             lang:{
+        //                 en:'Kids',
+        //                 fr:'Enfant',
+        //                 ru:'Детский',
+        //             },
+        //         },
+        //     ]
         
-        },
+        // },
 
         {
             hrefValue:'/contact',
