@@ -200,25 +200,29 @@ const listProduct=[
                 id:1,
                 en:'price',
                 ru:'цене',
-                fr:'prix'
+                fr:'prix',
+                value:'price'
             },
             {
                 id:2,
                 en:'Men',
                 fr:'Homme',
                 ru:'Муской',
+                value:'M'
             },
             {
                 id:3,
                 en:'Women',
                 fr:'Femme',
                 ru:'Женский',
+                value:'F'
             },
             {
                 id:4,
                 en:'Kids',
                 fr:'Enfant',
                 ru:'Детский',
+                value:'K'
             },
         ],
         activeItemTrie:1

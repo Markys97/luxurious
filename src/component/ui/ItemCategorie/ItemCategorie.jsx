@@ -13,7 +13,7 @@ function ItemCategorie({categorie:{name,img_preview,id}}) {
   return (
     <div  className="item-categorie">
         <div className="item-categorie__content">
-            <div ref={imgWrapperRef} className="item-categorie__img ">
+            <div ref={imgWrapperRef} className="item-categorie__img loading">
                 <img  src={imgLoadingSrc} alt={name}  />
             </div>
             <div className="item-categorie__name">{name}</div>

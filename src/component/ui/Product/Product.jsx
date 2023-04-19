@@ -1,13 +1,19 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './product.css'
+import { loadImg,imgLoadingSrc } from '../../../functions/helper';
 
 function Product({dataProduct}) {
+
+    const baseUrlApi = useSelector( state => state.setting.baseUrlApi)
+    let baseUrlSrcImg =`${baseUrlApi}/product/`;
     const currentLang = useSelector(state => state.setting.lang.value)
     const colorText = useSelector(state => state.setting.colorText)
     const soldeText = useSelector(state => state.setting.soldeText)
     const imgProductRef = useRef()
+
+
     const {
         id,
         description,
@@ -19,8 +25,10 @@ function Product({dataProduct}) {
     let {solde,news}= JSON.parse(dataProduct.state)
     let colors= JSON.parse(dataProduct.colors)
     let {preview}= JSON.parse(dataProduct.imgs)
+    const srcImgPath = `${baseUrlSrcImg+preview}`
 
-    let baseUrlSrcImg =`http://localhost:3500/product/`;
+
+
 
     const getTotalColor = colorsArr => colorsArr.length
 
@@ -60,11 +68,15 @@ function Product({dataProduct}) {
     const getRestNumberPreviewImgs = (allPreviewImgs, previewImgToShow) => allPreviewImgs.length - previewImgToShow.length
     const restImgPreview =getRestNumberPreviewImgs(previewImgs,previewImgsToShow)
 
+    useEffect(()=>{
+        loadImg(imgProductRef.current,srcImgPath)
+    },[])
+
   return (
     <Link to={`sneaker/${id}`}>
         <div className="product">
-            <div ref={imgProductRef} className="product__img">
-                <img src={`${baseUrlSrcImg+preview}`} alt="product"/>
+            <div ref={imgProductRef} className="product__img loading">
+                <img src={imgLoadingSrc} alt="product"/>
             </div>
             <div className="product__body">
                 <div className="product__news">
@@ -138,7 +150,8 @@ function Product({dataProduct}) {
 
     
   )
-
 }
+
+
 
 export default Product

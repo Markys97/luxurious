@@ -8,12 +8,14 @@ import { useParams,useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import { getCurrentItemTrie } from '../../component/ui/Trie/Trie' 
 
 function Catalog() {
+  let secureValue = /^[a-zA-Z \s]+$/
+  const {activeItemTrie,itemTrieListLang }= useSelector(state=>state.product.trieHandler)
   const [listProduct,setListProduct] =  useState([]) //useSelector(state=> state.product.listProductToShow)
-  const params = useParams();
+  const {category} = useParams();
   const {pathname} = useLocation()
-  const listCategori=[];
   useEffect(()=>{
     axios('http://localhost:3500/listProduct')
     .then(res => {
@@ -22,14 +24,53 @@ function Catalog() {
       }
     })
 
+    window.scrollTo(0,0)
   },[])
 
-  const categoryParams= params?.category
-  const filtreParams= params?.filtre
-  let secureValue = /^[a-zA-Z \s]+$/
 
-  
 
+
+  const filtreListProduct = param => {
+    if(param === undefined || param === null) return listProduct
+
+    if(secureValue.test(param)){
+      let getParam = param.toLowerCase();
+      return listProduct.filter(product => product.category.toLowerCase() === getParam)
+    }else{
+      console.log('mama')
+    }
+  }
+   let listProductFiltred = filtreListProduct(category)
+
+   const currentItemTrie = getCurrentItemTrie(activeItemTrie,itemTrieListLang)
+
+   const triListproduct = (activeItemTri,listProduct,price) => {
+     let triNotFromDb = price
+     let itemTriValue = activeItemTri.value;
+     if(itemTriValue.toLowerCase() === triNotFromDb.toLowerCase()){
+      return listProduct.sort((a,b) => a.price - b.price)
+     }else{
+       return listProduct.filter(product => product.genre.toLowerCase().trim() === itemTriValue.toLowerCase().trim())
+     }
+   
+   }
+
+   const listProductToDisplay = triListproduct(currentItemTrie,listProductFiltred,'price')
+
+   const displayproduct = listProduct =>{
+    if(category === undefined) return  <ListProduct products={listProduct}/>
+    if(category !== undefined){
+      if(listProduct.length !== 0) {
+        return  <ListProduct products={listProduct}/>
+      }else{
+        return (
+          <div className="catalog-product__empty">
+              pas de product disponible pour le moment
+          </div>
+        )
+      }
+    }
+   }
 
 
   return (
@@ -42,7 +83,11 @@ function Catalog() {
                 </div>
                 <section className='catalog-product'>
                   <div className="catalog-product__content">
-                      <ListProduct products={listProduct}/>
+                      {/* <ListProduct products={listProductToDisplay}/> */}
+                      {
+                        displayproduct(listProductToDisplay)
+                      }
+                      
                   </div>
                 </section>
             </main>

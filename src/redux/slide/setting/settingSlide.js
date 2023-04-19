@@ -58,7 +58,7 @@ const initialState = {
                     },
                 },
                 {
-                    hrefValue:'catalog/new balance',
+                    hrefValue:'brands/new balance',
                     lang:{
                         en:'New Balance',
                         fr:'New Balance',
@@ -164,7 +164,9 @@ const initialState = {
         fr:'de reduction',
         en:'solde',
         ru:'скидка'
-    }
+    },
+
+    baseUrlApi:'http://localhost:3500'
 }
 
 const settingSlide = createSlice( {

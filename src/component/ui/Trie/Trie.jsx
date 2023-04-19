@@ -3,20 +3,20 @@ import './trie.css'
 import { useSelector,useDispatch} from 'react-redux'
 import Filter from '../../layout/Filter/Filter'
 import { setActiveItemTrie,setProductToShow } from '../../../redux/slide/product/productSlide'
+
+export const getCurrentItemTrie = (activeItemTrie,itemTrieListLang) =>(
+    itemTrieListLang.find(item => item.id === activeItemTrie
+))
+
 function Trie() {
     const dispatch= useDispatch()
     const {activeItemTrie,itemTrieListLang }= useSelector(state=>state.product.trieHandler)
-    const products = useSelector(state=>state.product.listProduct)
-    // const [currentTrieItem, seTcurrentTrieItem] = useState(activeItemTrie)
     const [isOpenBodyTrie, setIsOpenBodyTrie] = useState(false)
     const textTrieLang = useSelector(state=> state.setting.trieTextLang)
-    const category = useSelector(state=>state.product.category)
     const currentLang = useSelector(state=> state.setting.lang.value)
     
 
-    const getCurrentItemTrieValue = (activeItemTrie,itemTrieListLang) =>(
-        itemTrieListLang.find(item => item.id === activeItemTrie
-    ))
+     
 
     const getNoActiveItemTrieLang = (itemTrieListLang)=> {
        return itemTrieListLang.filter((item,index)=> item.id !== activeItemTrie)
@@ -28,7 +28,7 @@ function Trie() {
     }
 
     let bodyListTrieItemLang = getNoActiveItemTrieLang(itemTrieListLang)
-    const currentItemTrieValue = getCurrentItemTrieValue(activeItemTrie,itemTrieListLang)
+    const currentItemTrie = getCurrentItemTrie(activeItemTrie,itemTrieListLang)
   return (
         <div className="trie">
             <div className="trie__content">
@@ -47,7 +47,7 @@ function Trie() {
 
                     <div className="trie__currentValue">
                         {
-                           currentItemTrieValue[currentLang]
+                           currentItemTrie[currentLang]
                         }
                     </div>
                 </div>
