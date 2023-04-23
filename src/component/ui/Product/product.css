@@ -110,4 +110,11 @@
 .product__solde-info {
   font-size: 16px;
   color: rgb(65, 161, 57);
+}
+
+@media screen and (max-width: 1200px) {
+  .product {
+    height: auto;
+    min-width: 300px;
+  }
 }/*# sourceMappingURL=product.css.map */

@@ -3,6 +3,7 @@ import { createBrowserRouter,
   RouterProvider,
   createRoutesFromElements,
   Route,
+  Navigate
 } from 'react-router-dom';
 import LaoutPage from '../LaoutPage/LaoutPage';
 import { useSelector } from 'react-redux';
@@ -24,9 +25,14 @@ function App() {
       <Route  path='catalog' element={<Catalog/>}>
           <Route path=':filtre' element={<Catalog/>} />
       </Route>
+
       <Route path='brands' element={<Catalog/>}>
         <Route path=':category' element={<Catalog/>} />
       </Route>
+      <Route path="*" element={<Navigate to="/error404" replace />} />
+      <Route path='error404'  element= {<p>404</p>} />
+       
+
   </Route>
  )
   )

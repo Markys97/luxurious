@@ -1,7 +1,7 @@
 import { useState,useRef} from 'react'
 import './trie.css'
 import { useSelector,useDispatch} from 'react-redux'
-import Filter from '../../layout/Filter/Filter'
+
 import { setActiveItemTrie,setProductToShow } from '../../../redux/slide/product/productSlide'
 
 export const getCurrentItemTrie = (activeItemTrie,itemTrieListLang) =>(
@@ -15,8 +15,6 @@ function Trie() {
     const textTrieLang = useSelector(state=> state.setting.trieTextLang)
     const currentLang = useSelector(state=> state.setting.lang.value)
     
-
-     
 
     const getNoActiveItemTrieLang = (itemTrieListLang)=> {
        return itemTrieListLang.filter((item,index)=> item.id !== activeItemTrie)

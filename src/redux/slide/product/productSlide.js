@@ -151,46 +151,7 @@ const listProduct=[
 ]
 
  const initialState = {
-    category:[
-        {
-            id:0,
-            isActive:true,
-            isBrand:false,
-            lang:{
-                en:'All',
-                fr:'Tout',
-                ru:'Все'
-            }
-        }, 
-        {
-            id:1,
-            name:'Nike',
-            img:'nike.jpg',
-            isActive:false,
-            isBrand:true,
-        }, 
-        {
-            id:2,
-            name:'Puma',
-            img:'puma.jpg',
-            isActive:false,
-            isBrand:true,
-        },
-        {
-            id:3,
-            name:'Addidas',
-            img:'addidas.jpg',
-            isActive:false,
-            isBrand:true,
-        },
-        {
-            id:4,
-            name:'New Balance',
-            img:'new_balance.jpg',
-            isActive:false,
-            isBrand:true,
-        },
-    ],
+    listCategori:[],
 
     listProduct,
 
@@ -235,51 +196,9 @@ const listProduct=[
     name:'product',
     initialState,
     reducers:{
-        setCategoty: (state,action)=> {
-            
-            if(action.payload === 0){
-             
-                state.category.forEach((item,index,arr) => {
-                    if(item.id === action.payload){
-                        item.isActive= !item.isActive
-                        if(item.isActive === true){
-                            arr.forEach(el=> {
-                                if(el.id !==action.payload){
-                                    el.isActive=false
-                                }
-                            } );
-                        }
-                        
-                    }
-                   
-                });
-               
-            }else{
-                state.category.map((item,index,arr)=>{
-
-                    if(item.id ===0){
-                        item.isActive= false
-                    }
-
-                    if(item.id === action.payload){
-                        item.isActive = !item.isActive
-                    }
-                })
-            }
-
-            let activeItem = state.category.filter(item=> item.isActive === true).length;
-            if(activeItem ===0){
-                state.category.forEach(item => {
-                    if(item.id === 0){
-                        item.isActive = true
-                    }
-                })
-            }
-
-
-           
-
-            return state
+        setCategori: (state,action)=> {
+            state.listCategori = [...action.payload]
+            return state 
         },
         setActiveItemTrie:(state,action)=>{
             state.trieHandler.activeItemTrie =action.payload
@@ -292,7 +211,7 @@ const listProduct=[
     }
 });
 
-export const {setCategoty,setActiveItemTrie,setProductToShow} = productSlide.actions
+export const {setCategori,setActiveItemTrie,setProductToShow} = productSlide.actions
 
  
 

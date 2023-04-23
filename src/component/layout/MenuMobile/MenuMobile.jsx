@@ -53,7 +53,7 @@ function MenuMobile() {
                                         {
                                             link.subMenu.map((submenu_link,id)=>(
                                                 <li className="menuMobile__submenu-item">
-                                                    <Link to={submenu_link.href} className="menuMobile__submenu-link">
+                                                    <Link onClick={ closeMenuMobile} to={submenu_link.hrefValue} className="menuMobile__submenu-link">
                                                         {
                                                             submenu_link.lang[currentLang]
                                                         }

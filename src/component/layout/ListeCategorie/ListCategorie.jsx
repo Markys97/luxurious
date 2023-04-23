@@ -1,14 +1,16 @@
 import './listCategorie.css'
 import ItemCategorie from '../../ui/ItemCategorie/ItemCategorie'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import { setCategori } from '../../../redux/slide/product/productSlide'
 
 
 function ListCategorie() {
     const currentLang = useSelector(state => state.setting.lang.value)
-    const [categotiList, setCategotiList] = useState([])
+    const listCategori = useSelector(state => state.product.listCategori)
+    const dispatch = useDispatch()
    
     const textTitle = {
         lang:{
@@ -23,9 +25,12 @@ function ListCategorie() {
         axios.get('http://localhost:3500/listCategory')
         .then(res => {
           if(res.status === 200){
-            setCategotiList(res.data)
+            //  setCategotiList(res.data)
+            dispatch(setCategori(res.data))
           }
         })
+
+       
       },[])
 
   return (
@@ -38,7 +43,7 @@ function ListCategorie() {
             </h2>
             <div className="list-categorie-sneaker__grid">
                 {
-                    categotiList.map((itemCategorie,index) => (
+                    listCategori.map((itemCategorie,index) => (
                         <Link key={index} to={`brands/${itemCategorie.name.toLowerCase()}`}>
                             <ItemCategorie
                                 key={index}
