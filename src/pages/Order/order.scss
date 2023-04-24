@@ -1,6 +1,6 @@
 .order{
     margin-top: 20px;
-    // border: 1px solid red;
+
     &__row{
         display: flex;
         gap: 0 20px;
@@ -13,16 +13,19 @@
         }
        
     }
+
     &__right{
         flex-shrink: 0;
         max-width: 28%;
         height: fit-content;
     }
+
     &__grid{
         display: grid;
         grid-template-columns: repeat(2,1fr);
         gap: 8px;
     }
+    
     &__sneaker-img{
         // border: 1px solid;
         width: 100%;
@@ -88,6 +91,7 @@
             transition: all 300ms;
             border: 1px solid transparent;
             border-radius:5px ;
+            cursor: pointer;
             img{
                 max-width: 100%;
                 height: auto;
@@ -188,16 +192,38 @@
         .button__text{
             color: var(--second-color);
         }
+        .button__icon{
+            svg path{
+                stroke: var(--second-color);
+            }
+        }
     }
     &__row{
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 20px 0px;
+        gap: 0 10px;
     }
     &__text{
         font-size: 16px;
         transition: all 300ms;
+    }
+    &__icon{
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg{
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            transition: all 300ms;
+            path{
+                transition: all 300ms;
+            }
+        }
     }
     &--buy{
         background: #000;
