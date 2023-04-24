@@ -73,7 +73,7 @@ function Product({dataProduct}) {
     },[])
 
   return (
-    <Link to={`sneaker/${id}`}>
+    <Link to={`../sneaker/${id}`}>
         <div className="product">
             <div ref={imgProductRef} className="product__img loading">
                 <img src={imgLoadingSrc} alt="product"/>

@@ -1,0 +1,45 @@
+.select.active .select__head {
+  border-bottom: unset !important;
+}
+.select.active .select__head:hover .select__icon {
+  transform: rotate(0);
+}
+.select.active .select__icon {
+  transform: rotate(-180deg);
+}
+.select__head {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 300ms;
+}
+.select__head:hover {
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.select__head:hover .select__icon {
+  transform: rotate(-180deg);
+}
+.select__icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 300ms;
+}
+.select__icon svg {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.select__title {
+  font-style: 16px;
+  font-weight: 500;
+}
+.select + .select {
+  margin-top: 10px;
+}/*# sourceMappingURL=select.css.map */

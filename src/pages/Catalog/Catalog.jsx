@@ -9,6 +9,7 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { getCurrentItemTrie } from '../../component/ui/Trie/Trie' 
 import { setCategori } from '../../redux/slide/product/productSlide'
+import { setActiveItemTrie } from '../../redux/slide/product/productSlide'
 
 function Catalog() {
   let secureValue = /^[a-zA-Z \s]+$/
@@ -22,6 +23,7 @@ function Catalog() {
 
 
   useEffect(()=>{
+    dispatch(setActiveItemTrie(1))
     axios('http://localhost:3500/listProduct')
     .then(res => {
       if(res.status===200){
@@ -38,9 +40,9 @@ function Catalog() {
     })
 
     window.scrollTo(0,0)
+
+
   },[])
-
-
 
 
   const filtreListProduct = param => {
@@ -49,16 +51,17 @@ function Catalog() {
     if(secureValue.test(param)){
       let getParam = param.toLowerCase();
       return listProduct.filter(product => product.category.toLowerCase() === getParam)
-    }else{
-      console.log('mama')
     }
   }
 
    let listProductFiltred = filtreListProduct(category)
 
+   
    const currentItemTrie = getCurrentItemTrie(activeItemTrie,itemTrieListLang)
 
    const triListproduct = (activeItemTri,listProduct,price) => {
+
+    if(listProduct.length ===0) return undefined
      let triNotFromDb = price
      let itemTriValue = activeItemTri.value;
      if(itemTriValue.toLowerCase() === triNotFromDb.toLowerCase()){
@@ -66,11 +69,11 @@ function Catalog() {
      }
      else
      {
-       return listProduct.filter(product => product.genre.toLowerCase().trim() === itemTriValue.toLowerCase().trim())
+       let finalProduct= listProduct.filter(product => product.genre.toLowerCase().trim() === itemTriValue.toLowerCase().trim())
+       return  finalProduct.length>0? finalProduct : undefined
      }
    
    }
-
    const listProductToDisplay = triListproduct(currentItemTrie,listProductFiltred,'price')
 
    const preventParam = (categoriList,param) =>{
@@ -79,13 +82,10 @@ function Catalog() {
     if (!param) return
 
     if(!listNameCategori.includes(param.toLowerCase())){
-     console.log(listNameCategori, param,listNameCategori.includes(param.toLowerCase()))
      navigate("../error404", { replace: true });
     }
    }
    preventParam(listCategori,category)
-
-
   return (
     <div className="catalog-page wrapper">
 
@@ -97,11 +97,15 @@ function Catalog() {
 
                 <section className='catalog-product'>
                   <div className="catalog-product__content">
-                      {/* <ListProduct products={listProductToDisplay}/> */}
-                      {
-                        // displayproduct(listProductToDisplay)
-                      }
-                      
+                    {
+                     listProductToDisplay!==undefined ? (
+                      <ListProduct products={listProductToDisplay} />
+                     ) :(
+                    <div className="catalog-product__empty">
+                        pas de product disponible pour le moment
+                    </div>
+                     )
+                    }
                   </div>
                 </section>
             </main>
@@ -109,9 +113,7 @@ function Catalog() {
     </div>
   )
 
-  //   <div className="catalog-product__empty">
-//   pas de product disponible pour le moment
-// </div>
+
 
 
 }

@@ -1,0 +1,54 @@
+.select{
+    &.active{
+        .select__head{
+            border-bottom:unset!important;
+            &:hover{
+                .select__icon{
+                    transform: rotate(0);
+                }
+            }
+        }
+        .select__icon{
+            transform: rotate(-180deg);
+        }
+        
+    }
+    &__head{
+        padding: 20px 0 ;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0,.2);
+        cursor: pointer;
+        transition: all 300ms;
+      
+        &:hover{
+            border-bottom: 1px solid rgba(0, 0, 0,1);
+            .select__icon{
+                transform: rotate(-180deg);
+            }
+        }
+    }
+    &__icon{
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 300ms;
+        svg{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__title{
+        font-style: 16px;
+        font-weight: 500;
+    }
+    
+    &+&{
+        margin-top: 10px;
+    }
+}
