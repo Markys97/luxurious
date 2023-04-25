@@ -42,7 +42,7 @@
   margin-bottom: 8px;
 }
 .product__img img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 .product__news {

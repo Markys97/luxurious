@@ -1,3 +1,6 @@
+.item-banier {
+  height: 550px;
+}
 .item-banier--show {
   position: relative;
 }
@@ -23,8 +26,9 @@
 .item-banier__img {
   display: flex;
   justify-content: center;
-  height: 550px;
+  height: 100%;
   overflow: hidden;
+  border-radius: 8px;
 }
 .item-banier__img img {
   width: 100%;
@@ -41,7 +45,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .item-banier__img {
+  .item-banier {
     height: 350px;
   }
 }/*# sourceMappingURL=banierItem.css.map */

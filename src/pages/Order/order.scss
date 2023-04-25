@@ -1,5 +1,5 @@
 .order{
-    margin-top: 20px;
+    margin: 20px 0 40px 0;
 
     &__row{
         display: flex;
@@ -34,10 +34,14 @@
         justify-content: center;
         overflow: hidden;
         height: 300px;
+        border-radius: 8px;
         img{
             max-width: 100%;
             height:  auto;
         }
+    }
+    &__loading{
+        min-height: 500px
     }
 }
 
@@ -278,10 +282,7 @@
             height: 300px;
 
             flex-shrink: 0;
-            img{
-                max-width: unset;
-                height: 100%;
-            }
+            
         }
     } 
 
