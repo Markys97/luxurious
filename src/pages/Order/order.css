@@ -31,7 +31,8 @@
   height: 300px;
 }
 .order__sneaker-img img {
-  height: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .sneaker-info {
