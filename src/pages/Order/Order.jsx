@@ -7,6 +7,8 @@ import {imgLoadingSrc} from '../../functions/helper'
 import {useSelector} from 'react-redux'
 
 function Order() {
+    
+    const [imgSelected,setImgSelect] = useState(null)
     const currentLang = useSelector(state => state.setting.lang.value)
     const [product,setProduct] = useState({})
     const navigate = useNavigate()
@@ -15,20 +17,69 @@ function Order() {
     const baseUrlApi = useSelector( state => state.setting.baseUrlApi)
     let baseUrlSrcImg =`${baseUrlApi}/product/`;
     let imgRef= useRef();
-    
-    let {name,genre,price,description,size} = product
+    let {name,genre,price,description,size,colors} = product
     let state;
 
     if(product.state !== undefined){
         state= JSON.parse(product.state)
     }
-    
 
+    if(colors!==undefined){
+        console.log(JSON.parse(colors)[0].imgs[0],'color')
+    }
+
+    const choiceOneProduct = (e,id) => {
+        setImgSelect(id)
+        if(e.currentTarget.classList.contains('active')){
+            setImgSelect(null)
+        }else{
+            setImgSelect(id)
+        }
+    }
+
+    const getListImgColors =(imgSelected,colors)=>{
+        if(colors === undefined) return
+        let newColors =JSON.parse(colors);
+        let allListColorsImg = newColors.map(item => item.imgs);
+        // let listImg = [];
+        // allListColorsImg.forEach(imgList => {
+        //     imgList.forEach(img=> listImg.push(img))
+        // });
+
+        if(imgSelected!== null){
+            return[...allListColorsImg[imgSelected]]
+        }
+
+        
+    }
+
+    const listcolorImg=getListImgColors(imgSelected,colors)
+
+    const showImgProductSelected = (imgSelected,defaultImg,allImgSelected)=>{
+        if(imgSelected === null) return defaultImg
+        
+        return allImgSelected
+    }
+
+    const displaySize =(imgSelected,defaultSize,color)=>{
+
+        if(defaultSize !== undefined){
+            if(imgSelected === null) return JSON.parse(defaultSize)
+            let colorParsed = JSON.parse(color);
+    
+            if(imgSelected !== null){
+                return colorParsed[imgSelected].size
+            }
+        }
+    }
+
+    const finalSizeproduct = displaySize(imgSelected,size,colors)
+
+    const imgToShowInGrid = showImgProductSelected(imgSelected,product.allImg,listcolorImg)
 
     if(!validatorId.test(id)) {
         navigate("../error404", { replace: true });
     }
-
 
     useEffect(()=>{
         window.scrollTo(0,0)
@@ -67,7 +118,6 @@ function Order() {
         }
     }
 
-
     if(imgRef.value !== undefined){
         console.log(imgRef.value,'tata')
     }
@@ -76,9 +126,6 @@ function Order() {
         e.target.src= imgSrc;
         e.target.closest('.order__sneaker-img').classList.remove('loading')
     }
-
-
-
 
   return (
 
@@ -105,10 +152,9 @@ function Order() {
                             </div>
                             <div className="order__scroll-grid">
                                 <div className="order__grid">
-                                    
                                     {
                                         
-                                        (product.allImg !== undefined) && product.allImg.map((productImg,index)=> (
+                                        (imgToShowInGrid !== undefined) && imgToShowInGrid.map((productImg,index)=> (
                                             <div key={index} className="order__sneaker-img loading">
                                                 {/* <img src={`${baseUrlSrcImg}/${productImg}`} alt="sneaker" /> */}
                                                 <img onLoad={(e)=>changeSrc(e,`${baseUrlSrcImg}/${productImg}`)} src={imgLoadingSrc} alt="" ref={imgRef}/>
@@ -155,22 +201,34 @@ function Order() {
                                     
                                 </div>
                             </div>
-                            <div className="sneaker-preview">
-                                <div className="sneaker-preview__scroll">
-                                    <div className="sneaker-preview__row">
-                                        <div className="sneaker-preview__img">
-                                            <img src="/images/product/02.jpg" alt="preview"/>
+                            {
+                                (colors !== undefined) && (
+                                    <div className="sneaker-preview">
+                                        <div className="sneaker-preview__scroll">
+                                            <div className="sneaker-preview__row">
+                                            
+                                                {
+                                                    ( JSON.parse(colors)!==undefined) && (
+                                                        JSON.parse(colors).map((itemColor,index)=>(
+                                                        <div onClick={(e)=> choiceOneProduct(e,index)}  key={index} className= { `sneaker-preview__img ${imgSelected===index?'active':''}`}>
+                                                            <img src={`${baseUrlSrcImg}/${itemColor.imgs[0]}`} alt="preview"/>
+                                                        </div>
+                                                        ))
+                                                    )
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                )
+                            }
+                           
                             <div className="sneaker-size">
                                 <h3 className="sneaker-size__title">Select Size</h3>
                                 <div className="sneaker-size__row">
                                    
                                     {
-                                        (size !== undefined) && (
-                                            JSON.parse(size).map((itemSize,index)=>(
+                                        (finalSizeproduct !== undefined) && (
+                                            finalSizeproduct.map((itemSize,index)=>(
                                             <div key={index} className="sneaker-size__item">
                                                {itemSize}
                                             </div>

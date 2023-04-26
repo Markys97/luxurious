@@ -88,11 +88,17 @@
   cursor: pointer;
 }
 .sneaker-preview__img img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
-.sneaker-preview__img:hover {
+.sneaker-preview__img:hover, .sneaker-preview__img.active {
   border: 1px solid black;
+}
+.sneaker-preview__img.active {
+  transition: all 300ms;
+}
+.sneaker-preview__img.active:hover {
+  border: 1px solid var(--second-color);
 }
 .sneaker-size {
   margin-bottom: 40px;
