@@ -1,0 +1,53 @@
+.button{
+    border: 1px solid rgba(95, 94, 94,.5);
+    cursor: pointer;
+    border-radius: 15px;
+    &:hover{
+        .button__text{
+            color: var(--second-color);
+        }
+        .button__icon{
+            svg path{
+                stroke: var(--second-color);
+            }
+        }
+    }
+    &__row{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0px;
+        gap: 0 10px;
+    }
+    &__text{
+        font-size: 16px;
+        transition: all 300ms;
+    }
+    &__icon{
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg{
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            transition: all 300ms;
+            path{
+                transition: all 300ms;
+            }
+        }
+    }
+    &--plein{
+        background: #000;
+        color: white;
+    }
+    &--light{
+        transition: all 300ms;
+        &:hover{
+            border: 1px solid black;
+        }
+    }
+    
+}

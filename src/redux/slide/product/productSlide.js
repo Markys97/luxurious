@@ -189,7 +189,8 @@ const listProduct=[
         activeItemTrie:1
     },
 
-    listProductToShow :[...listProduct]
+    listProductToShow :[...listProduct],
+    agencyDeliverySelected:1,
 }
 
  const productSlide = createSlice({
@@ -207,11 +208,12 @@ const listProduct=[
         setProductToShow:(state,action)=>  {
             state.listProductToShow = action.payload
             return state
-        }
-    }
+        },
+        setAgencyDeliverySelected:(state,action)=> state = {...state,agencyDeliverySelected: action.payload},
+    } 
 });
 
-export const {setCategori,setActiveItemTrie,setProductToShow} = productSlide.actions
+export const {setCategori,setActiveItemTrie,setProductToShow,setAgencyDeliverySelected} = productSlide.actions
 
  
 

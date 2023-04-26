@@ -1,15 +1,41 @@
 import './select.css'
 import {useState} from 'react'
+import {useSelector,useDispatch} from 'react-redux'
+import { setAgencyDeliverySelected } from '../../../redux/slide/product/productSlide';
 
 
 function Select({title,contentList}) {
-    const [isBodySelectOpen, setBodySelectOpen] = useState(false)
+    const [isBodySelectOpen, setBodySelectOpen] = useState(false);
+    let currentLang = useSelector(state => state.setting.lang.value);
+    const agenceDeliverySelected = useSelector( state => state.product.agencyDeliverySelected)
+    const dispatch = useDispatch();
+
+    console.log(agenceDeliverySelected,'tatatta')
+
+    const listAgnecyDelivery =[
+        {
+            id:1,
+            name:'cdek',
+            icon:'cdek.png'
+        },
+        {
+            id:2,
+            name:'почта росси',
+            icon:'cdek.png'
+        },
+        {
+            id:3,
+            name:'un autre',
+            icon:'cdek.png'
+        },
+    ]
+    
   return (
     <div className= {`select ${isBodySelectOpen? 'active':''}`}>
         <div className="select__content">
             <div onClick={()=> setBodySelectOpen(!isBodySelectOpen)} className="select__head">
                 <div className="select__title">
-                    {title}
+                    {title[currentLang]}
                 </div>
                 <div className="select__icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,33 +46,20 @@ function Select({title,contentList}) {
             {
                 isBodySelectOpen && (
                 <div className="select__body">
-                    <div className="sneaker-delivery__item active">
-                        <div className="sneaker-delivery__logo">
-                            <img src="/images/utils/cdek.png" alt="logo cdek"/>
-                        </div>
-                        <div className="sneaker-delivery__name">
-                            cdek
-                        </div>
-                        
-                    </div>
-                    <div className="sneaker-delivery__item">
-                        <div className="sneaker-delivery__logo">
-                            <img src="/images/utils/cdek.png" alt="logo cdek"/>
-                        </div>
-                        <div className="sneaker-delivery__name">
-                            cdek
-                        </div>
-                        
-                    </div>
-                    <div className="sneaker-delivery__item">
-                        <div className="sneaker-delivery__logo">
-                            <img src="/images/utils/cdek.png" alt="logo cdek"/>
-                        </div>
-                        <div className="sneaker-delivery__name">
-                            cdek
-                        </div>
-                        
-                    </div>
+                    
+                   {
+                    listAgnecyDelivery.map((itemDelivery,index)=> (
+                        <div onClick={()=>dispatch(setAgencyDeliverySelected(itemDelivery.id))} className= {`sneaker-delivery__item ${(agenceDeliverySelected===itemDelivery.id)?'active':''}`}>
+                            <div key={index} className="sneaker-delivery__logo">
+                                <img src= {`/images/utils/${itemDelivery.icon}`} alt={`logo ${itemDelivery.name}`}/>
+                            </div>
+                            <div className="sneaker-delivery__name">
+                              {itemDelivery.name}
+                            </div>
+                            
+                        </div>)
+                    )
+                   }
                 </div>
                 )
             }

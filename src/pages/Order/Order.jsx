@@ -5,10 +5,12 @@ import axios from 'axios'
 import {useParams,useNavigate} from 'react-router-dom' 
 import {imgLoadingSrc} from '../../functions/helper'
 import {useSelector} from 'react-redux'
+import Button from '../../component/ui/Button/Button'
 
 function Order() {
     
     const [imgSelected,setImgSelect] = useState(null)
+    const [sizeSelected,setSizeSelected] = useState(null)
     const currentLang = useSelector(state => state.setting.lang.value)
     const [product,setProduct] = useState({})
     const navigate = useNavigate()
@@ -30,10 +32,13 @@ function Order() {
 
     const choiceOneProduct = (e,id) => {
         setImgSelect(id)
+        
         if(e.currentTarget.classList.contains('active')){
             setImgSelect(null)
-        }else{
-            setImgSelect(id)
+        }
+
+        if(id !== imgSelected){
+            setSizeSelected(null)
         }
     }
 
@@ -118,6 +123,47 @@ function Order() {
         }
     }
 
+    let selectTitleSizetext = {
+        fr:'Sélectionnez la taille',
+        en:'Select Size',
+        ru:'Выберите размер'
+    }
+
+    let deliveryText={
+        fr:'Livraison et retours gratuits',
+        en:'delivery and returns',
+        ru:'доставка и возврат'
+    }
+
+    let textButtonBuy ={
+        fr:"Connectez-vous pour acheter",
+        en:"Sign In To Buy",
+        ru:"Войти, чтобы купить"
+    }
+    let textButtonLike ={
+        fr:"Préférée",
+        en:"Favourite",
+        ru:"понравилось"
+    }
+    let textButtonBasket ={
+        fr:"Ajoutez au panier",
+        en:"Add to Cart",
+        ru:"В корзинке"
+    }
+    let iconLikeButton = (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_8_13)">
+                    <path d="M12 21.3429L2.53715 12.7714C-2.60571 7.62857 4.95429 -2.24571 12 5.74286C19.0457 -2.24571 26.5714 7.66286 21.4629 12.7714L12 21.3429Z" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_8_13">
+                    <rect width="24" height="24" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            )
+
+
     if(imgRef.value !== undefined){
         console.log(imgRef.value,'tata')
     }
@@ -126,6 +172,16 @@ function Order() {
         e.target.src= imgSrc;
         e.target.closest('.order__sneaker-img').classList.remove('loading')
     }
+    const toggleSizeSelected = (e,index) =>{
+       
+        setSizeSelected(index)
+
+        if(e.currentTarget.classList.contains('active')){
+            setSizeSelected(null)
+        }
+    }
+
+  
 
   return (
 
@@ -223,13 +279,13 @@ function Order() {
                             }
                            
                             <div className="sneaker-size">
-                                <h3 className="sneaker-size__title">Select Size</h3>
+                                <h3 className="sneaker-size__title">{selectTitleSizetext[currentLang]}</h3>
                                 <div className="sneaker-size__row">
                                    
                                     {
                                         (finalSizeproduct !== undefined) && (
                                             finalSizeproduct.map((itemSize,index)=>(
-                                            <div key={index} className="sneaker-size__item">
+                                            <div onClick={e => toggleSizeSelected(e,index) } key={index} className={`sneaker-size__item ${sizeSelected===index?'active':''}`}>
                                                {itemSize}
                                             </div>
                                             ))
@@ -240,28 +296,26 @@ function Order() {
                             </div>
         
                             <div className="sneaker-buttons">
-                                <button className="button button--buy">
-                                    <div className="button__row">
-                                        <div className="button__text">Sign In To Buy</div>
-                                    </div>
-                                </button>
-                                <button className="button button--like">
-                                    <div className="button__row">
-                                        <div className="button__text">Favourite</div>
-                                        <div className="button__icon">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_8_13)">
-                                                <path d="M12 21.3429L2.53715 12.7714C-2.60571 7.62857 4.95429 -2.24571 12 5.74286C19.0457 -2.24571 26.5714 7.66286 21.4629 12.7714L12 21.3429Z" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </g>
-                                                <defs>
-                                                <clipPath id="clip0_8_13">
-                                                <rect width="24" height="24" fill="white"/>
-                                                </clipPath>
-                                                </defs>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
+                               
+                              
+                                <Button
+                                    type="plein"
+                                    hasIcon={false}
+                                    text={textButtonBuy}
+                                />
+                                
+                                <Button
+                                    type="light"
+                                    hasIcon={false}
+                                    text={textButtonBasket}
+
+                                />
+                                <Button
+                                    type="light"
+                                    hasIcon={true}
+                                    text={textButtonLike}
+                                    icon={iconLikeButton}
+                                />
                             </div>
         
                             <div className="sneaker-description">
@@ -272,7 +326,7 @@ function Order() {
                             </div>
         
                             <Select
-                             title="Livraison et retours gratuits"
+                             title={deliveryText}
                             //  contentList={list}
                              />
                           
