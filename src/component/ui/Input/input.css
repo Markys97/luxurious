@@ -1,26 +1,23 @@
-.form__input {
-  height: 30px;
-  max-width: 300px;
+.input {
+  height: 50px;
   position: relative;
 }
-.form__input input {
-  height: 100%;
-  max-width: 100%;
-  width: 100%;
-  border: 1px solid var(--main-color);
-  border-radius: 10px;
-  padding: 0 16px;
-  transition: all 300ms;
-  font-size: 13px;
-  color: var(--main-color);
+.input.active .input__label {
+  top: -12px;
+  transform: unset;
 }
-.form__input input:focus {
-  border: 1px solid var(--second-color);
+.input.error label {
+  color: red;
 }
-.form__input--search input {
+.input.error input {
+  border: 1px solid red;
+}
+.input.hasIcon input {
   padding-right: 35px;
 }
-.form__input--search .form__icon {
+.input.hasIcon .input__icon {
+  cursor: pointer;
+  z-index: 1;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -30,4 +27,48 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.input.hasIcon .input__icon svg, .input.hasIcon .input__icon img {
+  width: 100%;
+  height: 100%;
+}
+.input input {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 7px;
+  padding: 0 10px;
+  color: var(--main-color);
+}
+.input__label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  display: inline-block;
+  padding: 2px 5px;
+  background: white;
+  font-size: 14px;
+  transition: all 400ms ease-in-out;
+  color: var(--main-color);
+}
+.input__icon {
+  display: none;
+}
+.input__icon svg path {
+  transition: all 300ms;
+  stroke: rgba(0, 0, 0, 0.4);
+}
+.input__icon .bare {
+  transition: all 300ms;
+  opacity: 1;
+}
+.input__icon.show .bare {
+  opacity: 0;
+}
+.input__error {
+  font-size: 14px;
+  color: red;
+  margin-top: 3px;
 }/*# sourceMappingURL=input.css.map */

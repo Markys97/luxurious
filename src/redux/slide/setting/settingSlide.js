@@ -119,7 +119,7 @@ const initialState = {
 
     sessionUserLink: [
         {
-            href:'/',
+            href:'./auth/sign-up',
             lang:{
                 en:'Sign in',
                 ru:'Войти',
@@ -128,7 +128,7 @@ const initialState = {
             }
         },
         {
-            href:'/',
+            href:'./auth/sign-up',
             lang:{
                 en:'Sign up',
                 ru:'Зарегистрироваться',

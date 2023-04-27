@@ -11,6 +11,7 @@ import Catalog from '../../../pages/Catalog/Catalog';
 import './app.css'
 import Home from '../../../pages/Home/Home';
 import Order from '../../../pages/Order/Order';
+import SignUp from '../../../pages/SignUp/SignUp';
 function App() {
   // useEffect(function(){
   //   fetch('https://luxurious-server.onrender.com/listProduct')
@@ -20,7 +21,8 @@ function App() {
   const isDarkMode = useSelector(state=> state.setting.isDarkMode)
   let router = createBrowserRouter(
  createRoutesFromElements(
-  <Route path='/' element={<LaoutPage/>}>
+  <>
+    <Route path='/' element={<LaoutPage/>}>
       <Route index element={<Home/>} />
 
       <Route  path='catalog' element={<Catalog/>}>
@@ -36,6 +38,10 @@ function App() {
        
 
   </Route>
+  <Route path='/auth/sign-up' element={<SignUp/>} />
+  </>
+
+
  )
   )
   return (

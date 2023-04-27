@@ -1,42 +1,87 @@
-.form{
-    &__input{
-        height: 30px;
-        max-width: 300px;
-        position: relative;
-        
+.input{
+    height: 50px;
+    position: relative;
+    &.active &__label{
+        // background:red!important;
+        top: -12px;
+        transform: unset;
+    }
+    &.error{
+        label{
+            color: red;
+            
+        }
         input{
-            height: 100%;
-            max-width: 100%;
-            width: 100%;
-            border: 1px solid var(--main-color);
-            border-radius: 10px;
-            padding: 0 16px;
-            transition: all 300ms;
-         
-            &:focus{
-                border: 1px solid var(--second-color);
-            }
-
-            font-size: 13px;
-            color: var(--main-color);
+            border:1px solid red;
         }
-
-        &--search{
-           input{
+    }
+    &.hasIcon{
+        input{
             padding-right: 35px;
-           }
-            .form__icon{
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                right: 10px;
-                height: 20px;
-                width: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
         }
+         .input__icon{
+            cursor: pointer;
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            height: 20px;
+            width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg,img{
+                width: 100%;
+                height: 100%;
+            }
+         }
+    }
+
+    
+    input{
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+        border: 1px solid   rgba( #000000,.4);
+        border-radius: 7px;
+        padding: 0 10px;
+        color:  var(--main-color);
+       
+
+    }
+    &__label{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 5px;
+        display: inline-block;
+        padding: 2px 5px;
+        background: white;
+        font-size: 14px;
+        transition: all 400ms ease-in-out;
+        color:  var(--main-color);
+    }
+    &__icon{
+        display: none;
+        svg path{
+            transition: all 300ms;
+            stroke: rgba(0, 0, 0, 0.4);;
+        }
+        .bare{
+            transition: all 300ms;
+            opacity: 1;
+        }
+        &.show{
+            .bare{
+                opacity: 0;
+            }
+        }
+    }
+
+    &__error{
+        font-size: 14px;
+        color: red;
+        margin-top: 3px;
     }
 }
