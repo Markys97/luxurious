@@ -171,7 +171,7 @@ const initialState = {
         name:{
             fr:'le nom doit contenir au moin 3 caractère',
             en:'name must contain at least 3 characters',
-            ru: "имя должно содержать не менее 3 символa"
+            ru: "имя должно содержать не менее 3 символов"
         },
         email:{
             fr:'entrez un email valide',
@@ -180,7 +180,7 @@ const initialState = {
         },
         phone:{
             fr:'entrez un numero de telephone valide',
-            ru:'введите действительный номер телефона',
+            ru:'введите действующий  номер телефона',
             en:'enter a valid phone number'
         },
         password:{

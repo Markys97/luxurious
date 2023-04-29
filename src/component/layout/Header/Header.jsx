@@ -4,11 +4,11 @@ import { Link,NavLink} from 'react-router-dom'
 import './header.css'
 import SelectLang from '../../ui/SelectLang/SelectLang'
 import ThemeHandler from '../../ui/ThemeHandler/ThemeHandler'
-import Input from '../../ui/Input/Input'
+
 import LogoLight from '../../ui/LogoLight/LogoLight'
 import MenuMobile from '../MenuMobile/MenuMobile'
 import { setIsOpenMenuMobile } from '../../../redux/slide/setting/settingSlide'
-import SearchInput from '../../ui/SearchInput/SearchInput'
+// import SearchInput from '../../ui/SearchInput/SearchInput'
 
 import { getHref } from '../../../functions/helper'
 
@@ -68,9 +68,9 @@ function Header(){
                             
                             <div className="header__product">
                                 <form className="header__form form">
-                                    <SearchInput 
+                                    {/* <SearchInput 
                                         placeholder={placeholderSearchInput}
-                                    />
+                                    /> */}
                                 </form>  
                                 <div className="header__product-icons">
                                     <div className="header__like">

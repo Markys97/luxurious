@@ -1,6 +1,5 @@
 .input {
   display: block;
-  min-height: 50px;
   position: relative;
 }
 .input.active .input__label {
@@ -32,6 +31,10 @@
 .input.hasIcon .input__icon svg, .input.hasIcon .input__icon img {
   width: 100%;
   height: 100%;
+}
+.input__body {
+  position: relative;
+  height: 50px;
 }
 .input input {
   min-height: 100%;

@@ -5,10 +5,12 @@ import Button from '../../component/ui/Button/Button'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
+import { useState } from 'react'
 
 
 
 function SignUp() {
+    const [hasError, setError]= useState(false);
     const {handleSubmit,register,formState:{errors}} = useForm()
     const currentLang = useSelector(state => state.setting.lang.value)
     const ErrorMessage = useSelector(state => state.setting.formErrorMessage)
@@ -26,7 +28,7 @@ function SignUp() {
 
     let emailLabelTextLang ={
         fr:'email',
-        en:'mail',
+        en:'email',
         ru:'почта'
     }
 
@@ -77,6 +79,8 @@ function SignUp() {
         },
     ]
 
+    console.log(ErrorMessage['email'][currentLang])
+
 
     const sendData = data =>{
         console.log(data ,'tata')
@@ -102,7 +106,7 @@ function SignUp() {
                             type="text"
                             name="name"
                             labelText={nameLabelTextLang}
-                            register={register}
+                            regist={register}
                             errors={errors}
                             errorText ={ErrorMessage['name'][currentLang]}
                             />
@@ -112,7 +116,7 @@ function SignUp() {
                                 type="email"
                                 name="email"
                                 labelText={emailLabelTextLang}
-                                register={register}
+                                regist={register}
                                 errors={errors}
                                 errorText ={ErrorMessage['email'][currentLang]}
 
@@ -123,7 +127,7 @@ function SignUp() {
                                 type="tel"
                                 name="phone"
                                 labelText={phoneLabelTextLang}
-                                register={register}
+                                regist={register}
                                 errors={errors}
                                 errorText ={ErrorMessage['phone'][currentLang]}
 
@@ -135,7 +139,7 @@ function SignUp() {
                                 name="password"
                                 labelText={passwordLabelTextLang}
                                 icon={passwordIcon}
-                                register={register}
+                                regist={register}
                                 errors={errors}
                                 errorText ={ErrorMessage['password'][currentLang]}
                                
@@ -147,7 +151,7 @@ function SignUp() {
                                 name="password-confirm"
                                 labelText={passwordConfirmLabelTextLang}
                                 icon={passwordIcon}
-                                register={register}
+                                regist={register}
                                 errors={errors}
                                 errorText ={ErrorMessage['confirm_password'][currentLang]}
                                

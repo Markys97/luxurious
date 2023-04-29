@@ -1,11 +1,12 @@
 import './input.css'
-import {useState,useRef} from 'react'
+import {useState,useRef,memo} from 'react'
 import { useSelector } from 'react-redux'
 
 
 
-function Input({name,type,labelText,icon,register,errors,errorText}) {
+function Input({name,type,labelText,icon,regist,errors,errorText}) {
   const [isInputOpen, setInputOpen] = useState(false)
+
   const [isHiddenPassword,setHiddenPassword]= useState(true)
   const currentLang = useSelector(state => state.setting.lang.value)
   const inputRef = useRef()
@@ -21,6 +22,10 @@ function Input({name,type,labelText,icon,register,errors,errorText}) {
 
     }
 
+    const handlerBlur = (e,error) =>{
+      closeInput(e)
+    }
+
     const toggleTypePassword = (inputElt)=> {
 
       if(!isInputOpen) return
@@ -34,33 +39,35 @@ function Input({name,type,labelText,icon,register,errors,errorText}) {
       }
     }
 
+
+
    
 
   return (
-      <div className={`input ${icon!==undefined ? 'hasIcon':''} ${isInputOpen? 'active':''}`} >
-        <input
-        ref={inputRef}
-        onChange={(e)=> preventIconPassword(e)}
-          onFocus={()=>openInput()}
-          onBlur={(e)=> closeInput(e)}
-          type={isHiddenPassword?type:'text'} 
-          id={name}
-          {
-            ...register(name,{required:true})
-          }
-          />
+      <div className={`input ${icon!==undefined ? 'hasIcon':''} ${isInputOpen? 'active':''} ${hasError? 'error':''}`} >
+        <div className="input__body">
+            <input
           
-          
+            ref={inputRef}
+            onChange={(e)=> preventIconPassword(e)}
+              onFocus={()=>openInput()}
+              onBlur={(e)=>handlerBlur(e)}
+              type={isHiddenPassword?type:'text'} 
+              id={name}
+              {
+                ...regist!== undefined? {...regist(name, { required: true })}:'' 
+              }
+              />
+            <label className='input__label' htmlFor={name}>{labelText && labelText[currentLang]}</label>
 
-        <label className='input__label' htmlFor={name}>{labelText && labelText[currentLang]}</label>
-
-        {
-          icon && (
-            <div onClick={()=>toggleTypePassword(inputRef.current)} className={`input__icon ${isHiddenPassword?'':'show'}`}>
-              {icon}
-          </div>
-          )
-        }
+            {
+              icon && (
+                <div onClick={()=>toggleTypePassword(inputRef.current)} className={`input__icon ${isHiddenPassword?'':'show'}`}>
+                  {icon}
+              </div>
+              )
+            }
+         </div>
 
        {errors?.name && <div className="input__error">{errorText}</div>}
       </div> 
@@ -69,4 +76,4 @@ function Input({name,type,labelText,icon,register,errors,errorText}) {
   // error hasIcon
 }
 
-export default Input
+export default memo(Input)

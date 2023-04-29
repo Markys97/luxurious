@@ -1,6 +1,5 @@
 .input{
     display: block;
-    min-height: 50px;
     position: relative;
     &.active &__label{
         // background:red!important;
@@ -37,6 +36,10 @@
                 height: 100%;
             }
          }
+    }
+    &__body{
+        position: relative;
+        height: 50px;
     }
 
     
