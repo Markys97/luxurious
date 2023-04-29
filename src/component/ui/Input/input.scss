@@ -13,6 +13,16 @@
         }
         input{
             border:1px solid red;
+            // &:focus{
+            //     border:1px solid red;
+            // }
+            
+        }
+        .input__icon{
+            svg path{
+
+                stroke:  red;
+            }
         }
     }
     &.hasIcon{

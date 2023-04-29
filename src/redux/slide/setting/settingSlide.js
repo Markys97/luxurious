@@ -188,7 +188,7 @@ const initialState = {
             en:'password must contain at least one special character and a number',
             ru:'пароль должен содержать хотя бы один специальный символ и цифру'
         },
-        confirm_password:{
+        password_confirm:{
             fr:'les mots de passes de correspondent pas',
             ru:'Пароли не совпадают',
             en:'the passwords do not match'

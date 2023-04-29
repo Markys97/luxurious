@@ -6,14 +6,29 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { useState } from 'react'
+import * as yup from 'yup'
+
+import {yupResolver} from "@hookform/resolvers/yup"
 
 
 
 function SignUp() {
-    const [hasError, setError]= useState(false);
-    const {handleSubmit,register,formState:{errors}} = useForm()
     const currentLang = useSelector(state => state.setting.lang.value)
     const ErrorMessage = useSelector(state => state.setting.formErrorMessage)
+    const schema = yup.object({
+        name:yup.string().min(3,ErrorMessage['name'][currentLang]),
+        email:yup.string().email(ErrorMessage['email'][currentLang]).required(ErrorMessage['email'][currentLang]),
+        password:yup.string().min(5,ErrorMessage['password'][currentLang]),
+        password_confirm:yup.string().oneOf([yup.ref('password'),null ],ErrorMessage['password_confirm'][currentLang]),
+        phone:yup.string().min(12).max(12,ErrorMessage['phone'][currentLang]),
+
+    })
+    const [hasError, setError]= useState(false);
+    const {handleSubmit,register,formState:{errors}} = useForm({
+        resolver:yupResolver(schema),
+        
+    })
+
     let textButtonForm ={
         fr:"S'inscrire",
         en:"Sign Up",
@@ -79,13 +94,15 @@ function SignUp() {
         },
     ]
 
-    console.log(ErrorMessage['email'][currentLang])
 
 
     const sendData = data =>{
-        console.log(data ,'tata')
+        console.log(errors ,'tata')
       
     }
+
+    console.log(errors,'papappa')
+
    
    
   return (
@@ -118,7 +135,7 @@ function SignUp() {
                                 labelText={emailLabelTextLang}
                                 regist={register}
                                 errors={errors}
-                                errorText ={ErrorMessage['email'][currentLang]}
+                              
 
                             />
                         </div>
@@ -129,7 +146,7 @@ function SignUp() {
                                 labelText={phoneLabelTextLang}
                                 regist={register}
                                 errors={errors}
-                                errorText ={ErrorMessage['phone'][currentLang]}
+                              
 
                             />
                         </div>
@@ -141,19 +158,19 @@ function SignUp() {
                                 icon={passwordIcon}
                                 regist={register}
                                 errors={errors}
-                                errorText ={ErrorMessage['password'][currentLang]}
+                               
                                
                             />
                         </div>
                         <div className="form__item">
                             <Input
                                 type="password"
-                                name="password-confirm"
+                                name="password_confirm"
                                 labelText={passwordConfirmLabelTextLang}
                                 icon={passwordIcon}
                                 regist={register}
                                 errors={errors}
-                                errorText ={ErrorMessage['confirm_password'][currentLang]}
+                              
                                
                             />
                         </div>

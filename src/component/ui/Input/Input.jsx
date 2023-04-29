@@ -44,7 +44,7 @@ function Input({name,type,labelText,icon,regist,errors,errorText}) {
    
 
   return (
-      <div className={`input ${icon!==undefined ? 'hasIcon':''} ${isInputOpen? 'active':''} ${hasError? 'error':''}`} >
+      <div className={`input ${icon!==undefined ? 'hasIcon':''} ${isInputOpen? 'active':''} ${errors.hasOwnProperty(name)?' error':''}` } >
         <div className="input__body">
             <input
           
@@ -69,7 +69,7 @@ function Input({name,type,labelText,icon,regist,errors,errorText}) {
             }
          </div>
 
-       {errors?.name && <div className="input__error">{errorText}</div>}
+       {errors?.name && <div className="input__error">{errors?.name.message}</div>}
       </div> 
   )
 

@@ -12,6 +12,9 @@
 .input.error input {
   border: 1px solid red;
 }
+.input.error .input__icon svg path {
+  stroke: red;
+}
 .input.hasIcon input {
   padding-right: 35px;
 }
