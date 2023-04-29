@@ -81,7 +81,7 @@ function Footer() {
                 <div className="footer__content">
                     <div className="footer__top">
                         <div className="footer__service">
-                            <Link to="tel:+79200664894">
+                            <Link to="/">
                                 <LogoLight/>
                             </Link>
 

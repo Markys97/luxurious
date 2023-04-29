@@ -119,7 +119,7 @@ const initialState = {
 
     sessionUserLink: [
         {
-            href:'./auth/sign-up',
+            href:'./auth/sign-in',
             lang:{
                 en:'Sign in',
                 ru:'Войти',
@@ -165,6 +165,7 @@ const initialState = {
         en:'solde',
         ru:'скидка'
     },
+    isUserConnected:false,
 
     baseUrlApi:'http://localhost:3500',
     formErrorMessage:{
@@ -193,7 +194,8 @@ const initialState = {
             ru:'Пароли не совпадают',
             en:'the passwords do not match'
         }
-    }
+    },
+    isModalOpen:true
 }
 
 const settingSlide = createSlice( {
@@ -202,9 +204,17 @@ const settingSlide = createSlice( {
     reducers:{
         setActiveLang: (state,action) => state= {...state,lang:{...action.payload}},
         setIsDarkMode: (state,action) => state = {...state,isDarkMode:action.payload},
-        setIsOpenMenuMobile: (state,action) => state = {...state,isOpenMenuMobile:action.payload}
+        setIsOpenMenuMobile: (state,action) => state = {...state,isOpenMenuMobile:action.payload},
+        setIsUserConnected: (state,action) => state = {...state,isUserConnected:!state.isUserConnected},
+        closeModal:(state,action) => state ={...state,isModalOpen:false}
     }
 })
 
-export const {setActiveLang,setIsDarkMode,setIsOpenMenuMobile} = settingSlide.actions
+export const {
+    setActiveLang,
+    setIsDarkMode,
+    setIsOpenMenuMobile,
+    setIsUserConnected,
+    closeModal
+} = settingSlide.actions
 export default settingSlide.reducer

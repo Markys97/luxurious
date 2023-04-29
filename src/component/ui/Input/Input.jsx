@@ -44,7 +44,7 @@ function Input({name,type,labelText,icon,regist,errors,errorText}) {
    
 
   return (
-      <div className={`input ${icon!==undefined ? 'hasIcon':''} ${isInputOpen? 'active':''} ${errors.hasOwnProperty(name)?' error':''}` } >
+      <div className={`input ${icon!==undefined ? 'hasIcon':''} ${isInputOpen? 'active':''} ${errors!==undefined&& errors.hasOwnProperty(name)===true?' error':''}` } >
         <div className="input__body">
             <input
           

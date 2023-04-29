@@ -11,7 +11,7 @@ import Catalog from '../../../pages/Catalog/Catalog';
 import './app.css'
 import Home from '../../../pages/Home/Home';
 import Order from '../../../pages/Order/Order';
-import SignUp from '../../../pages/SignUp/SignUp';
+import Authentification from '../../../pages/Authentification/Authentification';
 function App() {
   // useEffect(function(){
   //   fetch('https://luxurious-server.onrender.com/listProduct')
@@ -38,7 +38,8 @@ function App() {
        
 
   </Route>
-  <Route path='/auth/sign-up' element={<SignUp/>} />
+  <Route path='/auth/sign-up' element={<Authentification/>} />
+  <Route path='/auth/sign-in' element={<Authentification type="login"/>} />
   </>
 
 

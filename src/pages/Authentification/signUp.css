@@ -35,8 +35,11 @@
   height: auto;
 }
 .signUp__title {
-  text-align: center;
   margin-bottom: 30px;
+  text-align: center;
+}
+.signUp__title a {
+  color: inherit;
 }
 .signUp__submit {
   min-width: 150px !important;
@@ -57,4 +60,22 @@
 
 .form__item + .form__item {
   margin-top: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .signUp__img {
+    width: 300px;
+    max-height: 300px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .signUp__container {
+    justify-content: unset;
+  }
+  .signUp__img {
+    display: none;
+  }
+  .signUp__content, .signUp__body {
+    width: 100%;
+  }
 }/*# sourceMappingURL=signUp.css.map */

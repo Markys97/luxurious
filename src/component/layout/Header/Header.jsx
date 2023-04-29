@@ -8,7 +8,7 @@ import ThemeHandler from '../../ui/ThemeHandler/ThemeHandler'
 import LogoLight from '../../ui/LogoLight/LogoLight'
 import MenuMobile from '../MenuMobile/MenuMobile'
 import { setIsOpenMenuMobile } from '../../../redux/slide/setting/settingSlide'
-// import SearchInput from '../../ui/SearchInput/SearchInput'
+import SearchInput from '../../ui/SearchInput/SearchInput'
 
 import { getHref } from '../../../functions/helper'
 
@@ -59,7 +59,7 @@ function Header(){
                 <div className="header__content">
                     <div className="header__top">
                         <div className="header__left">
-                            <Link to="tel:+79200664894">
+                            <Link to="/">
                                 <LogoLight/>
                             </Link>
                         </div>
@@ -68,9 +68,9 @@ function Header(){
                             
                             <div className="header__product">
                                 <form className="header__form form">
-                                    {/* <SearchInput 
+                                    <SearchInput 
                                         placeholder={placeholderSearchInput}
-                                    /> */}
+                                    />
                                 </form>  
                                 <div className="header__product-icons">
                                     <div className="header__like">
