@@ -4,10 +4,14 @@ import './signUp.css'
 import Button from '../../component/ui/Button/Button'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import {useForm} from 'react-hook-form'
+
 
 
 function SignUp() {
+    const {handleSubmit,register,formState:{errors}} = useForm()
     const currentLang = useSelector(state => state.setting.lang.value)
+    const ErrorMessage = useSelector(state => state.setting.formErrorMessage)
     let textButtonForm ={
         fr:"S'inscrire",
         en:"Sign Up",
@@ -72,6 +76,12 @@ function SignUp() {
             ru:'здесь'
         },
     ]
+
+
+    const sendData = data =>{
+        console.log(data ,'tata')
+      
+    }
    
    
   return (
@@ -80,17 +90,21 @@ function SignUp() {
         <div className="signUp__content">
             <h2 className="signUp__title">{textTitle[currentLang]}</h2>
             <div className="signUp__row">
+
                 <div className="signUp__img">
                     <img src="/images/product/01.jpg" alt="" />
                 </div>
+
                 <div className="signUp__body">
-                    <form action="" className="signUp__form form">
+                    <form onSubmit={handleSubmit(sendData)} action="" className="signUp__form form">
                         <div className="form__item">
                             <Input
                             type="text"
                             name="name"
                             labelText={nameLabelTextLang}
-
+                            register={register}
+                            errors={errors}
+                            errorText ={ErrorMessage['name'][currentLang]}
                             />
                         </div>
                         <div className="form__item">
@@ -98,6 +112,9 @@ function SignUp() {
                                 type="email"
                                 name="email"
                                 labelText={emailLabelTextLang}
+                                register={register}
+                                errors={errors}
+                                errorText ={ErrorMessage['email'][currentLang]}
 
                             />
                         </div>
@@ -106,6 +123,9 @@ function SignUp() {
                                 type="tel"
                                 name="phone"
                                 labelText={phoneLabelTextLang}
+                                register={register}
+                                errors={errors}
+                                errorText ={ErrorMessage['phone'][currentLang]}
 
                             />
                         </div>
@@ -115,6 +135,9 @@ function SignUp() {
                                 name="password"
                                 labelText={passwordLabelTextLang}
                                 icon={passwordIcon}
+                                register={register}
+                                errors={errors}
+                                errorText ={ErrorMessage['password'][currentLang]}
                                
                             />
                         </div>
@@ -124,6 +147,9 @@ function SignUp() {
                                 name="password-confirm"
                                 labelText={passwordConfirmLabelTextLang}
                                 icon={passwordIcon}
+                                register={register}
+                                errors={errors}
+                                errorText ={ErrorMessage['confirm_password'][currentLang]}
                                
                             />
                         </div>
@@ -133,6 +159,8 @@ function SignUp() {
                                 hasIcon={false}
                                 text={textButtonForm}
                                 htmlClass="signUp__submit"
+                                genre="submit"
+                                
                             />
                         </div>
                     </form>
@@ -143,6 +171,7 @@ function SignUp() {
                         <Link className='signUp__link'>{textOrientation[1][currentLang]}</Link>
                     </p>
                 </div>
+                
             </div>
         </div>
     </div>

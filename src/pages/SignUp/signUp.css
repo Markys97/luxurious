@@ -57,4 +57,7 @@
 
 .form__item + .form__item {
   margin-top: 20px;
+}
+.form__item {
+  border: 1px solid red;
 }/*# sourceMappingURL=signUp.css.map */

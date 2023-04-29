@@ -166,7 +166,34 @@ const initialState = {
         ru:'скидка'
     },
 
-    baseUrlApi:'http://localhost:3500'
+    baseUrlApi:'http://localhost:3500',
+    formErrorMessage:{
+        name:{
+            fr:'le nom doit contenir au moin 3 caractère',
+            en:'name must contain at least 3 characters',
+            ru: "имя должно содержать не менее 3 символa"
+        },
+        email:{
+            fr:'entrez un email valide',
+            ru:'введите действующий адрес электронной почты',
+            en:'enter a valid email',
+        },
+        phone:{
+            fr:'entrez un numero de telephone valide',
+            ru:'введите действительный номер телефона',
+            en:'enter a valid phone number'
+        },
+        password:{
+            fr:'mot de passe doit contenir au moins un caractere special et un numbre',
+            en:'password must contain at least one special character and a number',
+            ru:'пароль должен содержать хотя бы один специальный символ и цифру'
+        },
+        confirm_password:{
+            fr:'les mots de passes de correspondent pas',
+            ru:'Пароли не совпадают',
+            en:'the passwords do not match'
+        }
+    }
 }
 
 const settingSlide = createSlice( {

@@ -1,5 +1,6 @@
 .input {
-  height: 50px;
+  display: block;
+  min-height: 50px;
   position: relative;
 }
 .input.active .input__label {
@@ -33,6 +34,7 @@
   height: 100%;
 }
 .input input {
+  min-height: 100%;
   height: 100%;
   width: 100%;
   display: inline-block;
@@ -40,6 +42,10 @@
   border-radius: 7px;
   padding: 0 10px;
   color: var(--main-color);
+  transition: all 300ms;
+}
+.input input:focus {
+  border: 1px solid black;
 }
 .input__label {
   position: absolute;
