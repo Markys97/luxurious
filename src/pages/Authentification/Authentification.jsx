@@ -1,21 +1,29 @@
 import Input from '../../component/ui/Input/Input'
 import './signUp.css'
 import Button from '../../component/ui/Button/Button'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup"
 import Modal from '../../component/layout/Modal/Modal'
-import { closeModal } from '../../redux/slide/setting/settingSlide'
+import { closeModal, openModal } from '../../redux/slide/setting/settingSlide'
+import ConfirmEmail from '../../component/layout/ConfirmEmail/ConfirmEmail'
+import axios from 'axios'
 
 
 
 function Authentification({type}) {
+    const dispatch = useDispatch();
+    const [dataToSend,setDataToSend] = useState({});
     const currentLang = useSelector(state => state.setting.lang.value)
     const ErrorMessage = useSelector(state => state.setting.formErrorMessage)
     const isModalOpen = useSelector(state => state.setting.isModalOpen)
+    const [isAbleToTransfertData, setIsAbleToTransfertData] = useState(false)
+    const baseUrlApi = useSelector(state => state.setting.baseUrlApi)
+    const [confirmCode,setConfirmCode] = useState(null);
+
     const schema = yup.object({
         name:yup.string().min(3,ErrorMessage['name'][currentLang]),
         email:yup.string().email(ErrorMessage['email'][currentLang]).required(ErrorMessage['email'][currentLang]),
@@ -25,7 +33,7 @@ function Authentification({type}) {
      
 
     })
-    // const [isModalOpen,setOpenModal] = useState(true)
+
 
     const [hasError, setError]= useState(false);
     const {handleSubmit,register,formState:{errors}} = useForm({
@@ -117,9 +125,49 @@ function Authentification({type}) {
 
 
     const sendData = data =>{
-        console.log(data ,'tata')
-      
+        if(type !== "login"){
+           
+            if(confirmCode=== null){
+                setDataToSend(data)
+            }else{
+                dispatch(openModal())
+
+            }
+
+           
+
+        }
+        setIsAbleToTransfertData(true)
     }
+
+    useEffect(()=>{
+        if(!isAbleToTransfertData ) return
+        const params={
+            header:{
+             'content-type':'application/json',
+             lang:currentLang
+            },
+            body: JSON.stringify(dataToSend)
+ 
+        }
+        if(type !== 'login'){
+            axios.post(`${baseUrlApi}/user/confirm-email`,params)
+            .then(res=> {
+                if(res.status === 200){
+                    setConfirmCode(res.data.code)
+                    dispatch(openModal())
+
+                    console.log(res.data.code)
+                   
+                }
+            })
+
+        }
+
+        setIsAbleToTransfertData(false)
+       
+
+    },[isAbleToTransfertData])
 
 
 
@@ -240,7 +288,7 @@ function Authentification({type}) {
         {
            ( type !=="login" && isModalOpen) && (
             <Modal>
-                je suis le roi
+                <ConfirmEmail email={dataToSend.email} code={confirmCode}/>
             </Modal>
            )
         }

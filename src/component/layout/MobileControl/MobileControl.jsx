@@ -47,15 +47,19 @@ function MobileControl() {
 
         // toggleVisibilityMobileControl(mobileControlElt)
 
-        document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height)+ 20}px`
-        console.log(getComputedStyle(mobileControlElt).height)
-        window.addEventListener('resize',function(e){
-            document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height )+20}px`
+       
 
-            if(this.screen.width>1200){
-                document.querySelector('.footer').style.marginBottom = 0
-            }
-        })
+        if( document.querySelector('.footer')){
+            document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height)+ 20}px`
+            console.log(getComputedStyle(mobileControlElt).height)
+            window.addEventListener('resize',function(e){
+                document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height )+20}px`
+    
+                if(this.screen.width>1200){
+                    document.querySelector('.footer').style.marginBottom = 0
+                }
+            })
+        }
 
     },[])
 

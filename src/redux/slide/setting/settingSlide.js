@@ -195,7 +195,7 @@ const initialState = {
             en:'the passwords do not match'
         }
     },
-    isModalOpen:true
+    isModalOpen:false
 }
 
 const settingSlide = createSlice( {
@@ -206,7 +206,8 @@ const settingSlide = createSlice( {
         setIsDarkMode: (state,action) => state = {...state,isDarkMode:action.payload},
         setIsOpenMenuMobile: (state,action) => state = {...state,isOpenMenuMobile:action.payload},
         setIsUserConnected: (state,action) => state = {...state,isUserConnected:!state.isUserConnected},
-        closeModal:(state,action) => state ={...state,isModalOpen:false}
+        closeModal:(state,action) => state ={...state,isModalOpen:false},
+        openModal:(state,action) => state={...state,isModalOpen:true}
     }
 })
 
@@ -215,6 +216,7 @@ export const {
     setIsDarkMode,
     setIsOpenMenuMobile,
     setIsUserConnected,
-    closeModal
+    closeModal,
+    openModal
 } = settingSlide.actions
 export default settingSlide.reducer

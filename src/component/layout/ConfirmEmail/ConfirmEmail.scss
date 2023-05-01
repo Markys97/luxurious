@@ -1,0 +1,79 @@
+.confirm-mail{
+    margin-top: 60px;
+  
+    &__content{
+        max-width: 600px;
+    }
+    &__title{
+        margin-bottom: 10px;
+    }
+    &__text{
+        margin-bottom: 20px;
+        
+    }
+
+    &__input{
+    
+        max-width: 300px;
+        height: 40px;
+        margin-bottom: 10px;
+        &.error{
+          input{
+            border: 1px solid red;
+          }
+        }
+        input{
+            border: 1px solid rgba(0,0,0,.4);
+            width: 100%;
+            height: 100%;
+            border-radius:8px;
+            padding: 0 10px;
+            transition: all 300ms;
+            &:focus{
+                border: 1px solid rgba(0,0,0,1);
+            }
+            
+        }
+        
+    }
+    button{
+        display: inline-flex;
+       
+    }
+    &__button-link{
+        background-attachment: none;
+        outline: none;
+        border: none;
+        color: blue;
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+        text-underline-offset: 3px;
+        margin-bottom: 5px;
+    }
+    &__wrapper-button{
+        margin-top: 20px;
+       
+    }
+    &__button{
+        max-width: 400px;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+        border-radius: 8px;
+        border: none;
+
+        &--disableb{
+            background: #fafafa;
+            border: 1px solid rgba(0,0,0,.4);
+            cursor:not-allowed;
+        }
+        
+    }
+    &__error{
+        color: red;
+        font-size: 13px;
+    }
+}
