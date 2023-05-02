@@ -21,6 +21,9 @@
         height: auto;
         background: white;
         position: relative;
+        cursor: auto!important;
+        position: relative;
+        z-index: 100;
     }
     &__close-icon{
         position: absolute;
@@ -38,7 +41,7 @@
         // border: 1px solid red;
         height: 100%;
         padding: 40px 20px ;
-        cursor: unset;
+       
        
     }
 }

@@ -22,9 +22,12 @@ function Input({name,type,labelText,icon,regist,errors,errorText}) {
 
     }
 
-    const handlerBlur = (e,error) =>{
+    const handlerBlur = (e) =>{
+      if(e.target.value.length !== 0) return
       closeInput(e)
     }
+
+
 
     const toggleTypePassword = (inputElt)=> {
 
@@ -47,16 +50,19 @@ function Input({name,type,labelText,icon,regist,errors,errorText}) {
       <div className={`input ${icon!==undefined ? 'hasIcon':''} ${isInputOpen? 'active':''} ${errors!==undefined&& errors.hasOwnProperty(name)===true?' error':''}` } >
         <div className="input__body">
             <input
-          
-            ref={inputRef}
-            onChange={(e)=> preventIconPassword(e)}
+              ref={inputRef}
+              onChange={(e)=> preventIconPassword(e)}
+
               onFocus={()=>openInput()}
-              onBlur={(e)=>handlerBlur(e)}
-              type={isHiddenPassword?type:'text'} 
+
+              type={isHiddenPassword?type:'text'}
+
               id={name}
+
               {
                 ...regist!== undefined? {...regist(name, { required: true })}:'' 
               }
+              onBlur={e=> handlerBlur(e)}
               />
             <label className='input__label' htmlFor={name}>{labelText && labelText[currentLang]}</label>
 

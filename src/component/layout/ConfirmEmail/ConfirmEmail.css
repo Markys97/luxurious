@@ -36,17 +36,25 @@
   background-attachment: none;
   outline: none;
   border: none;
+  margin-bottom: 5px;
+  display: inline-flex;
+  gap: 8px;
+}
+.confirm-mail__button-link-title {
   color: blue;
   text-decoration-line: underline;
-  text-decoration-style: dotted;
   text-underline-offset: 3px;
-  margin-bottom: 5px;
+  cursor: pointer;
+}
+.confirm-mail__button-link-title.noAcitve {
+  opacity: 0.3;
+  cursor: auto;
 }
 .confirm-mail__wrapper-button {
   margin-top: 20px;
 }
 .confirm-mail__button {
-  max-width: 400px;
+  max-width: 300px;
   width: 100%;
   height: 40px;
   display: flex;
@@ -64,4 +72,28 @@
 .confirm-mail__error {
   color: red;
   font-size: 13px;
+}
+.confirm-mail__succes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 1;
+  color: rgb(104, 166, 12);
+  font-size: 22px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .confirm-mail__title {
+    font-size: 20px;
+  }
+  .confirm-mail__text {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=ConfirmEmail.css.map */

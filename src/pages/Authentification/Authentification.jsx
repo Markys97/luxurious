@@ -4,7 +4,7 @@ import Button from '../../component/ui/Button/Button'
 import { useSelector,useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup"
 import Modal from '../../component/layout/Modal/Modal'
@@ -23,6 +23,8 @@ function Authentification({type}) {
     const [isAbleToTransfertData, setIsAbleToTransfertData] = useState(false)
     const baseUrlApi = useSelector(state => state.setting.baseUrlApi)
     const [confirmCode,setConfirmCode] = useState(null);
+
+    const formRef = useRef()
 
     const schema = yup.object({
         name:yup.string().min(3,ErrorMessage['name'][currentLang]),
@@ -137,6 +139,7 @@ function Authentification({type}) {
            
 
         }
+
         setIsAbleToTransfertData(true)
     }
 
@@ -148,17 +151,14 @@ function Authentification({type}) {
              lang:currentLang
             },
             body: JSON.stringify(dataToSend)
- 
         }
+
         if(type !== 'login'){
             axios.post(`${baseUrlApi}/user/confirm-email`,params)
             .then(res=> {
                 if(res.status === 200){
                     setConfirmCode(res.data.code)
                     dispatch(openModal())
-
-                    console.log(res.data.code)
-                   
                 }
             })
 
@@ -168,6 +168,10 @@ function Authentification({type}) {
        
 
     },[isAbleToTransfertData])
+
+    useEffect(()=>{
+        formRef.current.reset()
+    },[])
 
 
 
@@ -190,7 +194,7 @@ function Authentification({type}) {
                         </div>
 
                         <div className="signUp__body">
-                            <form onSubmit={handleSubmit(sendData)} action="" className="signUp__form form">
+                            <form ref={formRef} onSubmit={handleSubmit(sendData)} action="" className="signUp__form form">
                                 {
                                     type!=='login' &&(
                                         <div className="form__item">
@@ -287,8 +291,8 @@ function Authentification({type}) {
         </section>
         {
            ( type !=="login" && isModalOpen) && (
-            <Modal>
-                <ConfirmEmail email={dataToSend.email} code={confirmCode}/>
+            <Modal noClose={true}>
+                <ConfirmEmail data={dataToSend} email={dataToSend.email} code={confirmCode}/>
             </Modal>
            )
         }

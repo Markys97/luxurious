@@ -49,16 +49,20 @@ function MobileControl() {
 
        
 
-        if( document.querySelector('.footer')){
+        if( document.querySelector('.footer') !== undefined){
             document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height)+ 20}px`
             console.log(getComputedStyle(mobileControlElt).height)
-            window.addEventListener('resize',function(e){
-                document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height )+20}px`
-    
-                if(this.screen.width>1200){
-                    document.querySelector('.footer').style.marginBottom = 0
-                }
-            })
+           
+
+            if( document.querySelector('.footer')){
+                window.addEventListener('resize',function(e){
+                    document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height )+20}px`
+        
+                    if(this.screen.width>1200){
+                        document.querySelector('.footer').style.marginBottom = 0
+                    }
+                })
+            }
         }
 
     },[])
