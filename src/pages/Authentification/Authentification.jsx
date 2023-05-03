@@ -2,7 +2,7 @@ import Input from '../../component/ui/Input/Input'
 import './signUp.css'
 import Button from '../../component/ui/Button/Button'
 import { useSelector,useDispatch } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation ,useNavigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
 import * as yup from 'yup'
@@ -12,9 +12,12 @@ import { closeModal, openModal } from '../../redux/slide/setting/settingSlide'
 import ConfirmEmail from '../../component/layout/ConfirmEmail/ConfirmEmail'
 import axios from 'axios'
 
+import { setIsUserConnected } from '../../redux/slide/setting/settingSlide'
+
 
 
 function Authentification({type}) {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [dataToSend,setDataToSend] = useState({});
     const currentLang = useSelector(state => state.setting.lang.value)
@@ -24,19 +27,27 @@ function Authentification({type}) {
     const baseUrlApi = useSelector(state => state.setting.baseUrlApi)
     const [confirmCode,setConfirmCode] = useState(null);
     const [hasServerError , setHasServerError] = useState(false)
+    const [hasErrorServerSignin,setHasErrorServerSignin] = useState(false)
 
     const formRef = useRef()
-
-
-    const schema = yup.object({
-        name:yup.string().min(3,ErrorMessage['name'][currentLang]),
-        email:yup.string().email(ErrorMessage['email'][currentLang]).required(ErrorMessage['email'][currentLang]),
-        password:yup.string().min(5,ErrorMessage['password'][currentLang]),
-        password_confirm:yup.string().oneOf([yup.ref('password'),null ],ErrorMessage['password_confirm'][currentLang]),
-        phone:yup.string().min(11).max(12,ErrorMessage['phone'][currentLang]),
+    let schema = yup.object({
+        name:yup.string().min(3,ErrorMessage.name[currentLang]),
+        email:yup.string().email(ErrorMessage.email[currentLang]).required(),
+        password:yup.string().min(5,ErrorMessage.email[currentLang]).required(),
+        password_confirm:yup.string().oneOf([yup.ref('password'),null ],ErrorMessage.password_confirm[currentLang]).required(),
+        phone:yup.string().min(11).max(12,ErrorMessage.phone[currentLang]),
      
 
     })
+
+    if(type === 'login'){
+        schema = undefined;
+         schema = yup.object({
+            email:yup.string().email(ErrorMessage.email[currentLang]).required(),
+            password:yup.string().min(5,ErrorMessage.email[currentLang]).required(),         
+    
+        })
+    }
 
 
     const [hasError, setError]= useState(false);
@@ -132,10 +143,17 @@ function Authentification({type}) {
         ru:'электронная почта уже используется'
 
     }
+    const errServerSignin ={
+        fr:'email ou mot de passe incorrect',
+        en:'Incorrect email or password',
+        ru:'Неверный адрес электронной почты или пароль'
+    }
 
-     let {pathname} = useLocation()
+     let {pathname,state} = useLocation()
+     console.log(state,' mama')
 
     const sendData = data =>{
+    
         if(type !== "login"){
 
             if(confirmCode=== null){
@@ -144,8 +162,12 @@ function Authentification({type}) {
                 dispatch(openModal())
             }
 
+        }else{
+            setDataToSend({email:data.email,password:data.password})
         }
         setIsAbleToTransfertData(true)
+
+       
     }
 
 
@@ -164,11 +186,10 @@ function Authentification({type}) {
             .then(res=> {
 
                 if(res.data === 'email busy'){
-                    console.log('mama')
                     setHasServerError(true)
                 }
                 else if( res.data === 'bad email'){
-                    console.log('papa')
+
                     setHasServerError(true)
                 }else{
                     if( hasServerError === true)  setHasServerError(false)
@@ -182,6 +203,34 @@ function Authentification({type}) {
                 
             })
 
+        }else{
+            const params ={
+                header:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(dataToSend)
+
+            }
+
+            axios.post(`${baseUrlApi}/user/sign-in`,params)
+            .then(res=> {
+                if(res.data === 'ok'){
+                    if(hasErrorServerSignin){
+                        setHasErrorServerSignin(false)
+                    }
+                    dispatch(setIsUserConnected())
+                    
+                    if(state!==null){
+                        navigate(`../${state}`,{replace:true})
+                    }else{
+                        navigate('..',{replace:true})
+                    }
+                }else{
+                    
+                    setHasErrorServerSignin(true)
+
+                }
+            })
         }
 
         setIsAbleToTransfertData(false)
@@ -191,22 +240,10 @@ function Authentification({type}) {
     useEffect(()=>{
         formRef.current.reset()
         setHasServerError(false)
-        let allinput = [...document.querySelectorAll('.signUp input')]
-        console.log(allinput)
+        setHasErrorServerSignin(false)
+        let input = document.querySelector('.signUp input')
+        input.focus()
         clearErrors()
-
-        if(allinput.length >0){
-            allinput.forEach((input,index)=> {
-              
-                if(index === 0){
-                    input.focus()
-                }
-                console.log(input)
-            })
-          
-        }
-
-       
     },[pathname])
 
 
@@ -227,6 +264,13 @@ function Authentification({type}) {
                         hasServerError=== true && (
                         <div className="signUp__serverError">
                           {serverEmailErrtext[currentLang]}
+                        </div>
+                        )
+                    }
+                    {
+                        hasErrorServerSignin=== true && (
+                        <div className="signUp__serverError">
+                          {errServerSignin[currentLang]}
                         </div>
                         )
                     }
@@ -260,6 +304,7 @@ function Authentification({type}) {
                                             labelText={emailLabelTextLang}
                                             regist={register}
                                             errors={errors}
+                                            errorText ={ErrorMessage['email'][currentLang]}
                                         />
                                     </div>
                                 {
@@ -271,6 +316,7 @@ function Authentification({type}) {
                                                 labelText={phoneLabelTextLang}
                                                 regist={register}
                                                 errors={errors}
+                                                errorText ={ErrorMessage['phone'][currentLang]}
                                             
 
                                             />
@@ -289,6 +335,7 @@ function Authentification({type}) {
                                         icon={passwordIcon}
                                         regist={register}
                                         errors={errors}
+                                        errorText ={ErrorMessage['password'][currentLang]}
                                     
                                     
                                     />
@@ -303,6 +350,7 @@ function Authentification({type}) {
                                             icon={passwordIcon}
                                             regist={register}
                                             errors={errors}
+                                            errorText ={ErrorMessage['password_confirm'][currentLang]}
                                         
                                         
                                         />

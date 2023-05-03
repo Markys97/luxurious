@@ -93,7 +93,6 @@ function ConfirmEmail({email,code,data}) {
         })
     }
 
-    console.log(getNewCodeRef,' tata')
    },[getNewCodeRef])
 
    // save data in database

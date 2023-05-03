@@ -1,10 +1,10 @@
 import './button.css'
 import { useSelector } from 'react-redux'
 
-function Button({text ,type ,hasIcon,icon,htmlClass,genre}) {
+function Button({text ,type ,hasIcon,icon,htmlClass,genre,onEvent}) {
     const currentLang = useSelector(state => state.setting.lang.value)
   return (
-    <button type={genre? genre:''} className={`button button--${type} ${htmlClass}`}>
+    <button onClick={(e)=> onEvent!== undefined ? onEvent():''} type={genre? genre:''} className={`button button--${type} ${htmlClass}`}>
         <div className="button__row">
             <div className="button__text">{text[currentLang]}</div>
             {

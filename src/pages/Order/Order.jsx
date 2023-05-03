@@ -2,13 +2,13 @@ import './order.css'
 import {useEffect,useState,useRef} from 'react'
 import Select from '../../component/ui/Select/Select'
 import axios from 'axios'
-import {useParams,useNavigate} from 'react-router-dom' 
+import {useParams,useNavigate,useLocation} from 'react-router-dom' 
 import {imgLoadingSrc} from '../../functions/helper'
 import {useSelector} from 'react-redux'
 import Button from '../../component/ui/Button/Button'
 
 function Order() {
-    
+    const isUserConnected = useSelector(state => state.setting.isUserConnected)
     const [imgSelected,setImgSelect] = useState(null)
     const [sizeSelected,setSizeSelected] = useState(null)
     const currentLang = useSelector(state => state.setting.lang.value)
@@ -21,6 +21,9 @@ function Order() {
     let imgRef= useRef();
     let {name,genre,price,description,size,colors} = product
     let state;
+    const {pathname} = useLocation()
+
+
 
     if(product.state !== undefined){
         state= JSON.parse(product.state)
@@ -181,6 +184,19 @@ function Order() {
         }
     }
 
+    const signinBeforeBuying = ()=>{
+        navigate('../auth/sign-in',{state:pathname,replace:true})
+    }
+
+    const buyNowText = {
+        fr:'achetez en un click',
+        ru:'купить в один клик',
+        en:'buy in one click'
+    }
+
+    const finaliseOrder = ()=>{
+        return navigate('..')
+    }
   
 
   return (
@@ -301,13 +317,15 @@ function Order() {
                                 <Button
                                     type="plein"
                                     hasIcon={false}
-                                    text={textButtonBuy}
+                                    text={isUserConnected=== false? textButtonBuy:buyNowText}
+                                    onEvent={isUserConnected=== false?signinBeforeBuying:finaliseOrder}
                                 />
                                 
                                 <Button
                                     type="light"
                                     hasIcon={false}
                                     text={textButtonBasket}
+                                    onEvent={signinBeforeBuying}
 
                                 />
                                 <Button
@@ -315,6 +333,7 @@ function Order() {
                                     hasIcon={true}
                                     text={textButtonLike}
                                     icon={iconLikeButton}
+                                    onEvent={signinBeforeBuying}
                                 />
                             </div>
         

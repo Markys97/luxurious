@@ -12,6 +12,8 @@ function Input({name,type,labelText,icon,regist,errors,errorText}) {
   const inputRef = useRef()
 
 
+
+
     const openInput = () =>{
         setInputOpen(true);
     }
@@ -75,7 +77,7 @@ function Input({name,type,labelText,icon,regist,errors,errorText}) {
             }
          </div>
 
-       {errors?.name && <div className="input__error">{errors?.name.message}</div>}
+       {errors?.name && <div className="input__error">{errorText}</div>}
       </div> 
   )
 

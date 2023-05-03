@@ -54,7 +54,7 @@ function MobileControl() {
             console.log(getComputedStyle(mobileControlElt).height)
            
 
-            if( document.querySelector('.footer')){
+            if( document.querySelector('.footer') !== undefined){
                 window.addEventListener('resize',function(e){
                     document.querySelector('.footer').style.marginBottom = `${ parseFloat(getComputedStyle(mobileControlElt).height )+20}px`
         

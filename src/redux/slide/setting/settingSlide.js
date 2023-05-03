@@ -205,7 +205,7 @@ const settingSlide = createSlice( {
         setActiveLang: (state,action) => state= {...state,lang:{...action.payload}},
         setIsDarkMode: (state,action) => state = {...state,isDarkMode:action.payload},
         setIsOpenMenuMobile: (state,action) => state = {...state,isOpenMenuMobile:action.payload},
-        setIsUserConnected: (state,action) => state = {...state,isUserConnected:!state.isUserConnected},
+        setIsUserConnected: (state) => state = {...state,isUserConnected:true},
         closeModal:(state,action) => state ={...state,isModalOpen:false},
         openModal:(state,action) => state={...state,isModalOpen:true}
     }
