@@ -16,6 +16,7 @@ function ConfirmEmail({email,code,data}) {
     const [getNewCodeRef, setGetNewCodeRef] =useState(0)
     const [newCode,setNewCode]= useState(null)
     const [isSucces, setIsSucces] =useState(false)
+    const [saveData, setSaveData] = useState(0)
     const dispatch = useDispatch();
 
     const navigate = useNavigate()
@@ -27,13 +28,16 @@ function ConfirmEmail({email,code,data}) {
 
         if(valideFormCode.test(codeFromuser)){
             if(codeFromuser=== valideCode){
-                setisValideCode(null)
-             setIsSucces(true)
-             setTimeout(()=>{
-               
-                navigate('../auth/sign-in')
-                dispatch(closeModal(true))
-             },1000)
+                // setisValideCode(null)
+
+                // setIsSucces(true)
+
+                // setTimeout(()=>{
+                //     navigate('../auth/sign-in' ,{replace:true})
+                //     dispatch(closeModal(true))
+                // },1000)
+                setSaveData(prev => prev+1)
+
             }else{
                 setisValideCode(false)
             }
@@ -91,6 +95,35 @@ function ConfirmEmail({email,code,data}) {
 
     console.log(getNewCodeRef,' tata')
    },[getNewCodeRef])
+
+   // save data in database
+
+   useEffect(()=>{
+    if(saveData !== 0){
+        setisValideCode(null)
+        setIsSucces(true)
+
+
+        const params={
+            header:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(data)
+        }
+       
+        axios.post(`${baseUrlApi}/user/save-data`,params)
+        .then(res=>{
+            if(res.status === 200){
+               setTimeout(()=>{
+                    navigate('../auth/sign-in' ,{replace:true})
+                    dispatch(closeModal(true))
+               },2000)
+               
+               
+            }
+        })
+    }
+   },[saveData])
 
    
 

@@ -2,7 +2,7 @@ import Input from '../../component/ui/Input/Input'
 import './signUp.css'
 import Button from '../../component/ui/Button/Button'
 import { useSelector,useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
 import * as yup from 'yup'
@@ -23,8 +23,10 @@ function Authentification({type}) {
     const [isAbleToTransfertData, setIsAbleToTransfertData] = useState(false)
     const baseUrlApi = useSelector(state => state.setting.baseUrlApi)
     const [confirmCode,setConfirmCode] = useState(null);
+    const [hasServerError , setHasServerError] = useState(false)
 
     const formRef = useRef()
+
 
     const schema = yup.object({
         name:yup.string().min(3,ErrorMessage['name'][currentLang]),
@@ -38,7 +40,7 @@ function Authentification({type}) {
 
 
     const [hasError, setError]= useState(false);
-    const {handleSubmit,register,formState:{errors}} = useForm({
+    let {handleSubmit,register,formState:{errors},clearErrors } = useForm({
         resolver:yupResolver(schema),
     })
 
@@ -124,24 +126,28 @@ function Authentification({type}) {
         },
     ]
 
+    const serverEmailErrtext={
+        en:'email already used',
+        fr:'Adresse e-Mail déjà utilisée',
+        ru:'электронная почта уже используется'
 
+    }
+
+     let {pathname} = useLocation()
 
     const sendData = data =>{
         if(type !== "login"){
-           
+
             if(confirmCode=== null){
                 setDataToSend(data)
             }else{
                 dispatch(openModal())
-
             }
 
-           
-
         }
-
         setIsAbleToTransfertData(true)
     }
+
 
     useEffect(()=>{
         if(!isAbleToTransfertData ) return
@@ -156,22 +162,52 @@ function Authentification({type}) {
         if(type !== 'login'){
             axios.post(`${baseUrlApi}/user/confirm-email`,params)
             .then(res=> {
-                if(res.status === 200){
+
+                if(res.data === 'email busy'){
+                    console.log('mama')
+                    setHasServerError(true)
+                }
+                else if( res.data === 'bad email'){
+                    console.log('papa')
+                    setHasServerError(true)
+                }else{
+                    if( hasServerError === true)  setHasServerError(false)
                     setConfirmCode(res.data.code)
                     dispatch(openModal())
                 }
+                
+
+              
+
+                
             })
 
         }
 
         setIsAbleToTransfertData(false)
        
-
     },[isAbleToTransfertData])
 
     useEffect(()=>{
         formRef.current.reset()
-    },[])
+        setHasServerError(false)
+        let allinput = [...document.querySelectorAll('.signUp input')]
+        console.log(allinput)
+        clearErrors()
+
+        if(allinput.length >0){
+            allinput.forEach((input,index)=> {
+              
+                if(index === 0){
+                    input.focus()
+                }
+                console.log(input)
+            })
+          
+        }
+
+       
+    },[pathname])
 
 
 
@@ -187,6 +223,14 @@ function Authentification({type}) {
                             {textTitle[currentLang]}
                         </Link>
                     </h2>
+                    {
+                        hasServerError=== true && (
+                        <div className="signUp__serverError">
+                          {serverEmailErrtext[currentLang]}
+                        </div>
+                        )
+                    }
+                    
                     <div className="signUp__row">
 
                         <div className="signUp__img">
